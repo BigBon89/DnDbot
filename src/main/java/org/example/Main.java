@@ -1,10 +1,17 @@
 package org.example;
+import java.util.Scanner;
 
 public class Main
 {
     public static void main(String[] args)
     {
+        Scanner in = new Scanner(System.in);
         Core cor = new Core();
-        System.out.printf(Integer.toString( cor.Random()));
+
+        while (true)
+        {
+            String command = in.nextLine();
+            cor.Input(command);
+        }
     }
 }
