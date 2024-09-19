@@ -4,7 +4,7 @@ public class Main
 {
     public static void main(String[] args)
     {
-        core cor = new core();
+        Core cor = new Core();
         System.out.printf(Integer.toString( cor.Random()));
     }
 }
