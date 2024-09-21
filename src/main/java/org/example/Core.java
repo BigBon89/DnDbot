@@ -4,7 +4,7 @@ public class Core
 {
     public Core()
     {
-
+        cityNameGenerator = new CityNameGenerator();
     }
     public void Input(String command)
     {
@@ -13,4 +13,6 @@ public class Core
         else
             System.out.println("Unknown command, type help for help");
     }
+
+    private CityNameGenerator cityNameGenerator;
 }
