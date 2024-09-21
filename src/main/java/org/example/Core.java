@@ -13,8 +13,4 @@ public class Core
         else
             System.out.println("Unknown command, type help for help");
     }
-    public int Random()
-    {
-        return 2;
-    }
 }
