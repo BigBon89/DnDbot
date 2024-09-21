@@ -9,7 +9,9 @@ public class Core
     public void Input(String command)
     {
         if (command.equals("help"))
-            System.out.println("its help command");
+            System.out.println("Commands:\nhelp\ngenerate city");
+        else if (command.equals("generate city"))
+            System.out.println("Generated city name: " + cityNameGenerator.GenerateCityName());
         else
             System.out.println("Unknown command, type help for help");
     }
