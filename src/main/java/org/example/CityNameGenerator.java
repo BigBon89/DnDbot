@@ -7,6 +7,15 @@ public class CityNameGenerator
 
     }
 
+    public String GenerateCityName()
+    {
+        Random random = new Random();
+        String prefix = prefixes[random.nextInt(prefixes.length)];
+        String root = roots[random.nextInt(roots.length)];
+        String suffix = suffixes[random.nextInt(suffixes.length)];
+        return prefix + root + suffix;
+    }
+
     private static String[] prefixes =
     {
         "Dark", "Bright", "Storm", "Wind", "Shadow", "Sun", "Silver", "Iron", "Gold", "Wolf", "Dragon"
