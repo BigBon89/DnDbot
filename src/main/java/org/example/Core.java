@@ -5,6 +5,7 @@ public class Core
     public Core()
     {
         cityNameGenerator = new CityNameGenerator();
+        Dice dice = new Dice();
     }
     public void Input(String command)
     {
@@ -19,4 +20,5 @@ public class Core
     }
 
     private CityNameGenerator cityNameGenerator;
+    private Dice dice;
 }
