@@ -3,10 +3,7 @@ package org.example;
 import java.util.Random;
 
 public class CharacterNameGenerator {
-    CharacterNameGenerator() {
-
-    }
-
+    //TODO: вынести Random в поле
     public String generateCharacterName() {
         Random random = new Random();
         String firstName = firstNames[random.nextInt(firstNames.length)];
