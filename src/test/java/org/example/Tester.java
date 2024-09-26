@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 public class Tester {
     private TestCharacterNameGenerator testCharacterNameGenerator;
     private TestCityNameGenerator testCityNameGenerator;
+    private TestRoll testRoll;
 
     @Test
     public void checkCharacterNameGenerator() {
@@ -22,8 +23,7 @@ public class Tester {
 
     @Test
     public void checkRoll() {
-        Dice dice = new Dice();
-        int res = dice.roll("2d4");
-        assertNotNull(res);
+        testRoll = new TestRoll();
+        testRoll.check();
     }
 }
