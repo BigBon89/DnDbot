@@ -15,15 +15,22 @@ public class Dice
     }
     public Integer Roll(String formula)
     {
-        String[] dice = formula.split("&"); // должен быть + вместо &, но он не работает
+        System.out.println("yes1");
+        String[] dice = formula.split("\\+");
         int result = 0;
+        System.out.println("yes2");
         for(int i = 0; i < dice.length; i++)
         {
             if(dice[i].contains("d"))
             {
+                System.out.println("yes3");
                 result += RollDice(Integer.parseInt(dice[i].split("d")[0]), Integer.parseInt(dice[i].split("d")[1]));
+                System.out.println("yes4");
             }
-            result += Integer.parseInt(dice[i]);
+            else
+            {
+                result += Integer.parseInt(dice[i]);
+            }
         }
         return result;
     }
