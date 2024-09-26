@@ -6,12 +6,12 @@ public class Main
     public static void main(String[] args)
     {
         Scanner in = new Scanner(System.in);
-        Core cor = new Core();
+        Core core = new Core();
 
         while (true)
         {
             String command = in.nextLine();
-            cor.Input(command);
+            core.Input(command);
         }
     }
 }
