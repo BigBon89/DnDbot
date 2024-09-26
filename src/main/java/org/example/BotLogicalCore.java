@@ -1,7 +1,7 @@
 package org.example;
 
-public class Core {
-    public Core() {
+public class BotLogicalCore {
+    public BotLogicalCore() {
         cityNameGenerator = new CityNameGenerator();
         dice = new Dice();
         characterNameGenerator = new CharacterNameGenerator();
