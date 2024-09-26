@@ -3,11 +3,7 @@ import java.util.Random;
 
 public class CityNameGenerator
 {
-    public CityNameGenerator()
-    {
-
-    }
-
+    //TODO: вынести Random в поле
     public String generateCityName()
     {
         Random random = new Random();
