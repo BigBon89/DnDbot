@@ -5,9 +5,10 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class Tester {
+    private TestCharacterNameGenerator testCharacterNameGenerator;
     @Test
-    public void CheckCharacterNameGenerator() {
-        TestCharacterNameGenerator testCharacterNameGenerator = new TestCharacterNameGenerator();
+    public void checkCharacterNameGenerator() {
+        testCharacterNameGenerator = new TestCharacterNameGenerator();
         testCharacterNameGenerator.check();
     }
 
