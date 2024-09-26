@@ -6,6 +6,8 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 public class Tester {
     private TestCharacterNameGenerator testCharacterNameGenerator;
+    private TestCityNameGenerator testCityNameGenerator;
+
     @Test
     public void checkCharacterNameGenerator() {
         testCharacterNameGenerator = new TestCharacterNameGenerator();
@@ -14,9 +16,8 @@ public class Tester {
 
     @Test
     public void checkCityNameGenerator() {
-        CityNameGenerator cityNameGenerator = new CityNameGenerator();
-        String res = cityNameGenerator.generateCityName();
-        assertNotNull(res);
+        testCityNameGenerator = new TestCityNameGenerator();
+        testCityNameGenerator.check();
     }
 
     @Test
