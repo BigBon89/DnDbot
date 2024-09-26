@@ -8,7 +8,7 @@ public class CityNameGenerator
 
     }
 
-    public String GenerateCityName()
+    public String generateCityName()
     {
         Random random = new Random();
         String prefix = prefixes[random.nextInt(prefixes.length)];

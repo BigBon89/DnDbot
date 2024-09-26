@@ -1,17 +1,17 @@
 package org.example;
-import java.util.Scanner;
 
-public class Main
-{
-    public static void main(String[] args)
-    {
+public class Main {
+    public static void main(String[] args) {
+        Tester tester = new Tester();
+        tester.check();
+        /*
+
         Scanner in = new Scanner(System.in);
         Core core = new Core();
 
-        while (true)
-        {
+        while (true) {
             String command = in.nextLine();
-            core.Input(command);
-        }
+            core.input(command);
+        }*/
     }
 }
