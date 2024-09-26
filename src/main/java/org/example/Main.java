@@ -9,7 +9,7 @@ public class Main {
 
         while (true) {
             String command = in.nextLine();
-            botLogicalCore.input(command);
+            botLogicalCore.commandHandler(command);
         }
     }
 }

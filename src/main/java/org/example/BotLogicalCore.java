@@ -1,13 +1,17 @@
 package org.example;
 
 public class BotLogicalCore {
+    private CityNameGenerator cityNameGenerator;
+    private CharacterNameGenerator characterNameGenerator;
+    private Dice dice;
+
     public BotLogicalCore() {
         cityNameGenerator = new CityNameGenerator();
-        dice = new Dice();
         characterNameGenerator = new CharacterNameGenerator();
+        dice = new Dice();
     }
 
-    public void input(String command) {
+    public void commandHandler(String command) {
         if (command.equals("help"))
             System.out.println("Commands:\nhelp\ngenerate city\nroll 'formula'\ngenerate name");
         else if (command.equals("generate city"))
@@ -19,8 +23,4 @@ public class BotLogicalCore {
         else
             System.out.println("Unknown command, type help for help");
     }
-
-    private CityNameGenerator cityNameGenerator;
-    private CharacterNameGenerator characterNameGenerator;
-    private Dice dice;
 }
