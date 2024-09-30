@@ -17,7 +17,7 @@ public class BotLogicalCore {
         else if (command.equals("generate city"))
             System.out.println("Generated city name: " + cityNameGenerator.generateCityName());
         else if (command.split(" ")[0].equals("roll"))
-            System.out.println("Rolled " + dice.roll(command.split(" ")[1]));
+            System.out.println("Rolled " + dice.roll(new DiceCombination(command.split(" ")[1])));
         else if (command.equals("generate name"))
             System.out.println("Generated character name: " + characterNameGenerator.generateCharacterName());
         else

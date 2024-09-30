@@ -10,7 +10,7 @@ public class TestRoll {
     }
 
     public void check() {
-        int res = dice.roll("2d4");
+        int res = dice.roll(new DiceCombination("2d4"));
         assertNotNull(res);
     }
 }
