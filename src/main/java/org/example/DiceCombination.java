@@ -2,14 +2,13 @@ package org.example;
 
 import java.util.Random;
 public class DiceCombination {
-    Random random = new Random();
     private String _combination;
 
     public DiceCombination(String combination)
     {
         _combination = combination;
     }
-    public Integer Result()
+    public Integer Result(Random random)
     {
         String[] dice = _combination.split("\\+");
         int result = 0;
