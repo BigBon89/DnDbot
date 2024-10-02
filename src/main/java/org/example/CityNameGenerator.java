@@ -31,4 +31,11 @@ public class CityNameGenerator {
         String suffix = suffixes[random.nextInt(suffixes.length)];
         return prefix + root + suffix;
     }
+    public String generateCityName(Random seededRandom) {
+        String prefix = prefixes[seededRandom.nextInt(prefixes.length)];
+        String root = roots[seededRandom.nextInt(roots.length)];
+        String suffix = suffixes[seededRandom.nextInt(suffixes.length)];
+
+        return prefix + root + suffix;
+    }
 }

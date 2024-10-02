@@ -4,15 +4,15 @@ import java.util.Random;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-public class TestRoll {
+public class TestD20Test {
     private Dice dice;
 
-    public TestRoll() {
+    public TestD20Test() {
         dice = new Dice();
     }
 
     public void check() {
-        int res = dice.roll(new DiceCombination("2d4"), new Random(1));
-        assertEquals(4, res);
+        int res = dice.d20Test(1, Dice.D20State.NORMAL, new Random(1));
+        assertEquals(7, res);
     }
 }

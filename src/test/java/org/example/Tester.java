@@ -8,6 +8,7 @@ public class Tester {
     private TestCharacterNameGenerator testCharacterNameGenerator;
     private TestCityNameGenerator testCityNameGenerator;
     private TestRoll testRoll;
+    private TestD20Test testD20Test;
 
     @Test
     public void checkCharacterNameGenerator() {
@@ -25,5 +26,11 @@ public class Tester {
     public void checkRoll() {
         testRoll = new TestRoll();
         testRoll.check();
+    }
+
+    @Test
+    public void checkD20Test() {
+        testD20Test = new TestD20Test();
+        testD20Test.check();
     }
 }
