@@ -13,24 +13,24 @@ public class Tester {
     @Test
     public void checkCharacterNameGenerator() {
         testCharacterNameGenerator = new TestCharacterNameGenerator();
-        testCharacterNameGenerator.check();
+        testCharacterNameGenerator.checkCharacterNameGenerator();
     }
 
     @Test
     public void checkCityNameGenerator() {
         testCityNameGenerator = new TestCityNameGenerator();
-        testCityNameGenerator.check();
+        testCityNameGenerator.checkCityNameGenerator();
     }
 
     @Test
     public void checkRoll() {
         testRoll = new TestRoll();
-        testRoll.check();
+        testRoll.checkRoll();
     }
 
     @Test
     public void checkD20Test() {
         testD20Test = new TestD20Test();
-        testD20Test.check();
+        testD20Test.checkD20();
     }
 }

@@ -12,7 +12,7 @@ public class TestCityNameGenerator {
         cityNameGenerator = new CityNameGenerator();
     }
 
-    public void check() {
+    public void checkCityNameGenerator() {
         String res = cityNameGenerator.generateName(new Random(1));
         assertEquals("Shadowkeepgate", res);
     }

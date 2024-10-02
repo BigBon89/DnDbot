@@ -11,7 +11,7 @@ public class TestRoll {
         dice = new Dice();
     }
 
-    public void check() {
+    public void checkRoll() {
         int res = dice.roll(new DiceCombination("2d4"), new Random(1));
         assertEquals(4, res);
     }

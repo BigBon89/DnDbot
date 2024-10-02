@@ -11,7 +11,7 @@ public class TestD20Test {
         dice = new Dice();
     }
 
-    public void check() {
+    public void checkD20() {
         int res = dice.d20Test(1, Dice.D20State.NORMAL, new Random(1));
         assertEquals(7, res);
     }
