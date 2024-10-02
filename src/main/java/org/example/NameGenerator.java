@@ -9,7 +9,9 @@ public abstract class NameGenerator {
         random = new Random();
     }
 
-    public abstract String generateName();
+    public NameGenerator(int seed) {
+        random = new Random(seed);
+    }
 
-    public abstract String generateName(Random seededRandom);
+    public abstract String generateName();
 }

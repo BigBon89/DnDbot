@@ -13,13 +13,15 @@ public class CharacterNameGenerator extends NameGenerator {
                     "Stormwind", "Oakenshield", "Elfsong", "Silverblade", "Brightstar", "Ironfoot", "Dragonslayer", "Shadowalker"
             };
 
-    public String generateName() {
-        String firstName = firstNames[random.nextInt(firstNames.length)];
-        String lastName = lastNames[random.nextInt(lastNames.length)];
-        return firstName + " " + lastName;
+    public CharacterNameGenerator() {
+        super();
     }
 
-    public String generateName(Random random) {
+    public CharacterNameGenerator(int seed) {
+        super(seed);
+    }
+
+    public String generateName() {
         String firstName = firstNames[random.nextInt(firstNames.length)];
         String lastName = lastNames[random.nextInt(lastNames.length)];
         return firstName + " " + lastName;

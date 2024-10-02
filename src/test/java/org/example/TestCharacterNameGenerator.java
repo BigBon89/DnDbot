@@ -6,14 +6,14 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TestCharacterNameGenerator {
-    private CharacterNameGenerator characterNameGenerator;
+    private final CharacterNameGenerator characterNameGenerator;
 
     TestCharacterNameGenerator() {
-        characterNameGenerator = new CharacterNameGenerator();
+        characterNameGenerator = new CharacterNameGenerator(1);
     }
 
     public void checkCharacterNameGenerator() {
-        String res = characterNameGenerator.generateName(new Random(1));
+        String res = characterNameGenerator.generateName();
         assertEquals("Boromir Stormwind", res);
     }
 }

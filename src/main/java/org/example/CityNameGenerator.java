@@ -18,18 +18,18 @@ public class CityNameGenerator extends NameGenerator {
                     "ton", "burgh", "port", "holm", "stead", "ford", "bridge", "field", "gate", "shire", "hill"
             };
 
+    public CityNameGenerator() {
+        super();
+    }
+
+    public CityNameGenerator(int seed) {
+        super(seed);
+    }
+
     public String generateName() {
         String prefix = prefixes[random.nextInt(prefixes.length)];
         String root = roots[random.nextInt(roots.length)];
         String suffix = suffixes[random.nextInt(suffixes.length)];
-        return prefix + root + suffix;
-    }
-
-    public String generateName(Random seededRandom) {
-        String prefix = prefixes[seededRandom.nextInt(prefixes.length)];
-        String root = roots[seededRandom.nextInt(roots.length)];
-        String suffix = suffixes[seededRandom.nextInt(suffixes.length)];
-
         return prefix + root + suffix;
     }
 }
