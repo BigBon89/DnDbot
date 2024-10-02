@@ -25,4 +25,9 @@ public class CharacterNameGenerator {
         String lastName = lastNames[random.nextInt(lastNames.length)];
         return firstName + " " + lastName;
     }
+    public String generateCharacterName(Random random) {
+        String firstName = firstNames[random.nextInt(firstNames.length)];
+        String lastName = lastNames[random.nextInt(lastNames.length)];
+        return firstName + " " + lastName;
+    }
 }

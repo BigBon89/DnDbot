@@ -5,10 +5,10 @@ import java.util.Random;
 public class Dice {
     Random random = new Random();
     public Integer roll(DiceCombination combination) {
-        return combination.Result(random);
+        return combination.result(random);
     }
     public Integer roll(DiceCombination combination, Random seededRandom) {
-        return combination.Result(seededRandom);
+        return combination.result(seededRandom);
     }
 
     public enum D20State{NORMAL, ADVANTAGE, DISADVANTAGE}
