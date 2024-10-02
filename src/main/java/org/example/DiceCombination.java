@@ -2,15 +2,15 @@ package org.example;
 
 import java.util.Random;
 public class DiceCombination {
-    private String _combination;
+    private String combination;
 
     public DiceCombination(String combination)
     {
-        _combination = combination;
+        this.combination = combination;
     }
     public Integer result(Random random)
     {
-        String[] dice = _combination.split("\\+");
+        String[] dice = combination.split("\\+");
         int result = 0;
         for (int i = 0; i < dice.length; i++) {
             if (dice[i].contains("d")) {
