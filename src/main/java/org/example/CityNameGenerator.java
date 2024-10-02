@@ -18,7 +18,6 @@ public class CityNameGenerator extends NameGenerator {
                     "ton", "burgh", "port", "holm", "stead", "ford", "bridge", "field", "gate", "shire", "hill"
             };
 
-    @Override
     public String generateName() {
         String prefix = prefixes[random.nextInt(prefixes.length)];
         String root = roots[random.nextInt(roots.length)];
@@ -26,7 +25,6 @@ public class CityNameGenerator extends NameGenerator {
         return prefix + root + suffix;
     }
 
-    @Override
     public String generateName(Random seededRandom) {
         String prefix = prefixes[seededRandom.nextInt(prefixes.length)];
         String root = roots[seededRandom.nextInt(roots.length)];

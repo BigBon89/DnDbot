@@ -7,9 +7,6 @@ public class Main {
         Scanner in = new Scanner(System.in);
         BotLogicalCore botLogicalCore = new BotLogicalCore();
 
-        while (true) {
-            String command = in.nextLine();
-            botLogicalCore.commandHandler(command);
-        }
+        botLogicalCore.start();
     }
 }

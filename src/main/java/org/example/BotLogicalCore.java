@@ -1,14 +1,22 @@
 package org.example;
 
 public class BotLogicalCore {
-    private CityNameGenerator cityNameGenerator;
-    private CharacterNameGenerator characterNameGenerator;
-    private Dice dice;
+    private final CityNameGenerator cityNameGenerator;
+    private final CharacterNameGenerator characterNameGenerator;
+    private final Dice dice;
+    private final Console console;
 
     public BotLogicalCore() {
         cityNameGenerator = new CityNameGenerator();
         characterNameGenerator = new CharacterNameGenerator();
         dice = new Dice();
+        console = new Console();
+    }
+
+    public void start() {
+        while (true) {
+            commandHandler(console.getText());
+        }
     }
 
     public void commandHandler(String command) {
