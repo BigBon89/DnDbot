@@ -26,7 +26,7 @@ public class BotLogicalCore {
         else if (command.getCommand().equals("generate_city"))
             ioHandler.print("Generated city name: " + cityNameGenerator.generateName());
         else if (command.getCommand().equals("roll"))
-            ioHandler.print("Rolled " + dice.roll(new DiceCombination(command.getArguments()[0])));
+            ioHandler.print(dice.roll(new DiceCombination(command.getArguments()[0])));
         else if (command.getCommand().equals("d20"))
             ioHandler.print("Rolled " + dice.d20Test(Integer.valueOf(command.getArguments()[0]), Dice.D20State.valueOf(command.getArguments()[1])));
         else if (command.getCommand().equals("generate_name"))

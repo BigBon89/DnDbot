@@ -4,8 +4,12 @@ import java.util.Random;
 
 public class Dice {
     Random random = new Random();
-    public Integer roll(DiceCombination combination) {
-        return combination.result(random);
+    public String roll(DiceCombination combination) {
+        if(combination.isGood()==false)
+        {
+            return "Wrong spelling";
+        }
+        return "Rolled " + Integer.toString(combination.result(random));
     }
     public Integer roll(DiceCombination combination, Random seededRandom) {
         return combination.result(seededRandom);

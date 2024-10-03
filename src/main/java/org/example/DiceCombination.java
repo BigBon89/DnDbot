@@ -25,4 +25,20 @@ public class DiceCombination {
         }
         return result;
     }
+    public boolean isGood()
+    {
+        String[] splitted = combination.split("\\+");
+        for(int i = 0; i<splitted.length; i++)
+        {
+            if (splitted[i].charAt(0)=='d' || splitted[i].charAt(splitted[i].length()-1)=='d')
+            {
+                return false;
+            }
+        }
+        if(splitted.length!=combination.length()-combination.replace("+","").length()+1)
+        {
+            return false;
+        }
+        return true;
+    }
 }
