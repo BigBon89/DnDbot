@@ -13,5 +13,6 @@ public abstract class NameGenerator {
         random = new Random(seed);
     }
 
+    // TODO: реализовать generateName в абстрактном методе.
     public abstract String generateName();
 }
