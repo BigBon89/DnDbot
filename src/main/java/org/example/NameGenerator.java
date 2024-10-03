@@ -4,6 +4,9 @@ import java.util.Random;
 
 public abstract class NameGenerator {
     protected Random random;
+    protected String[] prefixes;
+    protected String[] roots;
+    protected String[] suffixes;
 
     public NameGenerator() {
         random = new Random();
@@ -13,6 +16,11 @@ public abstract class NameGenerator {
         random = new Random(seed);
     }
 
-    // TODO: реализовать generateName в абстрактном методе.
-    public abstract String generateName();
+    public String generateName()
+    {
+        String prefix = prefixes[random.nextInt(prefixes.length)];
+        String root = roots[random.nextInt(roots.length)];
+        String suffix = suffixes[random.nextInt(suffixes.length)];
+        return prefix + root + suffix;
+    }
 }
