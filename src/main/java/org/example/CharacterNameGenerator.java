@@ -20,7 +20,7 @@ public class CharacterNameGenerator extends NameGenerator {
     public CharacterNameGenerator(int seed) {
         super(seed);
     }
-
+    // Вынести названия городов и имен в файл, у имен обнулить корень или суффикс.
     public String generateName() {
         String firstName = firstNames[random.nextInt(firstNames.length)];
         String lastName = lastNames[random.nextInt(lastNames.length)];
