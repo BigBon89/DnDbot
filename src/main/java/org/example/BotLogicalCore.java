@@ -6,11 +6,11 @@ public class BotLogicalCore {
     private final Dice dice;
     private final InputOutput ioHandler;
 
-    public BotLogicalCore() {
-        cityNameGenerator = new CityNameGenerator();
-        characterNameGenerator = new CharacterNameGenerator();
-        dice = new Dice();
-        ioHandler = new Console();
+    public BotLogicalCore(CityNameGenerator cityNameGenerator, CharacterNameGenerator characterNameGenerator, Dice dice, Console console) {
+        this.cityNameGenerator = cityNameGenerator;
+        this.characterNameGenerator = characterNameGenerator;
+        this.dice = dice;
+        this.ioHandler = console;
     }
 
     public void start() {

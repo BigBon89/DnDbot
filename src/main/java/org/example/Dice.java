@@ -5,14 +5,14 @@ import java.util.Random;
 public class Dice {
     Random random = new Random();
     public String roll(DiceCombination combination) {
-        if(combination.isGood()==false)
+        if(!combination.isGood())
         {
             return "Wrong spelling";
         }
-        return "Rolled " + Integer.toString(combination.result(random));
+        return "Rolled " + Integer.toString(combination.getResult(random));
     }
     public Integer roll(DiceCombination combination, Random seededRandom) {
-        return combination.result(seededRandom);
+        return combination.getResult(seededRandom);
     }
 
     public enum D20State{NORMAL, ADVANTAGE, DISADVANTAGE}

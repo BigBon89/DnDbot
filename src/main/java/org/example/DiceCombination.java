@@ -8,7 +8,7 @@ public class DiceCombination {
     {
         this.combination = combination;
     }
-    public Integer result(Random random)
+    public Integer getResult(Random random)
     {
         String[] dice = combination.split("\\+");
         int result = 0;
