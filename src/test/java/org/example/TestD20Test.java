@@ -12,7 +12,7 @@ public class TestD20Test {
     }
 
     public void checkD20() {
-        int res = dice.d20Test(1, Dice.D20State.NORMAL);
+        int res = dice.d20Test(1, D20State.d20StateEnum.NORMAL);
         assertEquals(7, res);
     }
 }
