@@ -8,11 +8,11 @@ public class TestRoll {
     private Dice dice;
 
     public TestRoll() {
-        dice = new Dice();
+        dice = new Dice(1);
     }
 
     public void checkRoll() {
-        int res = dice.roll(new DiceCombination("2d4"), new Random(1));
-        assertEquals(4, res);
+        String res = dice.roll(new DiceCombination("2d4"));
+        assertEquals("Rolled 4", res);
     }
 }

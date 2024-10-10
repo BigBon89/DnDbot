@@ -8,11 +8,11 @@ public class TestD20Test {
     private Dice dice;
 
     public TestD20Test() {
-        dice = new Dice();
+        dice = new Dice(1);
     }
 
     public void checkD20() {
-        int res = dice.d20Test(1, Dice.D20State.NORMAL, new Random(1));
+        int res = dice.d20Test(1, Dice.D20State.NORMAL);
         assertEquals(7, res);
     }
 }

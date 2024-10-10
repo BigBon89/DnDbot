@@ -15,9 +15,9 @@ public class DiceCombination {
         for (int i = 0; i < dice.length; i++) {
             if (dice[i].contains("d")) {
                 int diceCount = Integer.parseInt(dice[i].split("d")[0]);
-                int dieType = Integer.parseInt(dice[i].split("d")[1]);
+                int diceType = Integer.parseInt(dice[i].split("d")[1]);
                 for (int j = 0; j < diceCount; j++) {
-                    result += random.nextInt(dieType) + 1;
+                    result += random.nextInt(diceType) + 1;
                 }
             } else {
                 result += Integer.parseInt(dice[i]);
@@ -28,15 +28,18 @@ public class DiceCombination {
     public boolean isGood()
     {
         String[] splitted = combination.split("\\+");
-        for(int i = 0; i<splitted.length; i++)
-        {
-            if (splitted[i].charAt(0)=='d' || splitted[i].charAt(splitted[i].length()-1)=='d')
-            {
+        for(int i = 0; i<splitted.length; i++){
+            if(!splitted[i].matches(".*\\d.*||d")){
+                return false;
+            }
+            if(splitted[i].length()<1){
+                return false;
+            }
+            if (splitted[i].charAt(0)=='d' || splitted[i].charAt(splitted[i].length()-1)=='d'){
                 return false;
             }
         }
-        if(splitted.length!=combination.length()-combination.replace("+","").length()+1)
-        {
+        if(splitted.length!=combination.length()-combination.replace("+","").length()+1) {
             return false;
         }
         return true;
