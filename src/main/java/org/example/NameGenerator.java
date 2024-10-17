@@ -23,4 +23,6 @@ public abstract class NameGenerator {
         String suffix = suffixes[random.nextInt(suffixes.length)];
         return prefix + root + suffix;
     }
+
+    protected abstract void initializeNames();
 }

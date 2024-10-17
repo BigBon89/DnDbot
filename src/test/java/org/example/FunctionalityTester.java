@@ -4,7 +4,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
-public class Tester {
+public class FunctionalityTester {
     private TestCharacterNameGenerator testCharacterNameGenerator;
     private TestCityNameGenerator testCityNameGenerator;
     private TestRoll testRoll;
