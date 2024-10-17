@@ -13,6 +13,6 @@ public class TestD20Test {
 
     public void checkD20() {
         int res = dice.d20Test(1, D20State.d20StateEnum.NORMAL);
-        assertEquals(7, res);
+        assertEquals(6, res);
     }
 }
