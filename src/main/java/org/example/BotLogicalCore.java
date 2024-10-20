@@ -7,7 +7,7 @@ public class BotLogicalCore {
     private final Dice dice;
     private final InputOutput ioHandler;
 
-    public BotLogicalCore(CityNameGenerator cityNameGenerator, CharacterNameGenerator characterNameGenerator, ClassNameGenerator classNameGenerator, Dice dice, Console console) {
+    public BotLogicalCore(CityNameGenerator cityNameGenerator, CharacterNameGenerator characterNameGenerator, ClassNameGenerator classNameGenerator, Dice dice, InputOutput console) {
         this.cityNameGenerator = cityNameGenerator;
         this.characterNameGenerator = characterNameGenerator;
         this.classNameGenerator = classNameGenerator;
