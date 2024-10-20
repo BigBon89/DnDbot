@@ -32,7 +32,7 @@ public class BotLogicalCore {
         else if (command.getCommand().equals("roll"))
             ioHandler.print(dice.roll(new DiceCombination(command.getArguments()[0])));
         else if (command.getCommand().equals("d20"))
-            ioHandler.print("Rolled " + dice.d20Test(Integer.valueOf(command.getArguments()[0]), D20State.d20StateEnum.valueOf(command.getArguments()[1])));
+            ioHandler.print("Rolled " + dice.d20Test(Integer.parseInt(command.getArguments()[0]), D20State.d20StateEnum.valueOf(command.getArguments()[1])));
         else if (command.getCommand().equals("generate_name"))
             ioHandler.print("Generated character name: " + characterNameGenerator.generateName());
         else
