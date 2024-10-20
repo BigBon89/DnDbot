@@ -7,12 +7,12 @@ public class BotLogicalCore {
     private final Dice dice;
     private final InputOutput ioHandler;
 
-    public BotLogicalCore(CityNameGenerator cityNameGenerator, CharacterNameGenerator characterNameGenerator, ClassNameGenerator classNameGenerator, Dice dice, InputOutput console) {
+    public BotLogicalCore(CityNameGenerator cityNameGenerator, CharacterNameGenerator characterNameGenerator, ClassNameGenerator classNameGenerator, Dice dice, InputOutput inputOutput) {
         this.cityNameGenerator = cityNameGenerator;
         this.characterNameGenerator = characterNameGenerator;
         this.classNameGenerator = classNameGenerator;
         this.dice = dice;
-        this.ioHandler = console;
+        this.ioHandler = inputOutput;
     }
 
     public void start() {
