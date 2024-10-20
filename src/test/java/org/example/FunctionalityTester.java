@@ -11,39 +11,20 @@ public class FunctionalityTester {
     private TestRoll testRoll;
     private TestD20Test testD20Test;
 
-    @Test
-    public void checkCharacterNameGenerator() {
+    public FunctionalityTester() {
         testCharacterNameGenerator = new TestCharacterNameGenerator();
-        testCharacterNameGenerator.checkCharacterNameGenerator();
-    }
-
-    @Test
-    public void checkCityNameGenerator() {
         testCityNameGenerator = new TestCityNameGenerator();
-        testCityNameGenerator.checkCityNameGenerator();
-    }
-
-    @Test
-    public void checkClassNameGenerator() {
         testClassNameGenerator = new TestClassNameGenerator();
-        testClassNameGenerator.checkClassNameGenerator();
-    }
-
-    @Test
-    public void checkRoll() {
         testRoll = new TestRoll();
-        testRoll.checkRoll();
-    }
-
-    @Test
-    public void checkRollNegative() {
-        testRoll = new TestRoll();
-        testRoll.checkRollNegative();
-    }
-
-    @Test
-    public void checkD20Test() {
         testD20Test = new TestD20Test();
+    }
+
+    @Test
+    public void runTests() {
+        testCharacterNameGenerator.checkCharacterNameGenerator();
+        testCityNameGenerator.checkCityNameGenerator();
+        testClassNameGenerator.checkClassNameGenerator();
+        testRoll.checkRoll();
         testD20Test.checkD20();
     }
 }
