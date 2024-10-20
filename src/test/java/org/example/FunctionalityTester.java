@@ -25,6 +25,7 @@ public class FunctionalityTester {
         testCityNameGenerator.checkCityNameGenerator();
         testClassNameGenerator.checkClassNameGenerator();
         testRoll.checkRoll();
+        testRoll.checkRollNegative();
         testD20Test.checkD20();
     }
 }
