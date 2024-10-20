@@ -15,4 +15,8 @@ public class TestRoll {
         String res = dice.roll(new DiceCombination("2d4"));
         assertEquals("Rolled 4", res);
     }
+    public void checkRollNegative() {
+        String res = dice.roll(new DiceCombination("2d4+"));
+        assertEquals("Wrong spelling", res);
+    }
 }

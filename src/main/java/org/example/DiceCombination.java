@@ -12,34 +12,34 @@ public class DiceCombination {
     {
         String[] dice = combination.split("\\+");
         int result = 0;
-        for (int i = 0; i < dice.length; i++) {
-            if (dice[i].contains("d")) {
-                int diceCount = Integer.parseInt(dice[i].split("d")[0]);
-                int diceType = Integer.parseInt(dice[i].split("d")[1]);
+        for (String die : dice) {
+            if (die.contains("d")) {
+                int diceCount = Integer.parseInt(die.split("d")[0]);
+                int diceType = Integer.parseInt(die.split("d")[1]);
                 for (int j = 0; j < diceCount; j++) {
                     result += random.nextInt(diceType) + 1;
                 }
             } else {
-                result += Integer.parseInt(dice[i]);
+                result += Integer.parseInt(die);
             }
         }
         return result;
     }
     public boolean isGood()
     {
-        String[] splitted = combination.split("\\+");
-        for(int i = 0; i<splitted.length; i++){
-            if(!splitted[i].matches(".*\\d.*||d")){
+        String[] dice = combination.split("\\+");
+        for(String die : dice){
+            if(!die.matches(".*\\d.*||d")){
                 return false;
             }
-            if(splitted[i].length()<1){
+            if(die.isEmpty()){
                 return false;
             }
-            if (splitted[i].charAt(0)=='d' || splitted[i].charAt(splitted[i].length()-1)=='d'){
+            if (die.charAt(0)=='d' || die.charAt(die.length()-1)=='d'){
                 return false;
             }
         }
-        if(splitted.length!=combination.length()-combination.replace("+","").length()+1) {
+        if(dice.length!=combination.length()-combination.replace("+","").length()+1) {
             return false;
         }
         return true;

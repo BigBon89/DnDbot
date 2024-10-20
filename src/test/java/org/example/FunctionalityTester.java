@@ -36,6 +36,12 @@ public class FunctionalityTester {
     }
 
     @Test
+    public void checkRollNegative() {
+        testRoll = new TestRoll();
+        testRoll.checkRollNegative();
+    }
+
+    @Test
     public void checkD20Test() {
         testD20Test = new TestD20Test();
         testD20Test.checkD20();

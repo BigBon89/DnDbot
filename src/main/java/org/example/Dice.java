@@ -13,17 +13,17 @@ public class Dice {
         {
             return "Wrong spelling";
         }
-        return "Rolled " + Integer.toString(combination.getResult(random));
+        return "Rolled " + combination.getResult(random);
     }
 
 
-    public Integer d20Test(int modifier, D20State.d20StateEnum d20State)
+    public Integer d20Test(int modifier, D20State d20State)
     {
         int firstRoll = random.nextInt(20) + 1;
         int secondRoll = random.nextInt(20) + 1;
-        if(d20State == D20State.d20StateEnum.ADVANTAGE){
+        if(d20State == D20State.ADVANTAGE){
             return Math.max(firstRoll, secondRoll);
-        } else if (d20State == D20State.d20StateEnum.DISADVANTAGE) {
+        } else if (d20State == D20State.DISADVANTAGE) {
             return Math.min(firstRoll, secondRoll);
         }
         return firstRoll;
