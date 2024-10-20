@@ -12,6 +12,7 @@ public class TestCityNameGenerator {
         cityNameGenerator = new CityNameGenerator(1);
     }
 
+    @Test
     public void checkCityNameGenerator() {
         String res = cityNameGenerator.generateName();
         assertEquals("Shadowkeepgate", res);

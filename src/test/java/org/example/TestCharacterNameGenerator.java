@@ -12,6 +12,7 @@ public class TestCharacterNameGenerator {
         characterNameGenerator = new CharacterNameGenerator(1);
     }
 
+    @Test
     public void checkCharacterNameGenerator() {
         String res = characterNameGenerator.generateName();
         assertEquals("Boromir Stormwind", res);
