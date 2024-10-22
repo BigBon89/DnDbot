@@ -35,13 +35,20 @@ public class DiceCombination {
             if(die.isEmpty()){
                 return false;
             }
-            if (die.charAt(0)=='d' || die.charAt(die.length()-1)=='d'){
+            if (charAtIndex(die, 'd', 0) || charAtIndex(die, 'd', die.length()-1)){
                 return false;
             }
         }
-        if(dice.length!=combination.length()-combination.replace("+","").length()+1) {
+        if(combination.contains("++") || charAtIndex(combination, '+', 0) || charAtIndex(combination, '+', combination.length()-1)) {
             return false;
         }
         return true;
+    }
+    private boolean charAtIndex(String str, char ch, int index)
+    {
+        if(str.charAt(index)==ch){
+            return true;
+        }
+        return false;
     }
 }

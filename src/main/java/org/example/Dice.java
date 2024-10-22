@@ -26,6 +26,6 @@ public class Dice {
         } else if (d20State == D20State.DISADVANTAGE) {
             return Math.min(firstRoll, secondRoll);
         }
-        return firstRoll;
+        return firstRoll + modifier;
     }
 }
