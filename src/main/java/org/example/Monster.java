@@ -6,16 +6,19 @@ public class Monster {
     private double challangeRating;
     private Integer health;
     private Integer maxHealth;
+    private String page;
 
     public void Monster(String type,
                         String name,
                         double challangeRating,
                         Integer health,
-                        Integer maxHealth) {
+                        Integer maxHealth,
+                        String page) {
         this.type = type;
         this.name = name;
         this.challangeRating = challangeRating;
         this.health = health;
         this.maxHealth = maxHealth;
+        this.page = page;
     }
 }
