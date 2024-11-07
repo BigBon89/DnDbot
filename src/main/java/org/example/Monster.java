@@ -7,6 +7,7 @@ public class Monster {
     private Integer health;
     private Integer maxHealth;
     private String page;
+    private Boolean isAlive;
 
     public void Monster(String type,
                         String name,
@@ -20,5 +21,12 @@ public class Monster {
         this.health = health;
         this.maxHealth = maxHealth;
         this.page = page;
+        this.isAlive = true;
+    }
+
+    public void SetDamage(Integer damage) {
+        health -= damage;
+        if (health <= 0)
+            isAlive = false;
     }
 }
