@@ -15,7 +15,7 @@ public class Encounter {
         return "Encounter Started";
     }
 
-    public String Quit() {
+    public String End() {
         if (!inEncount)
             return "The encounter has not started";
 
