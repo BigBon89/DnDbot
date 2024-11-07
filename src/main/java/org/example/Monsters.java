@@ -7,4 +7,12 @@ public class Monsters {
         monsters = new Monster[1]; //TODO: случайно заполнить
 
     }
+
+    public void Print() {
+
+    }
+
+    public void Attack(Integer monsterIndex) {
+
+    }
 }
