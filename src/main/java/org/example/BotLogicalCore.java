@@ -6,13 +6,15 @@ public class BotLogicalCore {
     private final ClassNameGenerator classNameGenerator;
     private final Dice dice;
     private final InputOutput ioHandler;
+    private final Encounter encounter;
 
-    public BotLogicalCore(CityNameGenerator cityNameGenerator, CharacterNameGenerator characterNameGenerator, ClassNameGenerator classNameGenerator, Dice dice, InputOutput inputOutput) {
+    public BotLogicalCore(CityNameGenerator cityNameGenerator, CharacterNameGenerator characterNameGenerator, ClassNameGenerator classNameGenerator, Dice dice, InputOutput inputOutput, Encounter encounter) {
         this.cityNameGenerator = cityNameGenerator;
         this.characterNameGenerator = characterNameGenerator;
         this.classNameGenerator = classNameGenerator;
         this.dice = dice;
         this.ioHandler = inputOutput;
+        this.encounter = encounter;
     }
 
     public void start() {
@@ -35,6 +37,10 @@ public class BotLogicalCore {
             ioHandler.print("Rolled " + dice.d20Test(Integer.parseInt(command.getArguments()[0]), D20State.valueOf(command.getArguments()[1])));
         else if (command.getCommand().equals("generate_name"))
             ioHandler.print("Generated character name: " + characterNameGenerator.generateName());
+        else if (command.getCommand().equals("encounter_start"))
+        {
+
+        }
         else
             ioHandler.print("Unknown command, type help for help");
     }
