@@ -26,7 +26,7 @@ public class BotLogicalCore {
 
     public void commandHandler(Command command) {
         if (command.getCommand().equals("help"))
-            ioHandler.print("Commands:\nhelp\ngenerate_city\ngenerate_class\nroll 'formula'\nd20 'modifier' 'normal/advantage/disadvantage'\ngenerate_name");
+            ioHandler.print("Commands:\nhelp\ngenerate_city\ngenerate_class\nroll 'formula'\nd20 'modifier' 'normal/advantage/disadvantage'\ngenerate_name\nencounter_start");
         else if (command.getCommand().equals("generate_city"))
             ioHandler.print("Generated city name: " + cityNameGenerator.generateName());
         else if (command.getCommand().equals("generate_class"))
