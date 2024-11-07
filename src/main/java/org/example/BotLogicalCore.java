@@ -26,7 +26,7 @@ public class BotLogicalCore {
 
     public void commandHandler(Command command) {
         if (command.getCommand().equals("help"))
-            ioHandler.print("Commands:\nhelp\ngenerate_city\ngenerate_class\nroll 'formula'\nd20 'modifier' 'normal/advantage/disadvantage'\ngenerate_name\nencounter_start");
+            ioHandler.print("Commands:\nhelp\ngenerate_city\ngenerate_class\nroll 'formula'\nd20 'modifier' 'normal/advantage/disadvantage'\ngenerate_name\nencounter_start\nencounter_end");
         else if (command.getCommand().equals("generate_city"))
             ioHandler.print("Generated city name: " + cityNameGenerator.generateName());
         else if (command.getCommand().equals("generate_class"))
@@ -39,6 +39,8 @@ public class BotLogicalCore {
             ioHandler.print("Generated character name: " + characterNameGenerator.generateName());
         else if (command.getCommand().equals("encounter_start"))
             ioHandler.print(encounter.Start());
+        else if (command.getCommand().equals("encounter_end"))
+            ioHandler.print(encounter.End());
         else
             ioHandler.print("Unknown command, type help for help");
     }
