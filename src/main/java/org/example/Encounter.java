@@ -1,8 +1,14 @@
 package org.example;
 
 public class Encounter {
-    public void Start()
-    {
+    private boolean inEncount;
 
+    public Encounter() {
+        inEncount = false;
+    }
+
+    public String Start() {
+        inEncount = true;
+        return "Encount Started";
     }
 }
