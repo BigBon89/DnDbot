@@ -8,7 +8,18 @@ public class Encounter {
     }
 
     public String Start() {
+        if (inEncount)
+            return "The encounter has already started";
+
         inEncount = true;
-        return "Encount Started";
+        return "Encounter Started";
+    }
+
+    public String Quit() {
+        if (!inEncount)
+            return "The encounter has not started";
+
+        inEncount = false;
+        return "The encounter is over";
     }
 }
