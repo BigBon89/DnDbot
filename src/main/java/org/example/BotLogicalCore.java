@@ -38,7 +38,7 @@ public class BotLogicalCore {
         else if (command.getCommand().equals("generate_name"))
             ioHandler.print("Generated character name: " + characterNameGenerator.generateName());
         else if (command.getCommand().equals("encounter_start"))
-            ioHandler.print(encounter.Start());
+            ioHandler.print(encounter.Start(EncounterDifficulty.valueOf(command.getArguments()[0]), Integer.parseInt(command.getArguments()[1]),  Integer.parseInt(command.getArguments()[2]), command.getArguments()[3]));
         else if (command.getCommand().equals("encounter_end"))
             ioHandler.print(encounter.End());
         else

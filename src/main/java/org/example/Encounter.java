@@ -7,7 +7,7 @@ public class Encounter {
         inEncount = false;
     }
 
-    public String Start() {
+    public String Start(EncounterDifficulty difficulty, Integer playersCount, Integer playersLevel, String monsterFilter) {
         if (inEncount)
             return "The encounter has already started";
 
