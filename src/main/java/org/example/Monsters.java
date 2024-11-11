@@ -1,6 +1,6 @@
 package org.example;
 
-import java.util.Random;
+import java.util.*;
 
 public class Monsters {
     Monster[] monsters;
@@ -9,6 +9,7 @@ public class Monsters {
     public Monsters() {random = new Random();}
     public Monsters(int seed) {random = new Random(seed);}
 
+    Set<Integer> allowedCRs = new HashSet<>(Arrays.asList(1, 2, 4, 8, 16, 24, 32, 40, 48, 56, 64, 72, 80, 88, 96, 104, 112, 120, 128, 136, 144, 152, 160, 168, 184));
     int[] easyCRs = {1, 1, 2, 4, 8, 12, 16, 20, 24, 28, 32, 36, 40, 44, 48, 52, 56, 60, 64, 68};
     int[] normalCRs = {1, 2, 4, 6, 12, 16, 20, 24, 28, 32, 36, 40, 44, 48, 52, 56, 60, 64, 68, 72};
     int[] hardCRs = {2, 4, 6, 8, 20, 24, 28, 32, 36, 40, 44, 48, 52, 56, 60, 64, 68, 72, 76, 80};
@@ -24,21 +25,41 @@ public class Monsters {
             case HARD -> CRBudget = hardCRs[playersLevel] * playersCount;
         }
 
-        int numberOfUniqueMonsters = random.nextInt(4) + 1  + (CRBudget/CRCap);
-        int[] uniqueMonstersCR = new int[numberOfUniqueMonsters];
+        int numberOfUniqueMonsters = random.nextInt(4) + 1;
+        int[] uniqueMonstersTotalCR = new int[numberOfUniqueMonsters];
+        int[] uniqueMonstersCount = new int[numberOfUniqueMonsters];
         int minCR = (CRBudget - CRCap) / (numberOfUniqueMonsters - 1);
         int maxCR = CRBudget / numberOfUniqueMonsters;
-        for (int i = 0; i < numberOfUniqueMonsters; i++) {
-            uniqueMonstersCR[i] = random.nextInt(maxCR - minCR + 1) + minCR;
+        for (int i = 0; i < numberOfUniqueMonsters - 1; i++) {
+            uniqueMonstersTotalCR[i] = random.nextInt(maxCR - minCR + 1) + minCR;
+            CRBudget -= uniqueMonstersTotalCR[i];
         }
+        uniqueMonstersTotalCR[numberOfUniqueMonsters - 1] = CRBudget;
 
+        for (int i = 0; i < numberOfUniqueMonsters; i++){
+            Set<Integer> intersection = new HashSet<Integer>(allowedCRs);
+            intersection.retainAll(getFactors(uniqueMonstersTotalCR[i]));
+            uniqueMonstersCount[i] = Collections.max(intersection);
+        }
     }
 
     public void Print() {
 
     }
 
-    public void Attack(Integer monsterIndex) {
+    public void Damage(Integer monsterIndex) {
 
+    }
+
+    static Set<Integer> getFactors(int n) {
+        Set<Integer> factors = new HashSet<>();
+        int step = n % 2 == 0 ? 1 : 2;
+        for (int i = 1; i <= Math.sqrt(n); i += step) {
+            if (n % i == 0) {
+                factors.add(i);
+                factors.add(n / i);
+            }
+        }
+        return factors;
     }
 }
