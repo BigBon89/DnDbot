@@ -1,4 +1,3 @@
-page	name	CR	Type
 FM-028	Angulotl Blade	0.25	Angulotls
 FM-029	Angulotl Needler	4	Angulotls
 FM-030	Angulotl Seer	6	Angulotls

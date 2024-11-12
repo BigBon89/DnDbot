@@ -1,5 +1,7 @@
 package org.example;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.*;
 
 public class Monsters {
@@ -11,14 +13,38 @@ public class Monsters {
     public Monsters() {random = new Random();}
     public Monsters(int seed) {random = new Random(seed);}
 
-    Set<Integer> allowedCRs = new HashSet<>(Arrays.asList(1, 2, 4, 8, 16, 24, 32, 40, 48, 56, 64, 72, 80, 88, 96, 104, 112, 120, 128, 136, 144, 152, 160, 168, 184));
+    //Set<Integer> allowedCRs = new HashSet<>(Arrays.asList(1, 2, 4, 8, 16, 24, 32, 40, 48, 56, 64, 72, 80, 88, 96, 104, 112, 120, 128, 136, 144, 152, 160, 168, 184));
+    Integer[] allowedCRs = {1, 2, 4, 8, 16, 24, 32, 40, 48, 56, 64, 72, 80, 88, 96, 104, 112, 120, 128, 136, 144, 152, 160, 168, 184};
     int[] easyCRs = {1, 1, 2, 4, 8, 12, 16, 20, 24, 28, 32, 36, 40, 44, 48, 52, 56, 60, 64, 68};
     int[] normalCRs = {1, 2, 4, 6, 12, 16, 20, 24, 28, 32, 36, 40, 44, 48, 52, 56, 60, 64, 68, 72};
     int[] hardCRs = {2, 4, 6, 8, 20, 24, 28, 32, 36, 40, 44, 48, 52, 56, 60, 64, 68, 72, 76, 80};
     int[] CRCaps = {8, 24, 32, 48, 64, 72, 80, 96, 104, 120, 128, 136, 152, 160, 176, 192, 200, 208, 224, 240};
 
     public void Generate(EncounterDifficulty difficulty, Integer playersCount, Integer playersLevel, String monsterFilter) {
-        monsters = new Monster[1]; //TODO: случайно заполнить
+        //TODO: Перенести это куда-нибудь в другое место
+        Set<String>[] monstersByCR = (Set<String>[])new Set<?>[25];
+        try {
+            File monsterBookFile = new File("c:\\MonsterBook.txt");
+            Scanner myReader = new Scanner(monsterBookFile);
+            while (myReader.hasNextLine()) {
+                String data = myReader.nextLine();
+
+                double CR = Double.parseDouble(data.split("\t")[2]);
+                int index = Arrays.binarySearch(allowedCRs, (int)(CR*8));
+
+                if(monstersByCR[index] == null){
+                    monstersByCR[index] = new HashSet<>();
+                }
+
+                monstersByCR[index].add(data);
+            }
+            myReader.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+        System.out.println(monstersByCR[15]);
+
         int CRBudget = 0;
         int CRCap = CRCaps[playersLevel-1];
         switch (difficulty){
@@ -59,13 +85,22 @@ public class Monsters {
         }
 
         for (int i = 0; i < numberOfUniqueMonsters; i++){
-            Set<Integer> intersection = new HashSet<Integer>(allowedCRs);
+            Set<Integer> intersection = new HashSet<Integer>();
+            Collections.addAll(intersection, allowedCRs);
             intersection.retainAll(getFactors(uniqueMonstersTotalCR[i]));
             do {
                 uniqueMonstersCR[i] = Collections.max(intersection);
                 intersection.remove(Collections.max(intersection));
             } while (uniqueMonstersCR[i] > CRCap);
         }
+
+        int numberOfMonsters = 0;
+        for (int i = 0; i < numberOfUniqueMonsters; i++) {
+            numberOfMonsters += uniqueMonstersTotalCR[i]/uniqueMonstersCR[i];
+        }
+        monsters = new Monster[numberOfMonsters];
+
+        //TODO: Добавить монстров в monsters
     }
 
     public String Print() {
