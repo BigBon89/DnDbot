@@ -4,6 +4,8 @@ import java.util.*;
 
 public class Monsters {
     Monster[] monsters;
+    int[] uniqueMonstersTotalCR;
+    int[] uniqueMonstersCR;
 
     protected Random random;
     public Monsters() {random = new Random();}
@@ -18,20 +20,20 @@ public class Monsters {
     public void Generate(EncounterDifficulty difficulty, Integer playersCount, Integer playersLevel, String monsterFilter) {
         monsters = new Monster[1]; //TODO: случайно заполнить
         int CRBudget = 0;
-        int CRCap = CRCaps[playersLevel]*8;
+        int CRCap = CRCaps[playersLevel-1];
         switch (difficulty){
-            case EASY -> CRBudget = easyCRs[playersLevel] * playersCount;
-            case NORMAL -> CRBudget = normalCRs[playersLevel] * playersCount;
-            case HARD -> CRBudget = hardCRs[playersLevel] * playersCount;
+            case EASY -> CRBudget = easyCRs[playersLevel-1] * playersCount;
+            case NORMAL -> CRBudget = normalCRs[playersLevel-1] * playersCount;
+            case HARD -> CRBudget = hardCRs[playersLevel-1] * playersCount;
         }
 
         int numberOfUniqueMonsters = random.nextInt(4) + 1;
-        int[] uniqueMonstersTotalCR = new int[numberOfUniqueMonsters];
-        int[] uniqueMonstersCount = new int[numberOfUniqueMonsters];
-        int minCR = (CRBudget - CRCap) / (numberOfUniqueMonsters - 1);
+        uniqueMonstersTotalCR = new int[numberOfUniqueMonsters];
+        uniqueMonstersCR = new int[numberOfUniqueMonsters];
+        int minCR = (CRBudget - CRCap) / numberOfUniqueMonsters;
         int maxCR = CRBudget / numberOfUniqueMonsters;
         for (int i = 0; i < numberOfUniqueMonsters - 1; i++) {
-            uniqueMonstersTotalCR[i] = random.nextInt(maxCR - minCR + 1) + minCR;
+            uniqueMonstersTotalCR[i] = random.nextInt(Math.min(maxCR, CRBudget) - minCR + 1) + minCR;
             CRBudget -= uniqueMonstersTotalCR[i];
         }
         uniqueMonstersTotalCR[numberOfUniqueMonsters - 1] = CRBudget;
@@ -39,12 +41,13 @@ public class Monsters {
         for (int i = 0; i < numberOfUniqueMonsters; i++){
             Set<Integer> intersection = new HashSet<Integer>(allowedCRs);
             intersection.retainAll(getFactors(uniqueMonstersTotalCR[i]));
-            uniqueMonstersCount[i] = Collections.max(intersection);
+            uniqueMonstersCR[i] = Collections.max(intersection);
+            //uniqueMonstersCount[i] = intersection.size();
         }
     }
 
-    public void Print() {
-
+    public String Print() {
+        return Arrays.toString(uniqueMonstersTotalCR) + Arrays.toString(uniqueMonstersCR);
     }
 
     public void Damage(Integer monsterIndex) {
