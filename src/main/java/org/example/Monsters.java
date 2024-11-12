@@ -8,11 +8,11 @@ public class Monsters {
 
     }
 
-    public void Print() {
+    public void print() {
 
     }
 
-    public void Attack(Integer monsterIndex) {
+    public void attack(Integer monsterIndex) {
 
     }
 }
