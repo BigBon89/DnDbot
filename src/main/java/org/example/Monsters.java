@@ -27,22 +27,44 @@ public class Monsters {
             case HARD -> CRBudget = hardCRs[playersLevel-1] * playersCount;
         }
 
-        int numberOfUniqueMonsters = random.nextInt(4) + 1;
+        int numberOfUniqueMonsters = Math.min(random.nextInt(4) + 1, CRBudget);
         uniqueMonstersTotalCR = new int[numberOfUniqueMonsters];
         uniqueMonstersCR = new int[numberOfUniqueMonsters];
-        int minCR = (CRBudget - CRCap) / numberOfUniqueMonsters;
-        int maxCR = CRBudget / numberOfUniqueMonsters;
+
+        int randomStep;
+        if(playersLevel<3) {
+            randomStep = 1;
+        }else if(playersLevel<4){
+            randomStep = Math.min(2, CRBudget/2);
+        } else if (playersLevel<5) {
+            randomStep = Math.min(4, CRBudget/4);
+        }else {
+            randomStep = Math.min(8, CRBudget/8);
+            CRBudget = CRBudget - CRBudget%8;
+        }
+
+        int minCR = randomStep;
+        int maxCR = CRBudget / Math.max(numberOfUniqueMonsters - 1, 1);
         for (int i = 0; i < numberOfUniqueMonsters - 1; i++) {
             uniqueMonstersTotalCR[i] = random.nextInt(Math.min(maxCR, CRBudget) - minCR + 1) + minCR;
+            uniqueMonstersTotalCR[i] = uniqueMonstersTotalCR[i] - uniqueMonstersTotalCR[i]%randomStep;
             CRBudget -= uniqueMonstersTotalCR[i];
         }
         uniqueMonstersTotalCR[numberOfUniqueMonsters - 1] = CRBudget;
 
+        if(uniqueMonstersTotalCR[numberOfUniqueMonsters - 1] == 0){
+            int previousCR = uniqueMonstersTotalCR[numberOfUniqueMonsters - 2];
+            uniqueMonstersTotalCR[numberOfUniqueMonsters - 1] = previousCR/2 - previousCR % randomStep;
+            uniqueMonstersTotalCR[numberOfUniqueMonsters - 2] = previousCR/2 + (randomStep - previousCR) % randomStep;
+        }
+
         for (int i = 0; i < numberOfUniqueMonsters; i++){
             Set<Integer> intersection = new HashSet<Integer>(allowedCRs);
             intersection.retainAll(getFactors(uniqueMonstersTotalCR[i]));
-            uniqueMonstersCR[i] = Collections.max(intersection);
-            //uniqueMonstersCount[i] = intersection.size();
+            do {
+                uniqueMonstersCR[i] = Collections.max(intersection);
+                intersection.remove(Collections.max(intersection));
+            } while (uniqueMonstersCR[i] > CRCap);
         }
     }
 
