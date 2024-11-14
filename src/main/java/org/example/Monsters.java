@@ -119,15 +119,19 @@ public class Monsters {
                 count++;
             }
             String[] monsterArguments = monsterLine.split("\t");
-            monsters[i] = new Monster(monsterArguments[0], monsterArguments[1], Integer.parseInt(monsterArguments[2]), monsterArguments[3], monsterCRs[i], monsterCRs[i]);
+            monsters[i] = new Monster(monsterArguments[0], monsterArguments[1], (int)Double.parseDouble(monsterArguments[2])*8, monsterArguments[3], monsterCRs[i], monsterCRs[i]);
         }
     }
 
     public String print() {
-        return Arrays.toString(uniqueMonstersTotalCR) + Arrays.toString(uniqueMonstersCR);
+        String[] monsterLines = new String[monsters.length];
+        for (int i = 0; i < monsters.length; i++) {
+            monsterLines[i] = monsters[i].name + " " +  monsters[i].health + "/" + monsters[i].maxHealth;
+        }
+        return String.join("\n", monsterLines);
     }
 
-    public void damage(Integer monsterIndex) {
+    public void damage(Integer monsterIndex, Integer damage) {
 
     }
 

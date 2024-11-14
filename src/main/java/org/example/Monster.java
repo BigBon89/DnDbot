@@ -4,8 +4,8 @@ public class Monster {
     private String type;
     public String name;
     private int challangeRating;
-    private Integer health;
-    private Integer maxHealth;
+    public Integer health;
+    public Integer maxHealth;
     private String page;
     private Boolean isAlive;
     //String type
