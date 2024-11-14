@@ -131,8 +131,8 @@ public class Monsters {
         return String.join("\n", monsterLines);
     }
 
-    public void damage(Integer monsterIndex, Integer damage) {
-
+    public void damage(Integer monsterIndex, Integer damageAmount) {
+        monsters[monsterIndex].setDamage(damageAmount);
     }
 
     static Set<Integer> getFactors(int n) {
