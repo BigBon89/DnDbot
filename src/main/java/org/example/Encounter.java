@@ -12,10 +12,10 @@ public class Encounter {
             return "The encounter has already started";
 
         Monsters yes = new Monsters();
-        yes.Generate(difficulty, playersCount, playersLevel, monsterFilter);
+        yes.generate(difficulty, playersCount, playersLevel, monsterFilter);
 
         //inEncount = true;
-        return  yes.Print();
+        return  yes.print();
         //return "Encounter Started";
     }
 

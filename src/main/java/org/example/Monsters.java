@@ -13,15 +13,13 @@ public class Monsters {
     public Monsters() {random = new Random();}
     public Monsters(int seed) {random = new Random(seed);}
 
-    //Set<Integer> allowedCRs = new HashSet<>(Arrays.asList(1, 2, 4, 8, 16, 24, 32, 40, 48, 56, 64, 72, 80, 88, 96, 104, 112, 120, 128, 136, 144, 152, 160, 168, 184));
     Integer[] allowedCRs = {1, 2, 4, 8, 16, 24, 32, 40, 48, 56, 64, 72, 80, 88, 96, 104, 112, 120, 128, 136, 144, 152, 160, 168, 184};
     int[] easyCRs = {1, 1, 2, 4, 8, 12, 16, 20, 24, 28, 32, 36, 40, 44, 48, 52, 56, 60, 64, 68};
     int[] normalCRs = {1, 2, 4, 6, 12, 16, 20, 24, 28, 32, 36, 40, 44, 48, 52, 56, 60, 64, 68, 72};
     int[] hardCRs = {2, 4, 6, 8, 20, 24, 28, 32, 36, 40, 44, 48, 52, 56, 60, 64, 68, 72, 76, 80};
     int[] CRCaps = {8, 24, 32, 48, 64, 72, 80, 96, 104, 120, 128, 136, 152, 160, 176, 192, 200, 208, 224, 240};
 
-    public void Generate(EncounterDifficulty difficulty, Integer playersCount, Integer playersLevel, String monsterFilter) {
-        //TODO: Перенести это куда-нибудь в другое место
+    public void generate(EncounterDifficulty difficulty, Integer playersCount, Integer playersLevel, String monsterFilter) {
         Set<String>[] monstersByCR = (Set<String>[])new Set<?>[25];
         try {
             File monsterBookFile = new File("c:\\MonsterBook.txt");
@@ -43,7 +41,6 @@ public class Monsters {
             System.out.println("An error occurred.");
             e.printStackTrace();
         }
-        System.out.println(monstersByCR[15]);
 
         int CRBudget = 0;
         int CRCap = CRCaps[playersLevel-1];
@@ -100,14 +97,37 @@ public class Monsters {
         }
         monsters = new Monster[numberOfMonsters];
 
-        //TODO: Добавить монстров в monsters
+        int[] monsterCRs = new int[numberOfMonsters];
+        int index = 0;
+        for (int i = 0; i < uniqueMonstersCR.length; i++) {
+            for (int j = 0; j < uniqueMonstersTotalCR[i]/uniqueMonstersCR[i]; j++) {
+                monsterCRs[index] = uniqueMonstersCR[i];
+                index++;
+            }
+        }
+
+        for (int i = 0; i < monsterCRs.length; i++) {
+            int CRindex = Arrays.binarySearch(allowedCRs, monsterCRs[i]);
+            int randomCRMonsterIndex = random.nextInt(monstersByCR[CRindex].size());
+            int count = 0;
+            String monsterLine = "";
+            for(String iterMonsterLine : monstersByCR[CRindex]){
+                if(count == randomCRMonsterIndex){
+                    monsterLine = iterMonsterLine;
+                    break;
+                }
+                count++;
+            }
+            String[] monsterArguments = monsterLine.split("\t");
+            monsters[i] = new Monster(monsterArguments[0], monsterArguments[1], Integer.parseInt(monsterArguments[2]), monsterArguments[3], monsterCRs[i], monsterCRs[i]);
+        }
     }
 
-    public String Print() {
+    public String print() {
         return Arrays.toString(uniqueMonstersTotalCR) + Arrays.toString(uniqueMonstersCR);
     }
 
-    public void Damage(Integer monsterIndex) {
+    public void damage(Integer monsterIndex) {
 
     }
 

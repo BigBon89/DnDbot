@@ -2,19 +2,19 @@ package org.example;
 
 public class Monster {
     private String type;
-    private String name;
-    private double challangeRating;
+    public String name;
+    private int challangeRating;
     private Integer health;
     private Integer maxHealth;
     private String page;
     private Boolean isAlive;
-
-    public void Monster(String type,
+    //String type
+    public Monster(String page,
                         String name,
-                        double challangeRating,
-                        Integer health,
+                        int challangeRating,
+                        String type,
                         Integer maxHealth,
-                        String page) {
+                        Integer health) {
         this.type = type;
         this.name = name;
         this.challangeRating = challangeRating;
