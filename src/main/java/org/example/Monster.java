@@ -24,7 +24,7 @@ public class Monster {
         this.isAlive = true;
     }
 
-    public void SetDamage(Integer damage) {
+    public void setDamage(Integer damage) {
         health -= damage;
         if (health <= 0)
             isAlive = false;

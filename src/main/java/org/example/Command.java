@@ -5,12 +5,16 @@ public class Command {
     private String[] arguments;
     private int argumentsCount;
 
+    private Commands commands;
+
     Command(String inputLine) {
         String[] words = inputLine.split(" ");
         command = words[0];
         argumentsCount = words.length - 1;
         arguments = new String[argumentsCount];
         System.arraycopy(words, 1, arguments, 0, argumentsCount);
+
+        commands = Commands.fromString(command);
     }
 
     String getCommand() {
@@ -23,5 +27,13 @@ public class Command {
 
     int getArgumentsCount() {
         return argumentsCount;
+    }
+
+    boolean isValid() {
+        return commands != null && argumentsCount >= commands.getArgumentsCount();
+    }
+
+    Commands getCommandType() {
+        return commands;
     }
 }
