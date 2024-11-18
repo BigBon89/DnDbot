@@ -132,12 +132,19 @@ public class Monsters {
     public String print() {
         String[] monsterLines = new String[monsters.length];
         for (int i = 0; i < monsters.length; i++) {
-            monsterLines[i] = monsters[i].name + " " + monsters[i].health + "/" + monsters[i].maxHealth;
+            monsterLines[i] = monsters[i].name + " ";
+            if (monsters[i].isAlive)
+                monsterLines[i] += monsters[i].health + "/" + monsters[i].maxHealth;
+            else
+                monsterLines[i] += "(DEAD)";
         }
         return String.join("\n", monsterLines);
     }
 
     public void damage(Integer monsterIndex, Integer damageAmount) {
+        if (!monsters[monsterIndex].isAlive)
+            return;
+
         monsters[monsterIndex].setDamage(damageAmount);
     }
 
