@@ -55,6 +55,9 @@ public class BotLogicalCore {
             case ENCOUNTER_END:
                 ioHandler.print(encounter.end());
                 break;
+            case ATTACK:
+                ioHandler.print(encounter.attack(Integer.parseInt(command.getArguments()[0]), Integer.parseInt(command.getArguments()[1])));
+                break;
             default:
                 ioHandler.print("Unknown command, type help for help");
                 break;

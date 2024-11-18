@@ -10,8 +10,14 @@ public class Monsters {
     int[] uniqueMonstersCR;
 
     protected Random random;
-    public Monsters() {random = new Random();}
-    public Monsters(int seed) {random = new Random(seed);}
+
+    public Monsters() {
+        random = new Random();
+    }
+
+    public Monsters(int seed) {
+        random = new Random(seed);
+    }
 
     Integer[] allowedCRs = {1, 2, 4, 8, 16, 24, 32, 40, 48, 56, 64, 72, 80, 88, 96, 104, 112, 120, 128, 136, 144, 152, 160, 168, 184};
     int[] easyCRs = {1, 1, 2, 4, 8, 12, 16, 20, 24, 28, 32, 36, 40, 44, 48, 52, 56, 60, 64, 68};
@@ -20,7 +26,7 @@ public class Monsters {
     int[] CRCaps = {8, 24, 32, 48, 64, 72, 80, 96, 104, 120, 128, 136, 152, 160, 176, 192, 200, 208, 224, 240};
 
     public void generate(EncounterDifficulty difficulty, Integer playersCount, Integer playersLevel, String monsterFilter) {
-        Set<String>[] monstersByCR = (Set<String>[])new Set<?>[25];
+        Set<String>[] monstersByCR = (Set<String>[]) new Set<?>[25];
         try {
             File monsterBookFile = new File("c:\\MonsterBook.txt");
             Scanner myReader = new Scanner(monsterBookFile);
@@ -28,9 +34,9 @@ public class Monsters {
                 String data = myReader.nextLine();
 
                 double CR = Double.parseDouble(data.split("\t")[2]);
-                int index = Arrays.binarySearch(allowedCRs, (int)(CR*8));
+                int index = Arrays.binarySearch(allowedCRs, (int) (CR * 8));
 
-                if(monstersByCR[index] == null){
+                if (monstersByCR[index] == null) {
                     monstersByCR[index] = new HashSet<>();
                 }
 
@@ -43,11 +49,11 @@ public class Monsters {
         }
 
         int CRBudget = 0;
-        int CRCap = CRCaps[playersLevel-1];
-        switch (difficulty){
-            case EASY -> CRBudget = easyCRs[playersLevel-1] * playersCount;
-            case NORMAL -> CRBudget = normalCRs[playersLevel-1] * playersCount;
-            case HARD -> CRBudget = hardCRs[playersLevel-1] * playersCount;
+        int CRCap = CRCaps[playersLevel - 1];
+        switch (difficulty) {
+            case EASY -> CRBudget = easyCRs[playersLevel - 1] * playersCount;
+            case NORMAL -> CRBudget = normalCRs[playersLevel - 1] * playersCount;
+            case HARD -> CRBudget = hardCRs[playersLevel - 1] * playersCount;
         }
 
         int numberOfUniqueMonsters = Math.min(random.nextInt(4) + 1, CRBudget);
@@ -55,33 +61,33 @@ public class Monsters {
         uniqueMonstersCR = new int[numberOfUniqueMonsters];
 
         int randomStep;
-        if(playersLevel<3) {
+        if (playersLevel < 3) {
             randomStep = 1;
-        }else if(playersLevel<4){
-            randomStep = Math.min(2, CRBudget/2);
-        } else if (playersLevel<5) {
-            randomStep = Math.min(4, CRBudget/4);
-        }else {
-            randomStep = Math.min(8, CRBudget/8);
-            CRBudget = CRBudget - CRBudget%8;
+        } else if (playersLevel < 4) {
+            randomStep = Math.min(2, CRBudget / 2);
+        } else if (playersLevel < 5) {
+            randomStep = Math.min(4, CRBudget / 4);
+        } else {
+            randomStep = Math.min(8, CRBudget / 8);
+            CRBudget = CRBudget - CRBudget % 8;
         }
 
         int minCR = randomStep;
         int maxCR = CRBudget / Math.max(numberOfUniqueMonsters - 1, 1);
         for (int i = 0; i < numberOfUniqueMonsters - 1; i++) {
             uniqueMonstersTotalCR[i] = random.nextInt(Math.min(maxCR, CRBudget) - minCR + 1) + minCR;
-            uniqueMonstersTotalCR[i] = uniqueMonstersTotalCR[i] - uniqueMonstersTotalCR[i]%randomStep;
+            uniqueMonstersTotalCR[i] = uniqueMonstersTotalCR[i] - uniqueMonstersTotalCR[i] % randomStep;
             CRBudget -= uniqueMonstersTotalCR[i];
         }
         uniqueMonstersTotalCR[numberOfUniqueMonsters - 1] = CRBudget;
 
-        if(uniqueMonstersTotalCR[numberOfUniqueMonsters - 1] == 0){
+        if (uniqueMonstersTotalCR[numberOfUniqueMonsters - 1] == 0) {
             int previousCR = uniqueMonstersTotalCR[numberOfUniqueMonsters - 2];
-            uniqueMonstersTotalCR[numberOfUniqueMonsters - 1] = previousCR/2 - previousCR % randomStep;
-            uniqueMonstersTotalCR[numberOfUniqueMonsters - 2] = previousCR/2 + (randomStep - previousCR) % randomStep;
+            uniqueMonstersTotalCR[numberOfUniqueMonsters - 1] = previousCR / 2 - previousCR % randomStep;
+            uniqueMonstersTotalCR[numberOfUniqueMonsters - 2] = previousCR / 2 + (randomStep - previousCR) % randomStep;
         }
 
-        for (int i = 0; i < numberOfUniqueMonsters; i++){
+        for (int i = 0; i < numberOfUniqueMonsters; i++) {
             Set<Integer> intersection = new HashSet<Integer>();
             Collections.addAll(intersection, allowedCRs);
             intersection.retainAll(getFactors(uniqueMonstersTotalCR[i]));
@@ -93,14 +99,14 @@ public class Monsters {
 
         int numberOfMonsters = 0;
         for (int i = 0; i < numberOfUniqueMonsters; i++) {
-            numberOfMonsters += uniqueMonstersTotalCR[i]/uniqueMonstersCR[i];
+            numberOfMonsters += uniqueMonstersTotalCR[i] / uniqueMonstersCR[i];
         }
         monsters = new Monster[numberOfMonsters];
 
         int[] monsterCRs = new int[numberOfMonsters];
         int index = 0;
         for (int i = 0; i < uniqueMonstersCR.length; i++) {
-            for (int j = 0; j < uniqueMonstersTotalCR[i]/uniqueMonstersCR[i]; j++) {
+            for (int j = 0; j < uniqueMonstersTotalCR[i] / uniqueMonstersCR[i]; j++) {
                 monsterCRs[index] = uniqueMonstersCR[i];
                 index++;
             }
@@ -111,22 +117,22 @@ public class Monsters {
             int randomCRMonsterIndex = random.nextInt(monstersByCR[CRindex].size());
             int count = 0;
             String monsterLine = "";
-            for(String iterMonsterLine : monstersByCR[CRindex]){
-                if(count == randomCRMonsterIndex){
+            for (String iterMonsterLine : monstersByCR[CRindex]) {
+                if (count == randomCRMonsterIndex) {
                     monsterLine = iterMonsterLine;
                     break;
                 }
                 count++;
             }
             String[] monsterArguments = monsterLine.split("\t");
-            monsters[i] = new Monster(monsterArguments[0], monsterArguments[1], (int)Double.parseDouble(monsterArguments[2])*8, monsterArguments[3], monsterCRs[i], monsterCRs[i]);
+            monsters[i] = new Monster(monsterArguments[0], monsterArguments[1], (int) Double.parseDouble(monsterArguments[2]) * 8, monsterArguments[3], monsterCRs[i], monsterCRs[i]);
         }
     }
 
     public String print() {
         String[] monsterLines = new String[monsters.length];
         for (int i = 0; i < monsters.length; i++) {
-            monsterLines[i] = monsters[i].name + " " +  monsters[i].health + "/" + monsters[i].maxHealth;
+            monsterLines[i] = monsters[i].name + " " + monsters[i].health + "/" + monsters[i].maxHealth;
         }
         return String.join("\n", monsterLines);
     }
