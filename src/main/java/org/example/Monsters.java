@@ -8,7 +8,7 @@ public class Monsters {
     Monster[] monsters;
     int[] uniqueMonstersTotalCR;
     int[] uniqueMonstersCR;
-    public int monstersCount;
+    private int monstersCount;
 
     protected Random random;
 
@@ -141,6 +141,14 @@ public class Monsters {
                 monsterLines[i] += "(DEAD)";
         }
         return String.join("\n", monsterLines);
+    }
+
+    public int getMonstersCount() {
+        return monstersCount;
+    }
+
+    public Monster getMonsterByIndex(int monsterIndex) {
+        return monsters[monsterIndex];
     }
 
     public void damage(Integer monsterIndex, Integer damageAmount) {

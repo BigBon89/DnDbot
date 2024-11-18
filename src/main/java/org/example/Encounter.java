@@ -40,10 +40,15 @@ public class Encounter {
         if (!inEncount)
             return "The encounter has not started";
 
-        if (monsterIndex > monsters.monstersCount)
+        if (monsterIndex > monsters.getMonstersCount())
             return "Wrong monster index";
 
         monsters.damage(monsterIndex, damage);
-        return printMonsters();
+
+        for (int i = 0; i < monsters.getMonstersCount(); i++) {
+            if (monsters.getMonsterByIndex(i).isAlive)
+                return printMonsters();
+        }
+        return printMonsters() + "\nAll monsters is dead\n" + end();
     }
 }
