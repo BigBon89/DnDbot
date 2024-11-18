@@ -35,6 +35,9 @@ public class Encounter {
         if (!inEncount)
             return "The encounter has not started";
 
+        if (monsterIndex > monsters.monstersCount)
+            return "Wrong monster index";
+
         monsters.damage(monsterIndex, damage);
         return printMonsters();
     }

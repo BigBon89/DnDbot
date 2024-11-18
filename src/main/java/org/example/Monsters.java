@@ -8,14 +8,17 @@ public class Monsters {
     Monster[] monsters;
     int[] uniqueMonstersTotalCR;
     int[] uniqueMonstersCR;
+    public int monstersCount;
 
     protected Random random;
 
     public Monsters() {
+        monstersCount = 0;
         random = new Random();
     }
 
     public Monsters(int seed) {
+        monstersCount = 0;
         random = new Random(seed);
     }
 
@@ -97,13 +100,12 @@ public class Monsters {
             } while (uniqueMonstersCR[i] > CRCap);
         }
 
-        int numberOfMonsters = 0;
         for (int i = 0; i < numberOfUniqueMonsters; i++) {
-            numberOfMonsters += uniqueMonstersTotalCR[i] / uniqueMonstersCR[i];
+            monstersCount += uniqueMonstersTotalCR[i] / uniqueMonstersCR[i];
         }
-        monsters = new Monster[numberOfMonsters];
+        monsters = new Monster[monstersCount];
 
-        int[] monsterCRs = new int[numberOfMonsters];
+        int[] monsterCRs = new int[monstersCount];
         int index = 0;
         for (int i = 0; i < uniqueMonstersCR.length; i++) {
             for (int j = 0; j < uniqueMonstersTotalCR[i] / uniqueMonstersCR[i]; j++) {
