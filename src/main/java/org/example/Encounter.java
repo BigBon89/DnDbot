@@ -9,6 +9,11 @@ public class Encounter {
         monsters = new Monsters();
     }
 
+    public Encounter(int seed) {
+        inEncount = false;
+        monsters = new Monsters(seed);
+    }
+
     public String printMonsters() {
         return monsters.print();
     }
