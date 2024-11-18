@@ -43,6 +43,9 @@ public class Encounter {
         if (monsterIndex > monsters.getMonstersCount())
             return "Wrong monster index";
 
+        if (!monsters.getMonsterByIndex(monsterIndex).isAlive)
+            return "Monster already dead, choose another monster";
+
         monsters.damage(monsterIndex, damage);
 
         for (int i = 0; i < monsters.getMonstersCount(); i++) {
