@@ -134,7 +134,7 @@ public class Monsters {
     public String print() {
         String[] monsterLines = new String[monsters.length];
         for (int i = 0; i < monsters.length; i++) {
-            monsterLines[i] = monsters[i].name + " ";
+            monsterLines[i] = i + ". " + monsters[i].name + " ";
             if (monsters[i].isAlive)
                 monsterLines[i] += monsters[i].health + "/" + monsters[i].maxHealth;
             else

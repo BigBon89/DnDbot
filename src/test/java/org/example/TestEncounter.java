@@ -16,18 +16,18 @@ public class TestEncounter {
     @Test
     public void checkEncounter() {
         String res = encounter.start(EncounterDifficulty.valueOf("NORMAL"), 4, 1, "-");
-        assertEquals("Kobold Veles 1/1\n" +
-                "Stirge 1/1\n" +
-                "Blood-Borne Ooze 2/2", res);
+        assertEquals("0. Kobold Veles 1/1\n" +
+                "1. Stirge 1/1\n" +
+                "2. Blood-Borne Ooze 2/2", res);
     }
 
     @Test
     public void checkAttack() {
         encounter.start(EncounterDifficulty.valueOf("NORMAL"), 4, 1, "-");
         String res = encounter.attack(2, 4);
-        assertEquals("Kobold Veles 1/1\n" +
-                "Stirge 1/1\n" +
-                "Blood-Borne Ooze (DEAD)", res);
+        assertEquals("0. Kobold Veles 1/1\n" +
+                "1. Stirge 1/1\n" +
+                "2. Blood-Borne Ooze (DEAD)", res);
     }
 
     @Test
