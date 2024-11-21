@@ -1,13 +1,13 @@
 package org.example;
 
 public class Monster {
-    private String type;
+    public String type;
     public String name;
-    private int challangeRating;
-    private Integer health;
-    private Integer maxHealth;
-    private String page;
-    private Boolean isAlive;
+    public int challangeRating;
+    public Integer health;
+    public Integer maxHealth;
+    public String page;
+    public Boolean isAlive;
     //String type
     public Monster(String page,
                         String name,

@@ -8,7 +8,8 @@ public enum Commands {
     D20("d20", 2, "d20 'modifier' 'normal/advantage/disadvantage'"),
     GENERATE_NAME("generate_name", 0, "generate_name"),
     ENCOUNTER_START("encounter_start", 4, "encounter_start 'NORMAL/MEDIUM/HARD' 'PLAYERS COUNT' 'PLAYERS LEVEL' 'MONSTER FILTER'"),
-    ENCOUNTER_END("encounter_end", 0, "encounter_end");
+    ENCOUNTER_END("encounter_end", 0, "encounter_end"),
+    ATTACK("attack", 2, "attack 'monster index' 'damage'");
 
     private String commandName;
     private int argumentsCount;
