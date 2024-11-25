@@ -6,7 +6,7 @@ public class BotLogicalCore {
     private final ClassNameGenerator classNameGenerator;
     private final Dice dice;
     private final InputOutput ioHandler;
-    private final Encounter encounter;
+    private Encounter encounter;
 
     public BotLogicalCore(CityNameGenerator cityNameGenerator, CharacterNameGenerator characterNameGenerator, ClassNameGenerator classNameGenerator, Dice dice, InputOutput inputOutput, Encounter encounter) {
         this.cityNameGenerator = cityNameGenerator;
@@ -49,11 +49,19 @@ public class BotLogicalCore {
                 case GENERATE_NAME:
                     ioHandler.print("Generated character name: " + characterNameGenerator.generateName());
                     break;
-                case ENCOUNTER_START:
+                case GENERATE_ENCOUNTER:
+                    encounter = new Encounter();
+                    ioHandler.print(encounter.start(EncounterDifficulty.valueOf(command.getArguments()[0]), Integer.parseInt(command.getArguments()[1]), Integer.parseInt(command.getArguments()[2]), ""));
+                case GENERATE_ENCOUNTER_FILTER:
+                    encounter = new Encounter();
                     ioHandler.print(encounter.start(EncounterDifficulty.valueOf(command.getArguments()[0]), Integer.parseInt(command.getArguments()[1]), Integer.parseInt(command.getArguments()[2]), command.getArguments()[3]));
                     break;
                 case ENCOUNTER_END:
                     ioHandler.print(encounter.end());
+                    break;
+                case ATTACK:
+                    encounter.attack(Integer.parseInt(command.getArguments()[0]), Integer.parseInt(command.getArguments()[1]));
+                    ioHandler.print(encounter.printMonsters());
                     break;
                 default:
                     ioHandler.print("Unknown command, type help for help");
