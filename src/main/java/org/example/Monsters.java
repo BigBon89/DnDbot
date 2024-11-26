@@ -37,7 +37,6 @@ public class Monsters {
         int[] uniqueMonstersTotalCR;
         int[] uniqueMonstersCR;
 
-
         Set<String>[] monstersByCR = (Set<String>[]) new Set<?>[25];
         Set<Integer> filterCRs = new HashSet<Integer>();
         try {
@@ -69,6 +68,7 @@ public class Monsters {
 
         int crBudget = 0;
         int crCap = crCaps[playersLevel - 1];
+
         switch (difficulty) {
             case EASY -> crBudget = easyCrs[playersLevel - 1] * playersCount;
             case NORMAL -> crBudget = normalCrs[playersLevel - 1] * playersCount;
@@ -154,7 +154,13 @@ public class Monsters {
                 count++;
             }
             String[] monsterArguments = monsterLine.split("\t");
-            monsters[i] = new Monster(monsterArguments[0], monsterArguments[1], (int) Double.parseDouble(monsterArguments[2]) * 8, monsterArguments[3], monsterCRs[i], monsterCRs[i]);
+            monsters[i] = new Monster(monsterArguments[0],
+                monsterArguments[1],
+                    (int) Double.parseDouble(monsterArguments[2]) * 8,
+                monsterArguments[3],
+                monsterCRs[i],
+                monsterCRs[i]
+            );
         }
     }
 
@@ -162,10 +168,12 @@ public class Monsters {
         String[] monsterLines = new String[monsters.length];
         for (int i = 0; i < monsters.length; i++) {
             monsterLines[i] = i + ". " + monsters[i].name + " ";
-            if (monsters[i].isAlive)
+            if (monsters[i].isAlive) {
                 monsterLines[i] += monsters[i].health + "/" + monsters[i].maxHealth;
-            else
+            }
+            else {
                 monsterLines[i] += "(DEAD)";
+            }
         }
         return String.join("\n", monsterLines);
     }
