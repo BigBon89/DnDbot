@@ -63,6 +63,7 @@ public class BotLogicalCore {
                             Integer.parseInt(command.getArguments()[1]), Integer.parseInt(command.getArguments()[2]),
                             "")
                     );
+                    break;
                 case GENERATE_ENCOUNTER_FILTER:
                     encounter = new Encounter();
                     ioHandler.print(encounter.start(EncounterDifficulty.valueOf(command.getArguments()[0]),

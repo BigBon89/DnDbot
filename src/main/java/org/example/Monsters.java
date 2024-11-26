@@ -2,7 +2,13 @@ package org.example;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.*;
+import java.util.Random;
+import java.util.Set;
+import java.util.HashSet;
+import java.util.Scanner;
+import java.util.Arrays;
+import java.util.Objects;
+import java.util.Collections;
 
 public class Monsters {
     Monster[] monsters;
