@@ -16,8 +16,7 @@ public abstract class NameGenerator {
         random = new Random(seed);
     }
 
-    public String generateName()
-    {
+    public String generateName() {
         String prefix = prefixes[random.nextInt(prefixes.length)];
         String root = roots[random.nextInt(roots.length)];
         String suffix = suffixes[random.nextInt(suffixes.length)];
