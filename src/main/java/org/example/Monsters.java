@@ -40,9 +40,6 @@ public class Monsters {
         Integer playersLevel,
         String monsterFilter
     ) {
-        int[] uniqueMonstersTotalCR;
-        int[] uniqueMonstersCR;
-
         Set<String>[] monstersByCR = (Set<String>[]) new Set<?>[25];
         Set<Integer> filterCRs = new HashSet<Integer>();
         try {
@@ -73,7 +70,6 @@ public class Monsters {
         }
 
         int crBudget = 0;
-        int crCap = crCaps[playersLevel - 1];
 
         switch (difficulty) {
             case EASY -> crBudget = easyCrs[playersLevel - 1] * playersCount;
@@ -99,8 +95,8 @@ public class Monsters {
 
         int upperBound = Math.min(4, crBudget / randomStep);
         int numberOfUniqueMonsters = Math.min(random.nextInt(upperBound) + 1, crBudget);
-        uniqueMonstersTotalCR = new int[numberOfUniqueMonsters];
-        uniqueMonstersCR = new int[numberOfUniqueMonsters];
+        int[] uniqueMonstersTotalCR = new int[numberOfUniqueMonsters];
+        int[] uniqueMonstersCR = new int[numberOfUniqueMonsters];
 
         int minCR = randomStep;
         int maxCR = crBudget / Math.max(numberOfUniqueMonsters - 1, 1);
@@ -116,6 +112,8 @@ public class Monsters {
             uniqueMonstersTotalCR[numberOfUniqueMonsters - 1] = previousCR / 2 - previousCR % randomStep;
             uniqueMonstersTotalCR[numberOfUniqueMonsters - 2] = previousCR / 2 + (randomStep - previousCR) % randomStep;
         }
+
+        int crCap = crCaps[playersLevel - 1];
 
         for (int i = 0; i < numberOfUniqueMonsters; i++) {
             Set<Integer> intersection = new HashSet<Integer>();
