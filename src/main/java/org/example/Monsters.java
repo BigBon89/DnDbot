@@ -6,8 +6,6 @@ import java.util.*;
 
 public class Monsters {
     Monster[] monsters;
-    int[] uniqueMonstersTotalCR;
-    int[] uniqueMonstersCR;
     private int monstersCount;
 
     protected Random random;
@@ -29,7 +27,12 @@ public class Monsters {
     int[] CRCaps = {8, 24, 32, 48, 64, 72, 80, 96, 104, 120, 128, 136, 152, 160, 176, 192, 200, 208, 224, 240};
 
     public void generate(EncounterDifficulty difficulty, Integer playersCount, Integer playersLevel, String monsterFilter) {
+        int[] uniqueMonstersTotalCR;
+        int[] uniqueMonstersCR;
+
+
         Set<String>[] monstersByCR = (Set<String>[]) new Set<?>[25];
+        Set<Integer> filterCRs = new HashSet<Integer>();
         try {
             File monsterBookFile = new File("c:\\MonsterBook.txt");
             Scanner myReader = new Scanner(monsterBookFile);
@@ -38,6 +41,12 @@ public class Monsters {
 
                 double CR = Double.parseDouble(data.split("\t")[2]);
                 int index = Arrays.binarySearch(allowedCRs, (int) (CR * 8));
+
+                if (Objects.equals(data.split("\t")[3], monsterFilter)) {
+                    filterCRs.add((int)(CR * 8));
+                } else if (!monsterFilter.isEmpty()) {
+                    continue;
+                }
 
                 if (monstersByCR[index] == null) {
                     monstersByCR[index] = new HashSet<>();
@@ -59,21 +68,26 @@ public class Monsters {
             case HARD -> CRBudget = hardCRs[playersLevel - 1] * playersCount;
         }
 
-        int numberOfUniqueMonsters = Math.min(random.nextInt(4) + 1, CRBudget);
-        uniqueMonstersTotalCR = new int[numberOfUniqueMonsters];
-        uniqueMonstersCR = new int[numberOfUniqueMonsters];
-
         int randomStep;
         if (playersLevel < 3) {
             randomStep = 1;
         } else if (playersLevel < 4) {
-            randomStep = Math.min(2, CRBudget / 2);
+            randomStep = 2;
         } else if (playersLevel < 5) {
-            randomStep = Math.min(4, CRBudget / 4);
+            randomStep = 4;
         } else {
-            randomStep = Math.min(8, CRBudget / 8);
-            CRBudget = CRBudget - CRBudget % 8;
+            randomStep = 8;
         }
+
+        if (!monsterFilter.isEmpty()) {
+            randomStep = Math.max(randomStep, Collections.min(filterCRs));
+        }
+        CRBudget -= CRBudget % randomStep;
+
+        int upperBound = Math.min(4, CRBudget/randomStep);
+        int numberOfUniqueMonsters = Math.min(random.nextInt(upperBound) + 1, CRBudget);
+        uniqueMonstersTotalCR = new int[numberOfUniqueMonsters];
+        uniqueMonstersCR = new int[numberOfUniqueMonsters];
 
         int minCR = randomStep;
         int maxCR = CRBudget / Math.max(numberOfUniqueMonsters - 1, 1);
@@ -94,6 +108,9 @@ public class Monsters {
             Set<Integer> intersection = new HashSet<Integer>();
             Collections.addAll(intersection, allowedCRs);
             intersection.retainAll(getFactors(uniqueMonstersTotalCR[i]));
+            if(!monsterFilter.isEmpty()){
+                intersection.retainAll(filterCRs);
+            }
             do {
                 uniqueMonstersCR[i] = Collections.max(intersection);
                 intersection.remove(Collections.max(intersection));
@@ -106,21 +123,24 @@ public class Monsters {
         monsters = new Monster[monstersCount];
 
         int[] monsterCRs = new int[monstersCount];
+        int[] randomMonsterIndexes = new int[monstersCount];
         int index = 0;
         for (int i = 0; i < uniqueMonstersCR.length; i++) {
+            int CRindex = Arrays.binarySearch(allowedCRs, uniqueMonstersCR[i]);
+            int randomCRMonsterIndex = random.nextInt(monstersByCR[CRindex].size());
             for (int j = 0; j < uniqueMonstersTotalCR[i] / uniqueMonstersCR[i]; j++) {
                 monsterCRs[index] = uniqueMonstersCR[i];
+                randomMonsterIndexes[index] = randomCRMonsterIndex;
                 index++;
             }
         }
 
         for (int i = 0; i < monsterCRs.length; i++) {
             int CRindex = Arrays.binarySearch(allowedCRs, monsterCRs[i]);
-            int randomCRMonsterIndex = random.nextInt(monstersByCR[CRindex].size());
             int count = 0;
             String monsterLine = "";
             for (String iterMonsterLine : monstersByCR[CRindex]) {
-                if (count == randomCRMonsterIndex) {
+                if (count == randomMonsterIndexes[i]) {
                     monsterLine = iterMonsterLine;
                     break;
                 }
