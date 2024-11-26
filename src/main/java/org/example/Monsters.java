@@ -187,8 +187,9 @@ public class Monsters {
     }
 
     public void damage(Integer monsterIndex, Integer damageAmount) {
-        if (!monsters[monsterIndex].isAlive)
+        if (!monsters[monsterIndex].isAlive) {
             return;
+        }
 
         monsters[monsterIndex].setDamage(damageAmount);
     }
