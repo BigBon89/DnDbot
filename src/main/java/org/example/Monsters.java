@@ -96,7 +96,6 @@ public class Monsters {
         int upperBound = Math.min(4, crBudget / randomStep);
         int numberOfUniqueMonsters = Math.min(random.nextInt(upperBound) + 1, crBudget);
         int[] uniqueMonstersTotalCR = new int[numberOfUniqueMonsters];
-        int[] uniqueMonstersCR = new int[numberOfUniqueMonsters];
 
         int minCR = randomStep;
         int maxCR = crBudget / Math.max(numberOfUniqueMonsters - 1, 1);
@@ -114,6 +113,7 @@ public class Monsters {
         }
 
         int crCap = crCaps[playersLevel - 1];
+        int[] uniqueMonstersCR = new int[numberOfUniqueMonsters];
 
         for (int i = 0; i < numberOfUniqueMonsters; i++) {
             Set<Integer> intersection = new HashSet<Integer>();
