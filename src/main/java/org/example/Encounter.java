@@ -19,8 +19,9 @@ public class Encounter {
     }
 
     public String start(EncounterDifficulty difficulty, Integer playersCount, Integer playersLevel, String monsterFilter) {
-        if (inEncount)
+        if (inEncount) {
             return "The encounter has already started";
+        }
 
         monsters.generate(difficulty, playersCount, playersLevel, monsterFilter);
 
@@ -29,28 +30,33 @@ public class Encounter {
     }
 
     public String end() {
-        if (!inEncount)
+        if (!inEncount) {
             return "The encounter has not started";
+        }
 
         inEncount = false;
         return "The encounter is over";
     }
 
     public String attack(int monsterIndex, int damage) {
-        if (!inEncount)
+        if (!inEncount) {
             return "The encounter has not started";
+        }
 
-        if (monsterIndex > monsters.getMonstersCount())
+        if (monsterIndex > monsters.getMonstersCount()) {
             return "Wrong monster index";
+        }
 
-        if (!monsters.getMonsterByIndex(monsterIndex).isAlive)
+        if (!monsters.getMonsterByIndex(monsterIndex).isAlive) {
             return "Monster already dead, choose another monster";
+        }
 
         monsters.damage(monsterIndex, damage);
 
         for (int i = 0; i < monsters.getMonstersCount(); i++) {
-            if (monsters.getMonsterByIndex(i).isAlive)
+            if (monsters.getMonsterByIndex(i).isAlive) {
                 return printMonsters();
+            }
         }
         return printMonsters() + "\nAll monsters is dead\n" + end();
     }
