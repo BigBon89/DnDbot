@@ -14,15 +14,15 @@ public class CityNameGenerator extends NameGenerator {
     }
 
     public void initializeNames() {
-        prefixes = new String[] {
+        prefixes = new String[]{
                 "Dark", "Bright", "Storm", "Wind", "Shadow", "Sun",
                 "Silver", "Iron", "Gold", "Wolf", "Dragon"
         };
-        roots = new String[] {
+        roots = new String[]{
                 "vale", "wood", "fall", "stone", "ford", "ridge",
                 "keep", "haven", "burg", "crest", "cliff"
         };
-        suffixes = new String[] {
+        suffixes = new String[]{
                 "ton", "burgh", "port", "holm", "stead", "ford",
                 "bridge", "field", "gate", "shire", "hill"
         };
