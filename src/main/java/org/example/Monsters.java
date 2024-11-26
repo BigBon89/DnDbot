@@ -20,13 +20,20 @@ public class Monsters {
         random = new Random(seed);
     }
 
-    Integer[] allowedCRs = {1, 2, 4, 8, 16, 24, 32, 40, 48, 56, 64, 72, 80, 88, 96, 104, 112, 120, 128, 136, 144, 152, 160, 168, 184};
+    Integer[] allowedCRs = {
+        1, 2, 4, 8, 16, 24, 32, 40, 48, 56, 64, 72, 80, 88, 96, 104, 112,
+        120, 128, 136, 144, 152, 160, 168, 184
+    };
     int[] easyCRs = {1, 1, 2, 4, 8, 12, 16, 20, 24, 28, 32, 36, 40, 44, 48, 52, 56, 60, 64, 68};
     int[] normalCRs = {1, 2, 4, 6, 12, 16, 20, 24, 28, 32, 36, 40, 44, 48, 52, 56, 60, 64, 68, 72};
     int[] hardCRs = {2, 4, 6, 8, 20, 24, 28, 32, 36, 40, 44, 48, 52, 56, 60, 64, 68, 72, 76, 80};
     int[] CRCaps = {8, 24, 32, 48, 64, 72, 80, 96, 104, 120, 128, 136, 152, 160, 176, 192, 200, 208, 224, 240};
 
-    public void generate(EncounterDifficulty difficulty, Integer playersCount, Integer playersLevel, String monsterFilter) {
+    public void generate(EncounterDifficulty difficulty,
+        Integer playersCount,
+        Integer playersLevel,
+        String monsterFilter)
+    {
         int[] uniqueMonstersTotalCR;
         int[] uniqueMonstersCR;
 
@@ -43,7 +50,7 @@ public class Monsters {
                 int index = Arrays.binarySearch(allowedCRs, (int) (CR * 8));
 
                 if (Objects.equals(data.split("\t")[3], monsterFilter)) {
-                    filterCRs.add((int)(CR * 8));
+                    filterCRs.add((int) (CR * 8));
                 } else if (!monsterFilter.isEmpty()) {
                     continue;
                 }
@@ -84,7 +91,7 @@ public class Monsters {
         }
         CRBudget -= CRBudget % randomStep;
 
-        int upperBound = Math.min(4, CRBudget/randomStep);
+        int upperBound = Math.min(4, CRBudget / randomStep);
         int numberOfUniqueMonsters = Math.min(random.nextInt(upperBound) + 1, CRBudget);
         uniqueMonstersTotalCR = new int[numberOfUniqueMonsters];
         uniqueMonstersCR = new int[numberOfUniqueMonsters];
@@ -108,7 +115,7 @@ public class Monsters {
             Set<Integer> intersection = new HashSet<Integer>();
             Collections.addAll(intersection, allowedCRs);
             intersection.retainAll(getFactors(uniqueMonstersTotalCR[i]));
-            if(!monsterFilter.isEmpty()){
+            if (!monsterFilter.isEmpty()) {
                 intersection.retainAll(filterCRs);
             }
             do {
