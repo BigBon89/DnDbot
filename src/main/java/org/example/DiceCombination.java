@@ -1,15 +1,15 @@
 package org.example;
 
 import java.util.Random;
+
 public class DiceCombination {
     private String combination;
 
-    public DiceCombination(String combination)
-    {
+    public DiceCombination(String combination) {
         this.combination = combination;
     }
-    public Integer getResult(Random random)
-    {
+
+    public Integer getResult(Random random) {
         String[] dice = combination.split("\\+");
         int result = 0;
         for (String die : dice) {
@@ -25,21 +25,21 @@ public class DiceCombination {
         }
         return result;
     }
-    public boolean isGood()
-    {
+
+    public boolean isGood() {
         String[] dice = combination.split("\\+");
-        for(String die : dice){
-            if(!die.matches(".*\\d.*||d")){
+        for (String die : dice) {
+            if (!die.matches(".*\\d.*||d")) {
                 return false;
             }
-            if(die.isEmpty()){
+            if (die.isEmpty()) {
                 return false;
             }
-            if (die.startsWith("d") || die.endsWith("d")){
+            if (die.startsWith("d") || die.endsWith("d")) {
                 return false;
             }
         }
-        if(combination.contains("++") || combination.startsWith("+") || combination.endsWith("+")) {
+        if (combination.contains("++") || combination.startsWith("+") || combination.endsWith("+")) {
             return false;
         }
         return true;
