@@ -18,7 +18,11 @@ public class Encounter {
         return monsters.print();
     }
 
-    public String start(EncounterDifficulty difficulty, Integer playersCount, Integer playersLevel, String monsterFilter) {
+    public String start(EncounterDifficulty difficulty,
+                        Integer playersCount,
+                        Integer playersLevel,
+                        String monsterFilter
+    ) {
         if (inEncount) {
             return "The encounter has already started";
         }
