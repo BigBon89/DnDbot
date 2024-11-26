@@ -170,8 +170,7 @@ public class Monsters {
             monsterLines[i] = i + ". " + monsters[i].name + " ";
             if (monsters[i].isAlive) {
                 monsterLines[i] += monsters[i].health + "/" + monsters[i].maxHealth;
-            }
-            else {
+            } else {
                 monsterLines[i] += "(DEAD)";
             }
         }

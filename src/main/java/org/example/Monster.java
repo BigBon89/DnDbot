@@ -8,6 +8,7 @@ public class Monster {
     public Integer maxHealth;
     public String page;
     public Boolean isAlive;
+
     //String type
     public Monster(String page,
                         String name,
@@ -26,7 +27,8 @@ public class Monster {
 
     public void setDamage(Integer damage) {
         health -= damage;
-        if (health <= 0)
+        if (health <= 0) {
             isAlive = false;
+        }
     }
 }
