@@ -47,6 +47,10 @@ public class Encounter {
             return "The encounter has not started";
         }
 
+        if (damage <= 0) {
+            return "Damage must be a positive number";
+        }
+
         if (!monsters.isValidIndex(monsterIndex)) {
             return "Wrong monster index";
         }
