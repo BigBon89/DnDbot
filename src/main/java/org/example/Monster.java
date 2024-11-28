@@ -31,4 +31,8 @@ public class Monster {
             isAlive = false;
         }
     }
+
+    public String getName() {
+        return name;
+    }
 }

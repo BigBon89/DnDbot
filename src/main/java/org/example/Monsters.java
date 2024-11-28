@@ -9,9 +9,11 @@ import java.util.Scanner;
 import java.util.Arrays;
 import java.util.Objects;
 import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 
 public class Monsters {
-    Monster[] monsters;
+    private Map<Integer, Monster> monsters;
     private int monstersCount;
 
     protected Random random;
@@ -132,7 +134,7 @@ public class Monsters {
         for (int i = 0; i < numberOfUniqueMonsters; i++) {
             monstersCount += uniqueMonstersTotalChallengeRatings[i] / uniqueMonstersChallengeRatings[i];
         }
-        monsters = new Monster[monstersCount];
+        monsters = new HashMap<>();
 
         int[] monsterChallengeRatings = new int[monstersCount];
         int[] randomMonsterIndexes = new int[monstersCount];
@@ -159,43 +161,49 @@ public class Monsters {
                 count++;
             }
             String[] monsterArguments = monsterLine.split("\t");
-            monsters[i] = new Monster(monsterArguments[0],
+            Monster monster = new Monster(monsterArguments[0],
                 monsterArguments[1],
                     (int) Double.parseDouble(monsterArguments[2]) * 8,
                 monsterArguments[3],
                 monsterChallengeRatings[i],
                 monsterChallengeRatings[i]
             );
+
+            monsters.put(i, monster);
         }
     }
 
     public String print() {
-        String[] monsterLines = new String[monsters.length];
-        for (int i = 0; i < monsters.length; i++) {
-            monsterLines[i] = i + ". " + monsters[i].name + " ";
-            if (monsters[i].isAlive) {
-                monsterLines[i] += monsters[i].health + "/" + monsters[i].maxHealth;
-            } else {
-                monsterLines[i] += "(DEAD)";
-            }
+        StringBuilder result = new StringBuilder();
+        for (var entry : monsters.entrySet()) {
+            int index = entry.getKey();
+            Monster monster = entry.getValue();
+            result.append(index).append(". ").append(monster.name).append(" ");
+            result.append(monster.health).append("/").append(monster.maxHealth);
+            result.append("\n");
         }
-        return String.join("\n", monsterLines);
+        return result.toString();
     }
 
     public int getMonstersCount() {
-        return monstersCount;
+        return monsters.size();
     }
 
     public Monster getMonsterByIndex(int monsterIndex) {
-        return monsters[monsterIndex];
+        return monsters.get(monsterIndex);
     }
 
     public void damage(Integer monsterIndex, Integer damageAmount) {
-        if (!monsters[monsterIndex].isAlive) {
+        Monster monster = monsters.get(monsterIndex);
+        if (!monster.isAlive) {
             return;
         }
 
-        monsters[monsterIndex].setDamage(damageAmount);
+        monster.setDamage(damageAmount);
+
+        if (!monster.isAlive) {
+            monsters.remove(monsterIndex);
+        }
     }
 
     static Set<Integer> getFactors(int n) {
@@ -208,5 +216,9 @@ public class Monsters {
             }
         }
         return factors;
+    }
+
+    public boolean isValidIndex(int index) {
+        return monsters.containsKey(index);
     }
 }

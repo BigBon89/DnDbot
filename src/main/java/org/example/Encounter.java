@@ -47,21 +47,16 @@ public class Encounter {
             return "The encounter has not started";
         }
 
-        if (monsterIndex > monsters.getMonstersCount()) {
+        if (!monsters.isValidIndex(monsterIndex)) {
             return "Wrong monster index";
-        }
-
-        if (!monsters.getMonsterByIndex(monsterIndex).isAlive) {
-            return "Monster already dead, choose another monster";
         }
 
         monsters.damage(monsterIndex, damage);
 
-        for (int i = 0; i < monsters.getMonstersCount(); i++) {
-            if (monsters.getMonsterByIndex(i).isAlive) {
-                return printMonsters();
-            }
+        if (monsters.getMonstersCount() != 0) {
+            return printMonsters();
         }
-        return printMonsters() + "\nAll monsters is dead\n" + end();
+
+        return "All monsters is dead\n" + end();
     }
 }
