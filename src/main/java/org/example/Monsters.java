@@ -17,12 +17,10 @@ public class Monsters {
     protected Random random;
 
     public Monsters() {
-        monstersCount = 0;
         random = new Random();
     }
 
     public Monsters(int seed) {
-        monstersCount = 0;
         random = new Random(seed);
     }
 
@@ -40,6 +38,7 @@ public class Monsters {
         Integer playersLevel,
         String monsterFilter
     ) {
+        monstersCount = 0;
         Set<String>[] monsterByChallengeRating = (Set<String>[]) new Set<?>[25];
         Set<Integer> filterChallengeRatings = new HashSet<Integer>();
         try {
