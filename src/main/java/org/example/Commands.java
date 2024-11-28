@@ -9,10 +9,10 @@ public enum Commands {
     GENERATE_NAME("generate_name", 0, "generate_name"),
     GENERATE_ENCOUNTER("generate_encounter",
         3,
-        "encounter_start 'NORMAL/MEDIUM/HARD' 'PLAYERS COUNT' 'PLAYERS LEVEL'"),
+        "generate_encounter 'NORMAL/MEDIUM/HARD' 'PLAYERS COUNT' 'PLAYERS LEVEL'"),
     GENERATE_ENCOUNTER_FILTER("generate_encounter_filter",
         4,
-        "encounter_start 'NORMAL/MEDIUM/HARD' 'PLAYERS COUNT' 'PLAYERS LEVEL' 'MONSTER FILTER'"),
+        "generate_encounter_filter 'NORMAL/MEDIUM/HARD' 'PLAYERS COUNT' 'PLAYERS LEVEL' 'MONSTER FILTER'"),
     ENCOUNTER_END("encounter_end", 0, "encounter_end"),
     ATTACK("attack", 2, "attack 'monster index' 'damage'");
 
