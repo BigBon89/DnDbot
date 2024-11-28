@@ -33,7 +33,10 @@ public class Monsters {
     int[] easyChallengeRatings = {1, 1, 2, 4, 8, 12, 16, 20, 24, 28, 32, 36, 40, 44, 48, 52, 56, 60, 64, 68};
     int[] normalChallengeRatings = {1, 2, 4, 6, 12, 16, 20, 24, 28, 32, 36, 40, 44, 48, 52, 56, 60, 64, 68, 72};
     int[] hardChallengeRatings = {2, 4, 6, 8, 20, 24, 28, 32, 36, 40, 44, 48, 52, 56, 60, 64, 68, 72, 76, 80};
-    int[] challengeRatingCaps = {8, 24, 32, 48, 64, 72, 80, 96, 104, 120, 128, 136, 152, 160, 176, 192, 200, 208, 224, 240};
+    int[] challengeRatingCaps = {
+            8, 24, 32, 48, 64, 72, 80, 96, 104, 120, 128,
+            136, 152, 160, 176, 192, 200, 208, 224, 240
+    };
 
     public void generate(EncounterDifficulty difficulty,
         Integer playersCount,
@@ -103,16 +106,22 @@ public class Monsters {
         int minCR = randomStep;
         int maxCR = challengeRatingBudget / Math.max(numberOfUniqueMonsters - 1, 1);
         for (int i = 0; i < numberOfUniqueMonsters - 1; i++) {
-            uniqueMonstersTotalChallengeRatings[i] = random.nextInt(Math.min(maxCR, challengeRatingBudget) - minCR + 1) + minCR;
-            uniqueMonstersTotalChallengeRatings[i] = uniqueMonstersTotalChallengeRatings[i] - uniqueMonstersTotalChallengeRatings[i] % randomStep;
+            uniqueMonstersTotalChallengeRatings[i] = random.nextInt(
+                    Math.min(maxCR, challengeRatingBudget) - minCR + 1
+            )
+                    + minCR;
+            uniqueMonstersTotalChallengeRatings[i] = uniqueMonstersTotalChallengeRatings[i]
+                    - uniqueMonstersTotalChallengeRatings[i] % randomStep;
             challengeRatingBudget -= uniqueMonstersTotalChallengeRatings[i];
         }
         uniqueMonstersTotalChallengeRatings[numberOfUniqueMonsters - 1] = challengeRatingBudget;
 
         if (uniqueMonstersTotalChallengeRatings[numberOfUniqueMonsters - 1] == 0) {
             int previousCR = uniqueMonstersTotalChallengeRatings[numberOfUniqueMonsters - 2];
-            uniqueMonstersTotalChallengeRatings[numberOfUniqueMonsters - 1] = previousCR / 2 - previousCR % randomStep;
-            uniqueMonstersTotalChallengeRatings[numberOfUniqueMonsters - 2] = previousCR / 2 + (randomStep - previousCR) % randomStep;
+            uniqueMonstersTotalChallengeRatings[numberOfUniqueMonsters - 1] = previousCR / 2
+                    - previousCR % randomStep;
+            uniqueMonstersTotalChallengeRatings[numberOfUniqueMonsters - 2] = previousCR / 2
+                    + (randomStep - previousCR) % randomStep;
         }
 
         int challengeRatingCap = challengeRatingCaps[playersLevel - 1];
