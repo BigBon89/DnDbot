@@ -34,8 +34,8 @@ public class Monsters {
     int[] normalChallengeRatings = {1, 2, 4, 6, 12, 16, 20, 24, 28, 32, 36, 40, 44, 48, 52, 56, 60, 64, 68, 72};
     int[] hardChallengeRatings = {2, 4, 6, 8, 20, 24, 28, 32, 36, 40, 44, 48, 52, 56, 60, 64, 68, 72, 76, 80};
     int[] challengeRatingCaps = {
-            8, 24, 32, 48, 64, 72, 80, 96, 104, 120, 128,
-            136, 152, 160, 176, 192, 200, 208, 224, 240
+        8, 24, 32, 48, 64, 72, 80, 96, 104, 120, 128,
+        136, 152, 160, 176, 192, 200, 208, 224, 240
     };
 
     public void generate(EncounterDifficulty difficulty,
