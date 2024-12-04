@@ -88,9 +88,9 @@ public class Monsters {
 
         filterChallengeRatings.clear();
         if (!monsterFilter.isEmpty()) {
-            for (int i = 0; i < monsterByChallengeRating.length; i++) {
-                if (monsterByChallengeRating[i] != null) {
-                    for (String monsterLine : monsterByChallengeRating[i]) {
+            for (Set<String> strings : monsterByChallengeRating) {
+                if (strings != null) {
+                    for (String monsterLine : strings) {
                         if (Objects.equals(monsterLine.split("\t")[3], monsterFilter)) {
                             filterChallengeRatings.add((int) (Double.parseDouble(monsterLine.split("\t")[2]) * 8));
                         }
