@@ -221,10 +221,6 @@ public class Monsters {
         return monsters.size();
     }
 
-    public Monster getMonsterByIndex(int monsterIndex) {
-        return monsters.get(monsterIndex);
-    }
-
     public void damage(Integer monsterIndex, Integer damageAmount) {
         Monster monster = monsters.get(monsterIndex);
         if (!monster.isAlive) {
