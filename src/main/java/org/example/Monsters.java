@@ -187,9 +187,7 @@ public class Monsters {
         for (var entry : monsters.entrySet()) {
             int index = entry.getKey();
             Monster monster = entry.getValue();
-            result.append(index).append(". ").append(monster.name).append(" ");
-            result.append(monster.health).append("/").append(monster.maxHealth);
-            result.append("\n");
+            result.append(index).append(". ").append(monster.print()).append("\n");
         }
         return result.toString();
     }
