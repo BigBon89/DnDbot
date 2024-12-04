@@ -16,14 +16,47 @@ public class Monsters {
     private Map<Integer, Monster> monsters;
     private int monstersCount;
 
+    private Set<String>[] monsterByChallengeRating;
+    private Set<Integer> filterChallengeRatings;
+
     protected Random random;
 
     public Monsters() {
         random = new Random();
+        loadMonstersFromFile();
     }
 
     public Monsters(int seed) {
         random = new Random(seed);
+        loadMonstersFromFile();
+    }
+
+    private void loadMonstersFromFile() {
+        monsterByChallengeRating = (Set<String>[]) new Set<?>[25];
+        filterChallengeRatings = new HashSet<>();
+
+        try {
+            String projectPath = System.getProperty("user.dir");
+            File monsterBookFile = new File(projectPath + "\\src\\main\\resources\\MonsterBook.txt");
+            Scanner myReader = new Scanner(monsterBookFile);
+
+            while (myReader.hasNextLine()) {
+                String monsterLine = myReader.nextLine();
+
+                double monsterLineChallengeRating = Double.parseDouble(monsterLine.split("\t")[2]);
+                int index = Arrays.binarySearch(allowedChallengeRatings, (int) (monsterLineChallengeRating * 8));
+
+                if (monsterByChallengeRating[index] == null) {
+                    monsterByChallengeRating[index] = new HashSet<>();
+                }
+
+                monsterByChallengeRating[index].add(monsterLine);
+            }
+            myReader.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
     }
 
     Integer[] allowedChallengeRatings = {
@@ -44,35 +77,18 @@ public class Monsters {
         String monsterFilter
     ) {
         monstersCount = 0;
-        Set<String>[] monsterByChallengeRating = (Set<String>[]) new Set<?>[25];
-        Set<Integer> filterChallengeRatings = new HashSet<Integer>();
-        try {
-            String projectPath = System.getProperty("user.dir");
-            File monsterBookFile = new File(projectPath + "\\src\\main\\resources\\MonsterBook.txt");
-            Scanner myReader = new Scanner(monsterBookFile);
 
-            while (myReader.hasNextLine()) {
-                String monsterLine = myReader.nextLine();
-
-                double monsterLineChallengeRating = Double.parseDouble(monsterLine.split("\t")[2]);
-                int index = Arrays.binarySearch(allowedChallengeRatings, (int) (monsterLineChallengeRating * 8));
-
-                if (Objects.equals(monsterLine.split("\t")[3], monsterFilter)) {
-                    filterChallengeRatings.add((int) (monsterLineChallengeRating * 8));
-                } else if (!monsterFilter.isEmpty()) {
-                    continue;
+        filterChallengeRatings.clear();
+        if (!monsterFilter.isEmpty()) {
+            for (int i = 0; i < monsterByChallengeRating.length; i++) {
+                if (monsterByChallengeRating[i] != null) {
+                    for (String monsterLine : monsterByChallengeRating[i]) {
+                        if (Objects.equals(monsterLine.split("\t")[3], monsterFilter)) {
+                            filterChallengeRatings.add((int) (Double.parseDouble(monsterLine.split("\t")[2]) * 8));
+                        }
+                    }
                 }
-
-                if (monsterByChallengeRating[index] == null) {
-                    monsterByChallengeRating[index] = new HashSet<>();
-                }
-
-                monsterByChallengeRating[index].add(monsterLine);
             }
-            myReader.close();
-        } catch (FileNotFoundException e) {
-            System.out.println("An error occurred.");
-            e.printStackTrace();
         }
 
         int challengeRatingBudget = 0;
