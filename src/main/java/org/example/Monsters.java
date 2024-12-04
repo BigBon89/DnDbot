@@ -89,11 +89,12 @@ public class Monsters {
         filterChallengeRatings.clear();
         if (!monsterFilter.isEmpty()) {
             for (Set<String> strings : monsterByChallengeRating) {
-                if (strings != null) {
-                    for (String monsterLine : strings) {
-                        if (Objects.equals(monsterLine.split("\t")[3], monsterFilter)) {
-                            filterChallengeRatings.add((int) (Double.parseDouble(monsterLine.split("\t")[2]) * 8));
-                        }
+                if (strings == null) {
+                    continue;
+                }
+                for (String monsterLine : strings) {
+                    if (Objects.equals(monsterLine.split("\t")[3], monsterFilter)) {
+                        filterChallengeRatings.add((int) (Double.parseDouble(monsterLine.split("\t")[2]) * 8));
                     }
                 }
             }
