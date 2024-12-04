@@ -14,7 +14,6 @@ import java.util.Map;
 
 public class Monsters {
     private Map<Integer, Monster> monsters;
-    private int monstersCount;
 
     private Set<String>[] monsterByChallengeRating;
     private Set<Integer> filterChallengeRatings;
@@ -85,7 +84,7 @@ public class Monsters {
         Integer playersLevel,
         String monsterFilter
     ) {
-        monstersCount = 0;
+        int monstersCount = 0;
 
         filterChallengeRatings.clear();
         if (!monsterFilter.isEmpty()) {
