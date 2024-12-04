@@ -155,7 +155,7 @@ public class Monsters {
         for (int i = 0; i < numberOfUniqueMonsters; i++) {
             Set<Integer> intersection = new HashSet<Integer>();
             Collections.addAll(intersection, allowedChallengeRatings);
-            intersection.retainAll(getFactors(uniqueMonstersTotalChallengeRatings[i]));
+            intersection.retainAll(MathUtils.getFactors(uniqueMonstersTotalChallengeRatings[i]));
             if (!monsterFilter.isEmpty()) {
                 intersection.retainAll(filterChallengeRatings);
             }
@@ -236,18 +236,6 @@ public class Monsters {
         if (!monster.isAlive) {
             monsters.remove(monsterIndex);
         }
-    }
-
-    static Set<Integer> getFactors(int n) {
-        Set<Integer> factors = new HashSet<>();
-        int step = n % 2 == 0 ? 1 : 2;
-        for (int i = 1; i <= Math.sqrt(n); i += step) {
-            if (n % i == 0) {
-                factors.add(i);
-                factors.add(n / i);
-            }
-        }
-        return factors;
     }
 
     public boolean isValidIndex(int index) {
