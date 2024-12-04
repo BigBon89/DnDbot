@@ -9,19 +9,20 @@ public class Monster {
     public String page;
     public Boolean isAlive;
 
-    //String type
-    public Monster(String page,
-                        String name,
-                        int challangeRating,
-                        String type,
-                        Integer maxHealth,
-                        Integer health) {
-        this.type = type;
+    public Monster(
+            String page,
+            String name,
+            int challangeRating,
+            String type,
+            Integer maxHealth,
+            Integer health
+    ) {
+        this.page = page;
         this.name = name;
         this.challangeRating = challangeRating;
-        this.health = health;
+        this.type = type;
         this.maxHealth = maxHealth;
-        this.page = page;
+        this.health = health;
         this.isAlive = true;
     }
 
@@ -34,5 +35,9 @@ public class Monster {
 
     public String getName() {
         return name;
+    }
+
+    public String print() {
+        return name + " " + health + "/" + maxHealth;
     }
 }
