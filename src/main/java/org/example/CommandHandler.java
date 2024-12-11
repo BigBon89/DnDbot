@@ -39,7 +39,7 @@ public class CommandHandler {
                             D20State.valueOf(command.getArguments()[1])
                     );
                 case GENERATE_NAME:
-                    return "Generated character name: " + characterNameGenerator.generateName();
+                    return "Generated name: " + characterNameGenerator.generateName();
                 case GENERATE_ENCOUNTER:
                     return encounter.start(EncounterDifficulty.valueOf(command.getArguments()[0]),
                             Integer.parseInt(command.getArguments()[1]), Integer.parseInt(command.getArguments()[2]),
