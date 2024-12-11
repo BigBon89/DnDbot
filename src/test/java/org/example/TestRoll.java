@@ -16,12 +16,14 @@ public class TestRoll {
     @Test
     public void checkRoll() {
         String res = dice.roll(new DiceCombination("2d4"));
-        assertEquals("Rolled 4", res);
+        String expect = "Rolled 4";
+        assertEquals(expect, res);
     }
 
     @Test
     public void checkRollNegative() {
         String res = dice.roll(new DiceCombination("2d4+"));
-        assertEquals("Wrong spelling", res);
+        String expect = "Wrong spelling";
+        assertEquals(expect, res);
     }
 }

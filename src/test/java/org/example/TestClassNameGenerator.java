@@ -15,6 +15,7 @@ public class TestClassNameGenerator {
     @Test
     public void checkClassNameGenerator() {
         String res = classNameGenerator.generateName();
-        assertEquals("Cleric", res);
+        String expect = "Cleric";
+        assertEquals(expect, res);
     }
 }
