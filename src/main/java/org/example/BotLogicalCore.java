@@ -29,10 +29,6 @@ public class BotLogicalCore {
     }
 
     public void startGui() {
-        while (true) {
-            Command command = new Command(ioHandler.getText());
-            String resultOutput = commandHandler.handleCommand(command);
-            ioHandler.print(resultOutput);
-        }
+        GUI.start();
     }
 }
