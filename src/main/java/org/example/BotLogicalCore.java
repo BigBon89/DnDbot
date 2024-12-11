@@ -26,64 +26,53 @@ public class BotLogicalCore {
     public void start() {
         while (true) {
             Command command = new Command(ioHandler.getText());
-            commandHandler(command);
+            String resultOutput = commandHandler(command);
+            ioHandler.print(resultOutput);
         }
     }
 
-    public void commandHandler(Command command) {
+    public String commandHandler(Command command) {
         if (!command.isValid()) {
-            ioHandler.print("Unknown command, type 'help' for available commands.");
-            return;
+            return "Unknown command, type 'help' for available commands.";
         }
         try {
             switch (command.getCommandType()) {
                 case HELP:
-                    ioHandler.print(Commands.helpCommand());
-                    break;
+                    return Commands.helpCommand();
                 case GENERATE_CITY:
-                    ioHandler.print("Generated city name: " + cityNameGenerator.generateName());
-                    break;
+                    return "Generated city name: " + cityNameGenerator.generateName();
                 case GENERATE_CLASS:
-                    ioHandler.print("Generated class name: " + classNameGenerator.generateName());
-                    break;
+                    return "Generated class name: " + classNameGenerator.generateName();
                 case ROLL:
-                    ioHandler.print(dice.roll(new DiceCombination(command.getArguments()[0])));
-                    break;
+                    return dice.roll(new DiceCombination(command.getArguments()[0]));
                 case D20:
-                    ioHandler.print("Rolled " + dice.d20Test(Integer.parseInt(command.getArguments()[0]),
-                            D20State.valueOf(command.getArguments()[1]))
+                    return "Rolled " + dice.d20Test(Integer.parseInt(command.getArguments()[0]),
+                            D20State.valueOf(command.getArguments()[1])
                     );
-                    break;
                 case GENERATE_NAME:
-                    ioHandler.print("Generated character name: " + characterNameGenerator.generateName());
-                    break;
+                    return "Generated character name: " + characterNameGenerator.generateName();
                 case GENERATE_ENCOUNTER:
-                    ioHandler.print(encounter.start(EncounterDifficulty.valueOf(command.getArguments()[0]),
+                    return encounter.start(EncounterDifficulty.valueOf(command.getArguments()[0]),
                             Integer.parseInt(command.getArguments()[1]), Integer.parseInt(command.getArguments()[2]),
-                            "")
+                            ""
                     );
-                    break;
                 case GENERATE_ENCOUNTER_FILTER:
-                    ioHandler.print(encounter.start(EncounterDifficulty.valueOf(command.getArguments()[0]),
+                    return encounter.start(EncounterDifficulty.valueOf(command.getArguments()[0]),
                             Integer.parseInt(command.getArguments()[1]),
                             Integer.parseInt(command.getArguments()[2]),
-                            command.getArguments()[3])
+                            command.getArguments()[3]
                     );
-                    break;
                 case ENCOUNTER_END:
-                    ioHandler.print(encounter.end());
-                    break;
+                    return encounter.end();
                 case ATTACK:
-                    ioHandler.print(encounter.attack(Integer.parseInt(command.getArguments()[0]),
-                            Integer.parseInt(command.getArguments()[1])
+                    return encounter.attack(Integer.parseInt(command.getArguments()[0]),
+                            Integer.parseInt(command.getArguments()[1]
                     ));
-                    break;
                 default:
-                    ioHandler.print("Unknown command, type help for help");
-                    break;
+                    return "Unknown command, type help for help";
             }
         } catch (IllegalArgumentException e) {
-            ioHandler.print("Unknown command, type help for help");
+            return "Unknown command, type help for help";
         }
     }
 }
