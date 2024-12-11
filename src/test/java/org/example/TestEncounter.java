@@ -31,11 +31,21 @@ public class TestEncounter {
     }
 
     @Test
-    public void checkAttackValid() {
+    public void checkKillMonster() {
         encounter.start(EncounterDifficulty.valueOf("NORMAL"), 4, 1, "");
         String res = encounter.attack(2, 4);
         String expect = "0. Kobold Veles 1/1\n"
                 + "1. Stirge 1/1\n";
+        assertEquals(expect, res);
+    }
+
+    @Test
+    public void checkAttackMonster() {
+        encounter.start(EncounterDifficulty.valueOf("NORMAL"), 4, 1, "");
+        String res = encounter.attack(2, 1);
+        String expect = "0. Kobold Veles 1/1\n"
+                + "1. Stirge 1/1\n"
+                + "2. Blood-Borne Ooze 1/2\n";
         assertEquals(expect, res);
     }
 
