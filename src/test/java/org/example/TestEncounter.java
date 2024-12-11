@@ -73,8 +73,8 @@ public class TestEncounter {
     public void checkAttackKillingLastMonster() {
         encounter.start(EncounterDifficulty.valueOf("NORMAL"), 1, 1, "");
         String res = encounter.attack(0, 5);
-        String expect = "All monsters is dead\n" +
-                "The encounter is over";
+        String expect = "All monsters is dead\n"
+                + "The encounter is over";
         assertEquals(expect, res);
     }
 }
