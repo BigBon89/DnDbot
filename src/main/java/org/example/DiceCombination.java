@@ -29,7 +29,7 @@ public class DiceCombination {
     public boolean isGood() {
         String[] dice = combination.split("\\+");
         for (String die : dice) {
-            if (!die.matches(".*\\d.*||d")) {
+            if (!die.matches(".*\\d.*|d")) {
                 return false;
             }
             if (die.isEmpty()) {

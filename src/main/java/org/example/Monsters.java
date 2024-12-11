@@ -84,8 +84,6 @@ public class Monsters {
         Integer playersLevel,
         String monsterFilter
     ) {
-        int monstersCount = 0;
-
         filterChallengeRatings.clear();
         if (!monsterFilter.isEmpty()) {
             for (Set<String> strings : monsterByChallengeRating) {
@@ -165,6 +163,7 @@ public class Monsters {
             } while (uniqueMonstersChallengeRatings[i] > challengeRatingCap);
         }
 
+        int monstersCount = 0;
         for (int i = 0; i < numberOfUniqueMonsters; i++) {
             monstersCount += uniqueMonstersTotalChallengeRatings[i] / uniqueMonstersChallengeRatings[i];
         }
