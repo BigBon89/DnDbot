@@ -16,7 +16,8 @@ public class BotLogicalCore {
                 cityNameGenerator,
                 characterNameGenerator,
                 classNameGenerator,
-                dice, encounter
+                dice,
+                encounter
         );
     }
 
