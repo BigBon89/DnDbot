@@ -27,6 +27,10 @@ public class Encounter {
             return "The encounter has already started";
         }
 
+        if (playersCount <= 0) {
+            return "Invalid players count";
+        }
+
         monsters.generate(difficulty, playersCount, playersLevel, monsterFilter);
 
         inEncount = true;
