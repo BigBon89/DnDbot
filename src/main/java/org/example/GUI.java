@@ -6,14 +6,13 @@ import imgui.app.Configuration;
 import imgui.type.ImInt;
 
 public class GUI extends Application {
-    BotLogicalCore botLogicalCore = new BotLogicalCore(
-            new CityNameGenerator(),
-            new CharacterNameGenerator(),
-            new ClassNameGenerator(),
-            new Dice(),
-            new Console(),
-            new Encounter()
-    );
+    private final CommandHandler commandHandler;
+    private String generateCityResult;
+
+    public GUI(CommandHandler commandHandler) {
+        this.commandHandler = commandHandler;
+        generateCityResult = "";
+    }
 
     @Override
     protected void configure(Configuration config) {
@@ -27,10 +26,10 @@ public class GUI extends Application {
         ImGui.begin("DnDbot");
         ImGui.beginChild("w1", 230, 230, true);
         if (ImGui.button("Generate City")) {
-
+            generateCityResult = commandHandler.handleCommand(new Command("generate_city"));
         }
         ImGui.sameLine();
-        ImGui.text("Result");
+        ImGui.text(generateCityResult);
 
         if (ImGui.button("Generate Class")) {
 
@@ -58,7 +57,7 @@ public class GUI extends Application {
         ImGui.end();
     }
 
-    public static void start() {
-        launch(new GUI());
+    public static void start(CommandHandler commandHandler) {
+        launch(new GUI(commandHandler));
     }
 }

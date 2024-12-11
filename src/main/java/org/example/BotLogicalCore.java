@@ -29,6 +29,6 @@ public class BotLogicalCore {
     }
 
     public void startGui() {
-        GUI.start();
+        GUI.start(commandHandler);
     }
 }
