@@ -1,4 +1,4 @@
-package org.example;
+package org.example.gui;
 
 import imgui.ImGui;
 import imgui.ImGuiStyle;
@@ -12,6 +12,8 @@ import imgui.app.Application;
 import imgui.app.Configuration;
 import imgui.type.ImInt;
 import imgui.type.ImString;
+import org.example.Command;
+import org.example.CommandHandler;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

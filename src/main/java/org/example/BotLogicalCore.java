@@ -1,5 +1,7 @@
 package org.example;
 
+import org.example.gui.GUI;
+
 public class BotLogicalCore {
     private final CommandHandler commandHandler;
     private final InputOutput ioHandler;
