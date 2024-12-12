@@ -62,23 +62,25 @@ public class GUI extends Application {
     private void renderLeftWindow() {
         ImGui.beginChild("window1", (windowSize.x - 24) / 2, windowSize.y - 20, true);
 
-        if (ImGui.button("Generate City")) {
+        if (ImGui.button("Generate City", new ImVec2(120, 20))) {
             generateCityResult = commandHandler.handleCommand(new Command("generate_city"));
         }
         ImGui.sameLine();
         ImGui.text(generateCityResult);
 
-        if (ImGui.button("Generate Class")) {
+        if (ImGui.button("Generate Class", new ImVec2(120, 20))) {
             generateClassResult = commandHandler.handleCommand(new Command("generate_class"));
         }
         ImGui.sameLine();
         ImGui.text(generateClassResult);
 
-        if (ImGui.button("Generate Name")) {
+        if (ImGui.button("Generate Name", new ImVec2(120, 20))) {
             generateNameResult = commandHandler.handleCommand(new Command("generate_name"));
         }
         ImGui.sameLine();
         ImGui.text(generateNameResult);
+
+        ImGui.separator();
 
         ImGui.inputInt("Modifier", currentD20TestModifier);
         String[] d20States = {"NORMAL", "ADVANTAGE", "DISADVANTAGE"};
