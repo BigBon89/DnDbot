@@ -17,6 +17,12 @@ public class GUI extends Application {
     private String generateClassResult;
     private String generateNameResult;
 
+
+    private final ImInt d20TestModifier;
+    private String d20TestResult;
+    private final ImString diceFormula;
+    private String rollResult;
+
     private final ImInt currentDamage;
     private final ImInt currentDifficult;
     private final ImInt currentPlayersCount;
@@ -31,11 +37,15 @@ public class GUI extends Application {
         generateCityResult = "";
         generateClassResult = "";
         generateNameResult = "";
+        d20TestModifier = new ImInt();
+        d20TestResult = "";
+        diceFormula = new ImString();
+        rollResult = "";
         currentDamage = new ImInt();
         currentDifficult = new ImInt(0);
         currentPlayersCount = new ImInt(1);
         currentPlayersLevel = new ImInt(1);
-        currentFilter = new ImString("");
+        currentFilter = new ImString();
         currentMonsters = new String[0];
         windowSize = new ImVec2(800, 500);
     }
@@ -104,6 +114,13 @@ public class GUI extends Application {
         }
         ImGui.sameLine();
         ImGui.text(generateNameResult);
+
+        ImGui.inputText("Dice formula", diceFormula);
+        if (ImGui.button("Roll dice")) {
+            rollResult = commandHandler.handleCommand(new Command("roll " + diceFormula));
+        }
+        ImGui.sameLine();
+        ImGui.text(rollResult);
 
         ImGui.endChild();
 
