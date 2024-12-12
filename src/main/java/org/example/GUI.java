@@ -96,7 +96,7 @@ public class GUI extends Application {
         ImGui.endChild();
     }
 
-    private void renderRightWindow() {
+    private void renderEncounterWindow() {
         ImGui.beginChild("window2", (windowSize.x - 24) / 2, windowSize.y - 20, true);
 
         String[] difficulties = {"NORMAL", "MEDIUM", "HARD"};
@@ -171,7 +171,7 @@ public class GUI extends Application {
 
         ImGui.sameLine();
 
-        renderRightWindow();
+        renderEncounterWindow();
 
         ImGui.end();
     }
