@@ -38,21 +38,25 @@ public class GUI extends Application {
 
     public GUI(CommandHandler commandHandler) {
         this.commandHandler = commandHandler;
+
+        windowSize = new ImVec2(800, 500);
+
         generateCityResult = "";
         generateClassResult = "";
         generateNameResult = "";
+
         currentD20TestModifier = new ImInt(0);
         currentD20State = new ImInt(0);
         currentD20TestResult = "";
         currentDiceFormula = new ImString("");
         currentRollResult = "";
+
         currentDamage = new ImInt(1);
         currentDifficulty = new ImInt(0);
         currentPlayersCount = new ImInt(4);
         currentPlayersLevel = new ImInt(4);
         currentFilter = new ImString("");
         currentMonstersBuffer = new String[0];
-        windowSize = new ImVec2(800, 500);
     }
 
     private void renderLeftWindow() {
