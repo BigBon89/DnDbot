@@ -16,9 +16,9 @@ public enum Commands {
     ENCOUNTER_END("encounter_end", 0, "encounter_end"),
     ATTACK("attack", 2, "attack 'monster index' 'damage'");
 
-    private String commandName;
-    private int argumentsCount;
-    private String exampleForHelp;
+    private final String commandName;
+    private final int argumentsCount;
+    private final String exampleForHelp;
 
     Commands(String commandName, int argumentsCount, String exampleForHelp) {
         this.commandName = commandName;
