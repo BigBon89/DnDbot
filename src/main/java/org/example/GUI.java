@@ -41,16 +41,16 @@ public class GUI extends Application {
         generateCityResult = "";
         generateClassResult = "";
         generateNameResult = "";
-        currentD20TestModifier = new ImInt();
+        currentD20TestModifier = new ImInt(0);
         currentD20State = new ImInt(0);
         currentD20TestResult = "";
-        currentDiceFormula = new ImString();
+        currentDiceFormula = new ImString("");
         currentRollResult = "";
-        currentDamage = new ImInt();
+        currentDamage = new ImInt(1);
         currentDifficulty = new ImInt(0);
-        currentPlayersCount = new ImInt(1);
-        currentPlayersLevel = new ImInt(1);
-        currentFilter = new ImString();
+        currentPlayersCount = new ImInt(4);
+        currentPlayersLevel = new ImInt(4);
+        currentFilter = new ImString("");
         currentMonsters = new String[0];
         windowSize = new ImVec2(800, 500);
     }
