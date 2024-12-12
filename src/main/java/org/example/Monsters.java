@@ -59,30 +59,30 @@ public class Monsters {
     }
 
     private static final Integer[] allowedChallengeRatings = {
-        1, 2, 4, 8, 16, 24, 32, 40, 48, 56, 64, 72, 80, 88, 96, 104, 112,
-        120, 128, 136, 144, 152, 160, 168, 184
+            1, 2, 4, 8, 16, 24, 32, 40, 48, 56, 64, 72, 80, 88, 96, 104, 112,
+            120, 128, 136, 144, 152, 160, 168, 184
     };
     private static final int[] easyChallengeRatings = {
-        1, 1, 2, 4, 8, 12, 16, 20, 24, 28,
-        32, 36, 40, 44, 48, 52, 56, 60, 64, 68
+            1, 1, 2, 4, 8, 12, 16, 20, 24, 28,
+            32, 36, 40, 44, 48, 52, 56, 60, 64, 68
     };
     private static final int[] normalChallengeRatings = {
-        1, 2, 4, 6, 12, 16, 20, 24, 28, 32,
-        36, 40, 44, 48, 52, 56, 60, 64, 68, 72
+            1, 2, 4, 6, 12, 16, 20, 24, 28, 32,
+            36, 40, 44, 48, 52, 56, 60, 64, 68, 72
     };
     private static final int[] hardChallengeRatings = {
-        2, 4, 6, 8, 20, 24, 28, 32, 36,
-        40, 44, 48, 52, 56, 60, 64, 68, 72, 76, 80
+            2, 4, 6, 8, 20, 24, 28, 32, 36,
+            40, 44, 48, 52, 56, 60, 64, 68, 72, 76, 80
     };
     private static final int[] challengeRatingCaps = {
-        8, 24, 32, 48, 64, 72, 80, 96, 104, 120, 128,
-        136, 152, 160, 176, 192, 200, 208, 224, 240
+            8, 24, 32, 48, 64, 72, 80, 96, 104, 120, 128,
+            136, 152, 160, 176, 192, 200, 208, 224, 240
     };
 
     public void generate(EncounterDifficulty difficulty,
-        Integer playersCount,
-        Integer playersLevel,
-        String monsterFilter
+                         Integer playersCount,
+                         Integer playersLevel,
+                         String monsterFilter
     ) {
         filterChallengeRatings.clear();
         if (!monsterFilter.isEmpty()) {
@@ -174,7 +174,30 @@ public class Monsters {
         int index = 0;
         for (int i = 0; i < uniqueMonstersChallengeRatings.length; i++) {
             int crIndex = Arrays.binarySearch(allowedChallengeRatings, uniqueMonstersChallengeRatings[i]);
-            int randomCRMonsterIndex = random.nextInt(monsterByChallengeRating[crIndex].size());
+            int randomCRMonsterIndex = 0;
+            if (monsterFilter.isEmpty()){
+                randomCRMonsterIndex = random.nextInt(monsterByChallengeRating[crIndex].size());
+            }
+            else {
+                HashSet<Integer> randomIndexesFilter = new HashSet<Integer>();
+                int count = 0;
+                for(String monsterLine : monsterByChallengeRating[crIndex]){
+                    if (Objects.equals(monsterLine.split("\t")[3], monsterFilter))
+                    {
+                        randomIndexesFilter.add(count);
+                    }
+                    count++;
+                }
+
+                int randomIndex = random.nextInt(randomIndexesFilter.size());
+                count = 0;
+                for (Integer iterIndex : randomIndexesFilter){
+                    if(randomIndex == count){
+                        randomCRMonsterIndex = iterIndex;
+                    }
+                    count++;
+                }
+            }
             for (int j = 0; j < uniqueMonstersTotalChallengeRatings[i] / uniqueMonstersChallengeRatings[i]; j++) {
                 monsterChallengeRatings[index] = uniqueMonstersChallengeRatings[i];
                 randomMonsterIndexes[index] = randomCRMonsterIndex;
@@ -195,11 +218,11 @@ public class Monsters {
             }
             String[] monsterArguments = monsterLine.split("\t");
             Monster monster = new Monster(monsterArguments[0],
-                monsterArguments[1],
+                    monsterArguments[1],
                     (int) Double.parseDouble(monsterArguments[2]) * 8,
-                monsterArguments[3],
-                monsterChallengeRatings[i],
-                monsterChallengeRatings[i]
+                    monsterArguments[3],
+                    monsterChallengeRatings[i],
+                    monsterChallengeRatings[i]
             );
 
             monsters.put(i, monster);
