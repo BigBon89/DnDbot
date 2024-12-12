@@ -33,7 +33,7 @@ public class GUI extends Application {
     private final ImInt currentDifficulty;
     private final ImInt currentPlayersCount;
     private final ImInt currentPlayersLevel;
-    private final ImString currentFilter;
+    private final ImString currentMonsterFilter;
     private String[] currentMonstersBuffer;
 
     public GUI(CommandHandler commandHandler) {
@@ -55,7 +55,7 @@ public class GUI extends Application {
         currentDifficulty = new ImInt(0);
         currentPlayersCount = new ImInt(4);
         currentPlayersLevel = new ImInt(4);
-        currentFilter = new ImString("", 32);
+        currentMonsterFilter = new ImString("", 32);
         currentMonstersBuffer = new String[0];
     }
 
@@ -121,11 +121,28 @@ public class GUI extends Application {
                 currentPlayersLevel.set(1);
             }
         }
-        ImGui.inputText("Monster Filter", currentFilter);
+        ImGui.inputText("Monster Filter", currentMonsterFilter);
 
         if (ImGui.button("Start Encounter")) {
             if (currentMonstersBuffer.length == 0) {
-                String result = commandHandler.handleCommand(new Command("generate_encounter " + difficulties[currentDifficulty.getData()[0]] + " " + currentPlayersLevel + " " + currentPlayersLevel));
+                String result = "";
+                if (currentMonsterFilter.isEmpty()) {
+                    result = commandHandler.handleCommand(new Command("generate_encounter "
+                            + difficulties[currentDifficulty.getData()[0]]
+                            + " "
+                            + currentPlayersLevel
+                            + " "
+                            + currentPlayersLevel
+                    ));
+                } else {
+                    result = commandHandler.handleCommand(new Command("generate_encounter_filter "
+                            + difficulties[currentDifficulty.getData()[0]]
+                            + " "
+                            + currentPlayersLevel
+                            + " "
+                            + currentPlayersLevel
+                    ));
+                }
                 currentMonstersBuffer = result.split("\n");
             }
         }
