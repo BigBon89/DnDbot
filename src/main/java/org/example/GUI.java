@@ -48,14 +48,14 @@ public class GUI extends Application {
         currentD20TestModifier = new ImInt(0);
         currentD20State = new ImInt(0);
         currentD20TestResult = "";
-        currentDiceFormula = new ImString("");
+        currentDiceFormula = new ImString("",32);
         currentRollResult = "";
 
         currentDamage = new ImInt(1);
         currentDifficulty = new ImInt(0);
         currentPlayersCount = new ImInt(4);
         currentPlayersLevel = new ImInt(4);
-        currentFilter = new ImString("");
+        currentFilter = new ImString("",32);
         currentMonstersBuffer = new String[0];
     }
 
