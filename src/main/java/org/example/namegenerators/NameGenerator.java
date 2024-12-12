@@ -1,4 +1,4 @@
-package org.example.name_generators;
+package org.example.namegenerators;
 
 import java.util.Random;
 

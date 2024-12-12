@@ -1,6 +1,6 @@
 package org.example;
 
-import org.example.name_generators.CharacterNameGenerator;
+import org.example.namegenerators.CharacterNameGenerator;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

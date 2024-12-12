@@ -1,6 +1,6 @@
 package org.example;
 
-import org.example.name_generators.CityNameGenerator;
+import org.example.namegenerators.CityNameGenerator;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

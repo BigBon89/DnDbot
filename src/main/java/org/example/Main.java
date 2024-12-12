@@ -1,8 +1,8 @@
 package org.example;
 
-import org.example.name_generators.CharacterNameGenerator;
-import org.example.name_generators.CityNameGenerator;
-import org.example.name_generators.ClassNameGenerator;
+import org.example.namegenerators.CharacterNameGenerator;
+import org.example.namegenerators.CityNameGenerator;
+import org.example.namegenerators.ClassNameGenerator;
 
 public class Main {
     public static void main(String[] args) {
