@@ -7,6 +7,8 @@ import imgui.type.ImInt;
 import imgui.type.ImString;
 import org.example.Command;
 import org.example.CommandHandler;
+import org.example.D20State;
+import org.example.EncounterDifficulty;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -78,7 +80,7 @@ public class Windows {
 
     private void renderDice() {
         ImGui.inputInt("Modifier", currentD20TestModifier);
-        String[] d20States = {"NORMAL", "ADVANTAGE", "DISADVANTAGE"};
+        String[] d20States = D20State.getStringValues();
         ImGui.combo("D20 State", currentD20State, d20States);
 
         if (ImGui.button("Roll d20")) {
@@ -102,7 +104,7 @@ public class Windows {
     }
 
     private void renderEncounterSettings() {
-        String[] difficulties = {"NORMAL", "MEDIUM", "HARD"};
+        String[] difficulties = EncounterDifficulty.getStringValues();
         ImGui.combo("Difficulty", currentDifficulty, difficulties);
         if (ImGui.inputInt("Players Count", currentPlayersCount)) {
             if (currentPlayersCount.get() <= 0) {
