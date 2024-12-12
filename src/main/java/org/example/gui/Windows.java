@@ -142,6 +142,7 @@ public class Windows {
                             + currentMonsterFilter
                     ));
                 }
+
                 currentMonstersBuffer = result.split("\n");
             }
         }
@@ -155,11 +156,18 @@ public class Windows {
     }
 
     private void renderEncounter() {
-        if (currentMonstersBuffer.length != 0) {
-            if (ImGui.inputInt("Damage", currentDamage)) {
-                if (currentDamage.get() <= 0) {
-                    currentDamage.set(1);
-                }
+        if (currentMonstersBuffer.length == 0) {
+            return;
+        }
+
+        if (currentMonstersBuffer[0].equals("Invalid monster filter")) {
+            currentMonstersBuffer = new String[0];
+            return;
+        }
+
+        if (ImGui.inputInt("Damage", currentDamage)) {
+            if (currentDamage.get() <= 0) {
+                currentDamage.set(1);
             }
         }
         Pattern pattern = Pattern.compile("^(\\d+)\\.");
