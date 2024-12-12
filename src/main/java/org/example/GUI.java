@@ -1,15 +1,14 @@
 package org.example;
 
-import imgui.ImFontConfig;
-import imgui.ImVec2;
+import imgui.*;
+import imgui.flag.ImGuiCol;
 import imgui.flag.ImGuiFreeTypeBuilderFlags;
 import imgui.flag.ImGuiWindowFlags;
-import imgui.ImGui;
-import imgui.ImGuiIO;
 import imgui.app.Application;
 import imgui.app.Configuration;
 import imgui.type.ImInt;
 import imgui.type.ImString;
+import org.lwjgl.glfw.GLFW;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -230,6 +229,19 @@ public class GUI extends Application {
         fontConfig.destroy();
     }
 
+    private void initColors(final ImGuiStyle style) {
+        //style.setWindowRounding(5.0f);
+        //style.setChildRounding(5.0f);
+        style.setColor(ImGuiCol.WindowBg, 20.f / 255.f, 20.f / 255.f, 20.f / 255.f, 1.00f);
+        style.setColor(ImGuiCol.ChildBg, 15.f / 255.f, 15.f / 255.f, 15.f / 255.f, 1.f);
+        style.setColor(ImGuiCol.Button, 0.05f, 0.58f, 0.f, 1.f);
+        style.setColor(ImGuiCol.ButtonHovered, 0.05f, 0.58f, 0.f, 1.f);
+        style.setColor(ImGuiCol.ButtonActive, 0.05f, 0.58f, 0.f, 1.f);
+        style.setColor(ImGuiCol.FrameBg, 40.f / 255.f, 40.f / 255.f, 40.f / 255.f, 1.00f);
+        style.setColor(ImGuiCol.FrameBgActive, 40.f / 255.f, 40.f / 255.f, 40.f / 255.f, 1.00f);
+        style.setColor(ImGuiCol.FrameBgHovered, 40.f / 255.f, 40.f / 255.f, 40.f / 255.f, 1.00f);
+    }
+
     @Override
     protected void initImGui(final Configuration config) {
         super.initImGui(config);
@@ -237,6 +249,7 @@ public class GUI extends Application {
         final ImGuiIO io = ImGui.getIO();
         io.setIniFilename(null);
 
+        initColors(ImGui.getStyle());
         initFonts(io);
     }
 
