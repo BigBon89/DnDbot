@@ -1,6 +1,4 @@
-package org.example;
-
-import java.util.Random;
+package org.example.name_generators;
 
 public class CityNameGenerator extends NameGenerator {
     public CityNameGenerator() {

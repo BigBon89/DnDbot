@@ -1,4 +1,4 @@
-package org.example;
+package org.example.name_generators;
 
 public class CharacterNameGenerator extends NameGenerator {
     public CharacterNameGenerator() {

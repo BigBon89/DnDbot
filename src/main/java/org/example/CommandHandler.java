@@ -1,5 +1,9 @@
 package org.example;
 
+import org.example.name_generators.CharacterNameGenerator;
+import org.example.name_generators.CityNameGenerator;
+import org.example.name_generators.ClassNameGenerator;
+
 public class CommandHandler {
     private final CityNameGenerator cityNameGenerator;
     private final CharacterNameGenerator characterNameGenerator;
