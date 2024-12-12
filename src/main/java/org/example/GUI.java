@@ -39,7 +39,7 @@ public class GUI extends Application {
     public GUI(CommandHandler commandHandler) {
         this.commandHandler = commandHandler;
 
-        windowSize = new ImVec2(800, 500);
+        windowSize = new ImVec2(800, 400);
 
         generateCityResult = "";
         generateClassResult = "";
@@ -60,7 +60,7 @@ public class GUI extends Application {
     }
 
     private void renderLeftWindow() {
-        ImGui.beginChild("window1", (windowSize.x - 24) / 2, windowSize.y - 20, true);
+        ImGui.beginChild("window1", (windowSize.x - 24) / 2, windowSize.y - 16, true);
 
         if (ImGui.button("Generate City", new ImVec2(120, 20))) {
             generateCityResult = commandHandler.handleCommand(new Command("generate_city"));
@@ -103,7 +103,7 @@ public class GUI extends Application {
     }
 
     private void renderEncounterWindow() {
-        ImGui.beginChild("window2", (windowSize.x - 24) / 2, windowSize.y - 20, true);
+        ImGui.beginChild("window2", (windowSize.x - 24) / 2, windowSize.y - 16, true);
 
         String[] difficulties = {"NORMAL", "MEDIUM", "HARD"};
         ImGui.combo("Difficulty", currentDifficulty, difficulties);
