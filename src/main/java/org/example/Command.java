@@ -1,13 +1,13 @@
 package org.example;
 
 public class Command {
-    private String command;
-    private String[] arguments;
-    private int argumentsCount;
+    private final String command;
+    private final String[] arguments;
+    private final int argumentsCount;
 
-    private Commands commands;
+    private final Commands commands;
 
-    Command(String inputLine) {
+    public Command(String inputLine) {
         String[] words = inputLine.split(" ");
         command = words[0];
         argumentsCount = words.length - 1;
