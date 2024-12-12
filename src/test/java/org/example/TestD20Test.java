@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class TestD20Test {
-    private Dice dice;
+    private final Dice dice;
 
     public TestD20Test() {
         dice = new Dice(1);
