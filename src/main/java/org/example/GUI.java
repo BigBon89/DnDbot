@@ -18,13 +18,14 @@ public class GUI extends Application {
     private String generateNameResult;
 
 
-    private final ImInt d20TestModifier;
-    private String d20TestResult;
-    private final ImString diceFormula;
-    private String rollResult;
+    private final ImInt currentD20TestModifier;
+    private final ImInt currentD20State;
+    private String currentD20TestResult;
+    private final ImString currentDiceFormula;
+    private String currentRollResult;
 
     private final ImInt currentDamage;
-    private final ImInt currentDifficult;
+    private final ImInt currentDifficulty;
     private final ImInt currentPlayersCount;
     private final ImInt currentPlayersLevel;
     private final ImString currentFilter;
@@ -37,12 +38,13 @@ public class GUI extends Application {
         generateCityResult = "";
         generateClassResult = "";
         generateNameResult = "";
-        d20TestModifier = new ImInt();
-        d20TestResult = "";
-        diceFormula = new ImString();
-        rollResult = "";
+        currentD20TestModifier = new ImInt();
+        currentD20State = new ImInt(0);
+        currentD20TestResult = "";
+        currentDiceFormula = new ImString();
+        currentRollResult = "";
         currentDamage = new ImInt();
-        currentDifficult = new ImInt(0);
+        currentDifficulty = new ImInt(0);
         currentPlayersCount = new ImInt(1);
         currentPlayersLevel = new ImInt(1);
         currentFilter = new ImString();
@@ -115,12 +117,22 @@ public class GUI extends Application {
         ImGui.sameLine();
         ImGui.text(generateNameResult);
 
-        ImGui.inputText("Dice formula", diceFormula);
+        ImGui.inputInt("Modifier", currentD20TestModifier);
+        String[] d20States = {"NORMAL", "ADVANTAGE", "DISADVANTAGE"};
+        ImGui.combo("D20 State", currentD20State, d20States);
+
         if (ImGui.button("Roll dice")) {
-            rollResult = commandHandler.handleCommand(new Command("roll " + diceFormula));
+            currentD20TestResult = commandHandler.handleCommand(new Command("d20 " + currentD20TestModifier + " " + d20States[currentD20State.getData()[0]]));
         }
         ImGui.sameLine();
-        ImGui.text(rollResult);
+        ImGui.text(currentD20TestResult);
+
+        ImGui.inputText("Dice formula", currentDiceFormula);
+        if (ImGui.button("Roll dice")) {
+            currentRollResult = commandHandler.handleCommand(new Command("roll " + currentDiceFormula));
+        }
+        ImGui.sameLine();
+        ImGui.text(currentRollResult);
 
         ImGui.endChild();
 
@@ -129,7 +141,7 @@ public class GUI extends Application {
         ImGui.beginChild("window2", (windowSize.x - 24) / 2, windowSize.y - 20, true);
 
         String[] difficulties = {"NORMAL", "MEDIUM", "HARD"};
-        ImGui.combo("Difficult", currentDifficult, difficulties);
+        ImGui.combo("Difficulty", currentDifficulty, difficulties);
         if (ImGui.inputInt("Players Count", currentPlayersCount)) {
             if (currentPlayersCount.get() <= 0) {
                 currentPlayersCount.set(1);
@@ -146,7 +158,7 @@ public class GUI extends Application {
 
         if (ImGui.button("Start Encounter")) {
             if (currentMonsters.length == 0) {
-                String result = commandHandler.handleCommand(new Command("generate_encounter " + difficulties[currentDifficult.getData()[0]] + " " + currentPlayersLevel + " " + currentPlayersLevel));
+                String result = commandHandler.handleCommand(new Command("generate_encounter " + difficulties[currentDifficulty.getData()[0]] + " " + currentPlayersLevel + " " + currentPlayersLevel));
                 currentMonsters = result.split("\n");
             }
         }
