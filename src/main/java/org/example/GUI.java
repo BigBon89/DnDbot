@@ -16,10 +16,12 @@ import java.util.regex.Pattern;
 
 public class GUI extends Application {
     private final CommandHandler commandHandler;
+
+    private final ImVec2 windowSize;
+
     private String generateCityResult;
     private String generateClassResult;
     private String generateNameResult;
-
 
     private final ImInt currentD20TestModifier;
     private final ImInt currentD20State;
@@ -34,8 +36,6 @@ public class GUI extends Application {
     private final ImString currentFilter;
     private String[] currentMonstersBuffer;
 
-    private final ImVec2 windowSize;
-
     public GUI(CommandHandler commandHandler) {
         this.commandHandler = commandHandler;
 
@@ -48,14 +48,14 @@ public class GUI extends Application {
         currentD20TestModifier = new ImInt(0);
         currentD20State = new ImInt(0);
         currentD20TestResult = "";
-        currentDiceFormula = new ImString("",32);
+        currentDiceFormula = new ImString("", 32);
         currentRollResult = "";
 
         currentDamage = new ImInt(1);
         currentDifficulty = new ImInt(0);
         currentPlayersCount = new ImInt(4);
         currentPlayersLevel = new ImInt(4);
-        currentFilter = new ImString("",32);
+        currentFilter = new ImString("", 32);
         currentMonstersBuffer = new String[0];
     }
 
