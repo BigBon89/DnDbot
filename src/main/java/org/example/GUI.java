@@ -9,6 +9,7 @@ import imgui.ImGuiIO;
 import imgui.app.Application;
 import imgui.app.Configuration;
 import imgui.type.ImInt;
+import imgui.type.ImString;
 
 public class GUI extends Application {
     private final CommandHandler commandHandler;
@@ -16,8 +17,12 @@ public class GUI extends Application {
     private String generateClassResult;
     private String generateNameResult;
 
-    private final ImInt damage;
+    private final ImInt currentDamage;
     private final ImInt currentDifficult;
+    private final ImInt currentPlayersCount;
+    private final ImInt currentPlayersLevel;
+    private final ImString currentFilter;
+    private String[] currentMonsters;
 
     private final ImVec2 windowSize;
 
@@ -26,8 +31,12 @@ public class GUI extends Application {
         generateCityResult = "";
         generateClassResult = "";
         generateNameResult = "";
-        damage = new ImInt();
+        currentDamage = new ImInt();
         currentDifficult = new ImInt(0);
+        currentPlayersCount = new ImInt(1);
+        currentPlayersLevel = new ImInt(1);
+        currentFilter = new ImString("");
+        currentMonsters = new String[0];
         windowSize = new ImVec2(800, 500);
     }
 
@@ -73,10 +82,10 @@ public class GUI extends Application {
         ImGui.setNextWindowSize(windowSize);
         ImGui.setNextWindowPos(0, 0);
         ImGui.begin("DnDbot",
-            null,
-            ImGuiWindowFlags.NoResize | ImGuiWindowFlags.NoCollapse | ImGuiWindowFlags.NoTitleBar
+                null,
+                ImGuiWindowFlags.NoResize | ImGuiWindowFlags.NoCollapse | ImGuiWindowFlags.NoTitleBar
         );
-        ImGui.beginChild("window1", (windowSize.x - 24) / 2, 230, true);
+        ImGui.beginChild("window1", (windowSize.x - 24) / 2, windowSize.y - 20, true);
 
         if (ImGui.button("Generate City")) {
             generateCityResult = commandHandler.handleCommand(new Command("generate_city"));
@@ -100,22 +109,58 @@ public class GUI extends Application {
 
         ImGui.sameLine();
 
-        ImGui.beginChild("window2", (windowSize.x - 24) / 2, 230, true);
+        ImGui.beginChild("window2", (windowSize.x - 24) / 2, windowSize.y - 20, true);
 
         String[] difficulties = {"NORMAL", "MEDIUM", "HARD"};
-        ImGui.combo("difficult", currentDifficult, difficulties);
+        ImGui.combo("Difficult", currentDifficult, difficulties);
+        if (ImGui.inputInt("Players Count", currentPlayersCount)) {
+            if (currentPlayersCount.get() <= 0) {
+                currentPlayersCount.set(1);
+            }
+        }
+        if (ImGui.inputInt("Players Level", currentPlayersLevel)) {
+            if (currentPlayersLevel.get() > 20) {
+                currentPlayersLevel.set(20);
+            } else if (currentPlayersLevel.get() <= 0) {
+                currentPlayersLevel.set(1);
+            }
+        }
+        ImGui.inputText("Monster Filter", currentFilter);
+
         if (ImGui.button("Start Encounter")) {
-            commandHandler.handleCommand(new Command("generate_encounter" + difficulties[currentDifficult.getData()[0]]));
+            if (currentMonsters.length == 0) {
+                String result = commandHandler.handleCommand(new Command("generate_encounter " + difficulties[currentDifficult.getData()[0]] + " " + currentPlayersLevel + " " + currentPlayersLevel));
+                currentMonsters = result.split("\n");
+            }
         }
 
-        ImGui.inputInt("Damage", damage);
-        for (int i = 0; i < 5; i++) {
-            if (ImGui.button("Attack##" + i)) {
-                commandHandler.handleCommand(new Command("attack " + i + " " + damage));
+        if (ImGui.button("End Encounter")) {
+            if (currentMonsters.length != 0) {
+                commandHandler.handleCommand(new Command("encounter_end"));
+                currentMonsters = new String[0];
             }
-            ImGui.sameLine();
-            ImGui.text(i + ". Kobold Veles 1/1");
         }
+
+        if (currentMonsters.length != 0) {
+            if (ImGui.inputInt("Damage", currentDamage)) {
+                if (currentDamage.get() <= 0) {
+                    currentDamage.set(1);
+                }
+            }
+        }
+        for (int i = 0; i < currentMonsters.length; i++) {
+            if (ImGui.button("Attack##" + i)) {
+                //TODO: при индексе 10 краш т.к. берет 1
+                String result = commandHandler.handleCommand(new Command("attack " + currentMonsters[i].charAt(0) + " " + currentDamage));
+                currentMonsters = result.split("\n");
+            }
+            else {
+                //TODO: fix index
+                ImGui.sameLine();
+                ImGui.text(currentMonsters[i]);
+            }
+        }
+
         ImGui.endChild();
         ImGui.end();
     }
