@@ -120,7 +120,7 @@ public class Windows {
         }
         ImGui.inputText("Monster Filter", currentMonsterFilter);
 
-        if (ImGui.button("Start Encounter")) {
+        if (ImGui.button("Start Encounter", new ImVec2(110, 20))) {
             if (currentMonstersBuffer.length == 0) {
                 String result = "";
                 if (currentMonsterFilter.isEmpty()) {
@@ -146,7 +146,7 @@ public class Windows {
             }
         }
 
-        if (ImGui.button("End Encounter")) {
+        if (ImGui.button("End Encounter", new ImVec2(110, 20))) {
             if (currentMonstersBuffer.length != 0) {
                 commandHandler.handleCommand(new Command("encounter_end"));
                 currentMonstersBuffer = new String[0];
