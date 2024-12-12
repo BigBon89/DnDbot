@@ -86,7 +86,7 @@ public class GUI extends Application {
         String[] d20States = {"NORMAL", "ADVANTAGE", "DISADVANTAGE"};
         ImGui.combo("D20 State", currentD20State, d20States);
 
-        if (ImGui.button("Roll dice")) {
+        if (ImGui.button("Roll d20")) {
             currentD20TestResult = commandHandler.handleCommand(new Command("d20 " + currentD20TestModifier + " " + d20States[currentD20State.getData()[0]]));
         }
         ImGui.sameLine();
