@@ -180,7 +180,7 @@ public class Monsters {
             }  else {
                 HashSet<Integer> randomIndexesFilter = new HashSet<Integer>();
                 int count = 0;
-                for(String monsterLine : monsterByChallengeRating[crIndex]) {
+                for (String monsterLine : monsterByChallengeRating[crIndex]) {
                     if (Objects.equals(monsterLine.split("\t")[3], monsterFilter)) {
                         randomIndexesFilter.add(count);
                     }
@@ -190,7 +190,7 @@ public class Monsters {
                 int randomIndex = random.nextInt(randomIndexesFilter.size());
                 count = 0;
                 for (Integer iterIndex : randomIndexesFilter) {
-                    if(randomIndex == count) {
+                    if (randomIndex == count) {
                         randomCRMonsterIndex = iterIndex;
                     }
                     count++;

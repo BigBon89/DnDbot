@@ -89,7 +89,11 @@ public class GUI extends Application {
         ImGui.combo("D20 State", currentD20State, d20States);
 
         if (ImGui.button("Roll d20")) {
-            currentD20TestResult = commandHandler.handleCommand(new Command("d20 " + currentD20TestModifier + " " + d20States[currentD20State.getData()[0]]));
+            currentD20TestResult = commandHandler.handleCommand(new Command("d20 "
+                    + currentD20TestModifier
+                    + " "
+                    + d20States[currentD20State.get()]
+            ));
         }
         ImGui.sameLine();
         ImGui.text(currentD20TestResult);
@@ -174,7 +178,11 @@ public class GUI extends Application {
 
                 if (matcher.find()) {
                     String monsterIndex = matcher.group(1);
-                    String result = commandHandler.handleCommand(new Command("attack " + monsterIndex + " " + currentDamage));
+                    String result = commandHandler.handleCommand(new Command("attack "
+                            + monsterIndex
+                            + " "
+                            + currentDamage
+                    ));
                     currentMonstersBuffer = result.split("\n");
                     if (currentMonstersBuffer[0].equals("All monsters is dead")) {
                         currentMonstersBuffer = new String[0];
