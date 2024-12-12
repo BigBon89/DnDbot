@@ -1,6 +1,7 @@
 package org.example;
 
 import org.example.enums.EncounterDifficulty;
+import org.example.utils.MathUtils;
 
 import java.io.File;
 import java.io.FileNotFoundException;
