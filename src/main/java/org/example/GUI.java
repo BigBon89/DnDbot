@@ -32,7 +32,7 @@ public class GUI extends Application {
     private final ImInt currentPlayersCount;
     private final ImInt currentPlayersLevel;
     private final ImString currentFilter;
-    private String[] currentMonsters;
+    private String[] currentMonstersBuffer;
 
     private final ImVec2 windowSize;
 
@@ -51,7 +51,7 @@ public class GUI extends Application {
         currentPlayersCount = new ImInt(4);
         currentPlayersLevel = new ImInt(4);
         currentFilter = new ImString("");
-        currentMonsters = new String[0];
+        currentMonstersBuffer = new String[0];
         windowSize = new ImVec2(800, 500);
     }
 
@@ -160,20 +160,20 @@ public class GUI extends Application {
         ImGui.inputText("Monster Filter", currentFilter);
 
         if (ImGui.button("Start Encounter")) {
-            if (currentMonsters.length == 0) {
+            if (currentMonstersBuffer.length == 0) {
                 String result = commandHandler.handleCommand(new Command("generate_encounter " + difficulties[currentDifficulty.getData()[0]] + " " + currentPlayersLevel + " " + currentPlayersLevel));
-                currentMonsters = result.split("\n");
+                currentMonstersBuffer = result.split("\n");
             }
         }
 
         if (ImGui.button("End Encounter")) {
-            if (currentMonsters.length != 0) {
+            if (currentMonstersBuffer.length != 0) {
                 commandHandler.handleCommand(new Command("encounter_end"));
-                currentMonsters = new String[0];
+                currentMonstersBuffer = new String[0];
             }
         }
 
-        if (currentMonsters.length != 0) {
+        if (currentMonstersBuffer.length != 0) {
             if (ImGui.inputInt("Damage", currentDamage)) {
                 if (currentDamage.get() <= 0) {
                     currentDamage.set(1);
@@ -181,18 +181,21 @@ public class GUI extends Application {
             }
         }
         Pattern pattern = Pattern.compile("^(\\d+)\\.");
-        for (int i = 0; i < currentMonsters.length; i++) {
+        for (int i = 0; i < currentMonstersBuffer.length; i++) {
             if (ImGui.button("Attack##" + i)) {
-                Matcher matcher = pattern.matcher(currentMonsters[i]);
+                Matcher matcher = pattern.matcher(currentMonstersBuffer[i]);
 
                 if (matcher.find()) {
                     String monsterIndex = matcher.group(1);
                     String result = commandHandler.handleCommand(new Command("attack " + monsterIndex + " " + currentDamage));
-                    currentMonsters = result.split("\n");
+                    currentMonstersBuffer = result.split("\n");
+                    if (currentMonstersBuffer[0].equals("All monsters is dead")) {
+                        currentMonstersBuffer = new String[0];
+                    }
                 }
             } else {
                 ImGui.sameLine();
-                ImGui.text(currentMonsters[i]);
+                ImGui.text(currentMonstersBuffer[i]);
             }
         }
 
