@@ -4,7 +4,7 @@ It allows you to generate cities, classes, names, encounters,
 and perform dice rolls. The bot supports both console mode and 
 graphical user interface (GUI) mode.
 ## GUI
-![Alt text](https://i.imgur.com/CKGuxjJ.png)
+![Alt text](https://i.imgur.com/C2Gzwcc.png)
 ## Commands for console:
 | Command                                                                                         | Action                                                                                  |
 |-------------------------------------------------------------------------------------------------|-----------------------------------------------------------------------------------------|
