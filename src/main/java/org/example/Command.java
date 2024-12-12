@@ -1,5 +1,7 @@
 package org.example;
 
+import org.example.enums.Commands;
+
 public class Command {
     private final String command;
     private final String[] arguments;

@@ -7,8 +7,8 @@ import imgui.type.ImInt;
 import imgui.type.ImString;
 import org.example.Command;
 import org.example.CommandHandler;
-import org.example.D20State;
-import org.example.EncounterDifficulty;
+import org.example.enums.D20State;
+import org.example.enums.EncounterDifficulty;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

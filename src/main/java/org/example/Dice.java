@@ -1,5 +1,7 @@
 package org.example;
 
+import org.example.enums.D20State;
+
 import java.util.Random;
 
 public class Dice {

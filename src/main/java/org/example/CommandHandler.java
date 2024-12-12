@@ -1,5 +1,8 @@
 package org.example;
 
+import org.example.enums.Commands;
+import org.example.enums.D20State;
+import org.example.enums.EncounterDifficulty;
 import org.example.name_generators.CharacterNameGenerator;
 import org.example.name_generators.CityNameGenerator;
 import org.example.name_generators.ClassNameGenerator;

@@ -1,5 +1,7 @@
 package org.example;
 
+import org.example.enums.EncounterDifficulty;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Random;

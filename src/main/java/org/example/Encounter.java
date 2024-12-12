@@ -1,5 +1,7 @@
 package org.example;
 
+import org.example.enums.EncounterDifficulty;
+
 import java.util.Arrays;
 
 public class Encounter {
