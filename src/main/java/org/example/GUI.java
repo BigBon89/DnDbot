@@ -11,6 +11,9 @@ import imgui.app.Configuration;
 import imgui.type.ImInt;
 import imgui.type.ImString;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class GUI extends Application {
     private final CommandHandler commandHandler;
     private String generateCityResult;
@@ -177,14 +180,17 @@ public class GUI extends Application {
                 }
             }
         }
+        Pattern pattern = Pattern.compile("^(\\d+)\\.");
         for (int i = 0; i < currentMonsters.length; i++) {
             if (ImGui.button("Attack##" + i)) {
-                //TODO: при индексе 10 краш т.к. берет 1
-                String result = commandHandler.handleCommand(new Command("attack " + currentMonsters[i].charAt(0) + " " + currentDamage));
-                currentMonsters = result.split("\n");
-            }
-            else {
-                //TODO: fix index
+                Matcher matcher = pattern.matcher(currentMonsters[i]);
+
+                if (matcher.find()) {
+                    String monsterIndex = matcher.group(1);
+                    String result = commandHandler.handleCommand(new Command("attack " + monsterIndex + " " + currentDamage));
+                    currentMonsters = result.split("\n");
+                }
+            } else {
                 ImGui.sameLine();
                 ImGui.text(currentMonsters[i]);
             }
