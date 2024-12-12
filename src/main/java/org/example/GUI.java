@@ -55,51 +55,7 @@ public class GUI extends Application {
         windowSize = new ImVec2(800, 500);
     }
 
-    @Override
-    protected void configure(Configuration config) {
-        config.setTitle("DnDbot");
-        config.setWidth(Math.round(windowSize.x));
-        config.setHeight(Math.round(windowSize.y));
-    }
-
-    private void initFonts(final ImGuiIO io) {
-        io.getFonts().setFreeTypeRenderer(true);
-
-        final ImFontConfig fontConfig = new ImFontConfig();
-
-        fontConfig.setFontBuilderFlags(ImGuiFreeTypeBuilderFlags.MonoHinting
-                | ImGuiFreeTypeBuilderFlags.Monochrome
-        );
-
-        io.getFonts().addFontFromFileTTF("C:/Windows/Fonts/verdana.ttf", 14, fontConfig);
-
-        fontConfig.setMergeMode(true);
-
-        io.getFonts().build();
-
-        fontConfig.destroy();
-    }
-
-
-    @Override
-    protected void initImGui(final Configuration config) {
-        super.initImGui(config);
-
-        final ImGuiIO io = ImGui.getIO();
-        io.setIniFilename(null);
-
-        initFonts(io);
-    }
-
-    @Override
-    public void process() {
-        //Расстояние между чайлдами = 8
-        ImGui.setNextWindowSize(windowSize);
-        ImGui.setNextWindowPos(0, 0);
-        ImGui.begin("DnDbot",
-                null,
-                ImGuiWindowFlags.NoResize | ImGuiWindowFlags.NoCollapse | ImGuiWindowFlags.NoTitleBar
-        );
+    private void renderLeftWindow() {
         ImGui.beginChild("window1", (windowSize.x - 24) / 2, windowSize.y - 20, true);
 
         if (ImGui.button("Generate City")) {
@@ -138,9 +94,9 @@ public class GUI extends Application {
         ImGui.text(currentRollResult);
 
         ImGui.endChild();
+    }
 
-        ImGui.sameLine();
-
+    private void renderRightWindow() {
         ImGui.beginChild("window2", (windowSize.x - 24) / 2, windowSize.y - 20, true);
 
         String[] difficulties = {"NORMAL", "MEDIUM", "HARD"};
@@ -200,7 +156,64 @@ public class GUI extends Application {
         }
 
         ImGui.endChild();
+    }
+
+    private void renderMainWindow() {
+        //Расстояние между чайлдами = 8
+        ImGui.setNextWindowSize(windowSize);
+        ImGui.setNextWindowPos(0, 0);
+        ImGui.begin("DnDbot",
+                null,
+                ImGuiWindowFlags.NoResize | ImGuiWindowFlags.NoCollapse | ImGuiWindowFlags.NoTitleBar
+        );
+
+        renderLeftWindow();
+
+        ImGui.sameLine();
+
+        renderRightWindow();
+
         ImGui.end();
+    }
+
+    @Override
+    protected void configure(Configuration config) {
+        config.setTitle("DnDbot");
+        config.setWidth(Math.round(windowSize.x));
+        config.setHeight(Math.round(windowSize.y));
+    }
+
+    private void initFonts(final ImGuiIO io) {
+        io.getFonts().setFreeTypeRenderer(true);
+
+        final ImFontConfig fontConfig = new ImFontConfig();
+
+        fontConfig.setFontBuilderFlags(ImGuiFreeTypeBuilderFlags.MonoHinting
+                | ImGuiFreeTypeBuilderFlags.Monochrome
+        );
+
+        io.getFonts().addFontFromFileTTF("C:/Windows/Fonts/verdana.ttf", 14, fontConfig);
+
+        fontConfig.setMergeMode(true);
+
+        io.getFonts().build();
+
+        fontConfig.destroy();
+    }
+
+    @Override
+    protected void initImGui(final Configuration config) {
+        super.initImGui(config);
+
+        final ImGuiIO io = ImGui.getIO();
+        io.setIniFilename(null);
+
+        initFonts(io);
+    }
+
+    @Override
+    public void process() {
+        renderMainWindow();
     }
 
     public static void start(CommandHandler commandHandler) {
