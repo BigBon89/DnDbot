@@ -137,6 +137,8 @@ public class GUI extends Application {
             }
         }
 
+        ImGui.separator();
+
         if (currentMonstersBuffer.length != 0) {
             if (ImGui.inputInt("Damage", currentDamage)) {
                 if (currentDamage.get() <= 0) {
