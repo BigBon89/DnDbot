@@ -141,6 +141,8 @@ public class GUI extends Application {
                             + currentPlayersLevel
                             + " "
                             + currentPlayersLevel
+                            + " "
+                            + currentMonsterFilter
                     ));
                 }
                 currentMonstersBuffer = result.split("\n");
