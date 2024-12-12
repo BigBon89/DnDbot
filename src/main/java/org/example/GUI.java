@@ -12,7 +12,6 @@ import imgui.app.Application;
 import imgui.app.Configuration;
 import imgui.type.ImInt;
 import imgui.type.ImString;
-import org.lwjgl.glfw.GLFW;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
