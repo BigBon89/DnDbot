@@ -174,7 +174,30 @@ public class Monsters {
         int index = 0;
         for (int i = 0; i < uniqueMonstersChallengeRatings.length; i++) {
             int crIndex = Arrays.binarySearch(allowedChallengeRatings, uniqueMonstersChallengeRatings[i]);
-            int randomCRMonsterIndex = random.nextInt(monsterByChallengeRating[crIndex].size());
+            int randomCRMonsterIndex = 0;
+            if (monsterFilter.isEmpty()){
+                randomCRMonsterIndex = random.nextInt(monsterByChallengeRating[crIndex].size());
+            }
+            else {
+                HashSet<Integer> randomIndexesFilter = new HashSet<Integer>();
+                int count = 0;
+                for(String monsterLine : monsterByChallengeRating[crIndex]){
+                    if (Objects.equals(monsterLine.split("\t")[3], monsterFilter))
+                    {
+                        randomIndexesFilter.add(count);
+                    }
+                    count++;
+                }
+
+                int randomIndex = random.nextInt(randomIndexesFilter.size());
+                count = 0;
+                for (Integer iterIndex : randomIndexesFilter){
+                    if(randomIndex == count){
+                        randomCRMonsterIndex = iterIndex;
+                    }
+                    count++;
+                }
+            }
             for (int j = 0; j < uniqueMonstersTotalChallengeRatings[i] / uniqueMonstersChallengeRatings[i]; j++) {
                 monsterChallengeRatings[index] = uniqueMonstersChallengeRatings[i];
                 randomMonsterIndexes[index] = randomCRMonsterIndex;

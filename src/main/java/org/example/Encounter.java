@@ -1,8 +1,22 @@
 package org.example;
 
+import java.util.Arrays;
+
 public class Encounter {
     private boolean inEncount;
     private Monsters monsters;
+
+    private static final String[] allowedMonsterTypes = {
+            "Angulotls", "Animals", "Basilisks", "Bugbears", "Chimeras",
+            "Demons", "Devils", "Dragonets", "Elementals", "Giants", "Gibbering Mouthers",
+            "Gnolls", "Goblins", "Griffons", "Hags", "Harpies", "Hellhounds", "Hobgoblins",
+            "Humans", "Kobolds", "Lightbenders", "Lizardfolk", "Manticores", "Medusas",
+            "Mimics", "Minotaur", "Ogres", "Olothec", "Orcs", "Otyughs", "Overminds",
+            "Owlbears", "Shambling Mounds", "Stirges", "Time Raiders", "Treants",
+            "Trolls", "Undead", "Valok", "Voiceless Talkers", "Wyverns", "Cave",
+            "Enchanted Forest", "Graveyard and Tombs", "Road", "Ruined Keep",
+            "Sewers", "Swamp", "Underground"
+    };
 
     public Encounter() {
         inEncount = false;
@@ -29,6 +43,10 @@ public class Encounter {
 
         if (playersCount <= 0) {
             return "Invalid players count";
+        }
+
+        if(!Arrays.asList(allowedMonsterTypes).contains(monsterFilter) && !monsterFilter.isEmpty()){
+            return "Invalid monster filter";
         }
 
         monsters.generate(difficulty, playersCount, playersLevel, monsterFilter);
