@@ -1,6 +1,10 @@
 package org.example;
 
-import imgui.*;
+import imgui.ImGui;
+import imgui.ImGuiStyle;
+import imgui.ImGuiIO;
+import imgui.ImFontConfig;
+import imgui.ImVec2;
 import imgui.flag.ImGuiCol;
 import imgui.flag.ImGuiFreeTypeBuilderFlags;
 import imgui.flag.ImGuiWindowFlags;
