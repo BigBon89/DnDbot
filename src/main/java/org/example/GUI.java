@@ -94,7 +94,9 @@ public class GUI extends Application {
 
         ImGui.inputText("Dice formula", currentDiceFormula);
         if (ImGui.button("Roll dice")) {
-            currentRollResult = commandHandler.handleCommand(new Command("roll " + currentDiceFormula));
+            if (!currentDiceFormula.isEmpty()) {
+                currentRollResult = commandHandler.handleCommand(new Command("roll " + currentDiceFormula));
+            }
         }
         ImGui.sameLine();
         ImGui.text(currentRollResult);
