@@ -15,7 +15,10 @@ public class Main {
                 new Encounter()
         );
 
-        //botLogicalCore.startConsole();
-        botLogicalCore.startGui();
+        if (args.length > 0 && args[0].equalsIgnoreCase("console")) {
+            botLogicalCore.startConsole();
+        } else {
+            botLogicalCore.startGui();
+        }
     }
 }
