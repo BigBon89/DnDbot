@@ -71,7 +71,9 @@ public class RenderEncounter {
                         difficulties[currentDifficulty.getData()[0]],
                         currentPlayersCount.get(),
                         currentPlayersLevel.get(),
-                        currentMonsterFilter.get() == 0 ? "" : allowedMonsterTypesForComboBox[currentMonsterFilter.get()]
+                        currentMonsterFilter.get() == 0 ? "" : allowedMonsterTypesForComboBox[
+                            currentMonsterFilter.get()
+                        ]
                     )
                 ));
 
