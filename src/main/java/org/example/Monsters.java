@@ -87,6 +87,7 @@ public class Monsters {
                          Integer playersLevel,
                          String monsterFilter
     ) {
+        monsters = new HashMap<>();
         filterChallengeRatings.clear();
         if (!monsterFilter.isEmpty()) {
             for (Set<String> strings : monsterByChallengeRating) {
@@ -124,6 +125,10 @@ public class Monsters {
             randomStep = Math.max(randomStep, Collections.min(filterChallengeRatings));
         }
         challengeRatingBudget -= challengeRatingBudget % randomStep;
+
+        if (!monsterFilter.isEmpty() && Collections.min(filterChallengeRatings) > challengeRatingBudget){
+            return;
+        }
 
         int upperBound = Math.min(4, challengeRatingBudget / randomStep);
         int numberOfUniqueMonsters = Math.min(random.nextInt(upperBound) + 1, challengeRatingBudget);
@@ -170,7 +175,6 @@ public class Monsters {
         for (int i = 0; i < numberOfUniqueMonsters; i++) {
             monstersCount += uniqueMonstersTotalChallengeRatings[i] / uniqueMonstersChallengeRatings[i];
         }
-        monsters = new HashMap<>();
 
         int[] monsterChallengeRatings = new int[monstersCount];
         int[] randomMonsterIndexes = new int[monstersCount];
