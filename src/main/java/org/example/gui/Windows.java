@@ -16,7 +16,7 @@ import java.util.regex.Pattern;
 public class Windows {
     private final CommandHandler commandHandler;
 
-    private final ImVec2 mainWindowSize;
+    private ImVec2 mainWindowSize;
 
     private String generateCityResult;
     private String generateClassResult;
@@ -219,7 +219,8 @@ public class Windows {
     }
 
     public void renderMainWindow() {
-        //Расстояние между чайлдами = 8
+        mainWindowSize = ImGui.getIO().getDisplaySize();
+
         ImGui.setNextWindowSize(mainWindowSize);
         ImGui.setNextWindowPos(0, 0);
         ImGui.begin("DnDbot",

@@ -13,18 +13,18 @@ import imgui.app.Configuration;
 
 public class GUI extends Application {
     private final Windows windows;
-    private final ImVec2 mainWindowSize;
+    private final ImVec2 defaultMainWindowSize;
 
     public GUI(CommandHandler commandHandler) {
-        mainWindowSize = new ImVec2(800, 400);
-        this.windows = new Windows(commandHandler, mainWindowSize);
+        defaultMainWindowSize = new ImVec2(800, 400);
+        this.windows = new Windows(commandHandler, defaultMainWindowSize);
     }
 
     @Override
     protected void configure(Configuration config) {
         config.setTitle("DnDbot");
-        config.setWidth(Math.round(mainWindowSize.x));
-        config.setHeight(Math.round(mainWindowSize.y));
+        config.setWidth(Math.round(defaultMainWindowSize.x));
+        config.setHeight(Math.round(defaultMainWindowSize.y));
     }
 
     private void initFonts(final ImGuiIO io) {
