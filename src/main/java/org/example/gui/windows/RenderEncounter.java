@@ -64,26 +64,16 @@ public class RenderEncounter {
         ImGui.combo("Monster Filter", currentMonsterFilter, allowedMonsterTypesForComboBox);
         if (ImGui.button("Start Encounter", new ImVec2(BUTTON_ENCOUNTER_START_END_SIZE_X, BUTTON_SIZE_Y))) {
             if (currentMonstersBuffer.length == 0) {
-                String result = "";
-                if (currentMonsterFilter.get() == 0) {
-                    result = commandHandler.handleCommand(new Command("generate_encounter "
-                            + difficulties[currentDifficulty.getData()[0]]
-                            + " "
-                            + currentPlayersLevel
-                            + " "
-                            + currentPlayersLevel
-                    ));
-                } else {
-                    result = commandHandler.handleCommand(new Command("generate_encounter_filter "
-                            + difficulties[currentDifficulty.getData()[0]]
-                            + " "
-                            + currentPlayersLevel
-                            + " "
-                            + currentPlayersLevel
-                            + " "
-                            + allowedMonsterTypesForComboBox[currentMonsterFilter.get()]
-                    ));
-                }
+                String result = commandHandler.handleCommand(new Command(
+                    String.format(
+                        "%s %s %d %d %s",
+                        currentMonsterFilter.get() == 0 ? "generate_encounter" : "generate_encounter_filter",
+                        difficulties[currentDifficulty.getData()[0]],
+                        currentPlayersCount.get(),
+                        currentPlayersLevel.get(),
+                        currentMonsterFilter.get() == 0 ? "" : allowedMonsterTypesForComboBox[currentMonsterFilter.get()]
+                    )
+                ));
 
                 currentMonstersBuffer = result.split("\n");
             }
