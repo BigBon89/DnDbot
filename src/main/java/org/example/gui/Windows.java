@@ -7,6 +7,7 @@ import imgui.type.ImInt;
 import imgui.type.ImString;
 import org.example.Command;
 import org.example.CommandHandler;
+import org.example.Encounter;
 import org.example.enums.D20State;
 import org.example.enums.EncounterDifficulty;
 
@@ -32,8 +33,10 @@ public class Windows {
     private final ImInt currentDifficulty;
     private final ImInt currentPlayersCount;
     private final ImInt currentPlayersLevel;
-    private final ImString currentMonsterFilter;
+    private final ImInt currentMonsterFilter;
     private String[] currentMonstersBuffer;
+
+    private final String[] allowedMonsterTypesForComboBox;
 
     public Windows(CommandHandler commandHandler, ImVec2 mainWindowSize) {
         this.commandHandler = commandHandler;
@@ -54,8 +57,13 @@ public class Windows {
         currentDifficulty = new ImInt(0);
         currentPlayersCount = new ImInt(4);
         currentPlayersLevel = new ImInt(4);
-        currentMonsterFilter = new ImString("", 32);
+        currentMonsterFilter = new ImInt(0);
         currentMonstersBuffer = new String[0];
+
+        String[] originalTypes = Encounter.getAllowedMonsterTypes();
+        allowedMonsterTypesForComboBox = new String[originalTypes.length + 1];
+        allowedMonsterTypesForComboBox[0] = "None";
+        System.arraycopy(originalTypes, 0, allowedMonsterTypesForComboBox, 1, originalTypes.length);
     }
 
     private void renderNamesGenerators() {
@@ -118,12 +126,12 @@ public class Windows {
                 currentPlayersLevel.set(1);
             }
         }
-        ImGui.inputText("Monster Filter", currentMonsterFilter);
 
+        ImGui.combo("Monster Filter", currentMonsterFilter, allowedMonsterTypesForComboBox);
         if (ImGui.button("Start Encounter", new ImVec2(110, 20))) {
             if (currentMonstersBuffer.length == 0) {
                 String result = "";
-                if (currentMonsterFilter.isEmpty()) {
+                if (currentMonsterFilter.get() == 0) {
                     result = commandHandler.handleCommand(new Command("generate_encounter "
                             + difficulties[currentDifficulty.getData()[0]]
                             + " "
@@ -139,7 +147,7 @@ public class Windows {
                             + " "
                             + currentPlayersLevel
                             + " "
-                            + currentMonsterFilter
+                            + allowedMonsterTypesForComboBox[currentMonsterFilter.get()]
                     ));
                 }
 

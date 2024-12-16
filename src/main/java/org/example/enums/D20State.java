@@ -1,9 +1,13 @@
 package org.example.enums;
 
+import java.util.Arrays;
+
 public enum D20State {
     NORMAL, ADVANTAGE, DISADVANTAGE;
 
     public static String[] getStringValues() {
-        return new String[] { NORMAL.name(), ADVANTAGE.name(), DISADVANTAGE.name() };
+        return Arrays.stream(D20State.values())
+            .map(Enum::name)
+            .toArray(String[]::new);
     }
 }

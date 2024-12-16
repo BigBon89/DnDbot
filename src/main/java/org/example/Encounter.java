@@ -28,6 +28,10 @@ public class Encounter {
         monsters = new Monsters(seed);
     }
 
+    public static String[] getAllowedMonsterTypes() {
+        return allowedMonsterTypes;
+    }
+
     public String printMonsters() {
         return monsters.print();
     }
