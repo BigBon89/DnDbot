@@ -1,15 +1,16 @@
 package org.example;
-import java.io.*;
-import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-        Scanner in = new Scanner(System.in);
-        BotLogicalCore botLogicalCore = new BotLogicalCore();
+        BotLogicalCore botLogicalCore = new BotLogicalCore(
+            new CityNameGenerator(),
+            new CharacterNameGenerator(),
+            new ClassNameGenerator(),
+            new Dice(),
+            new Console(),
+            new Encounter()
+        );
 
-        while (true) {
-            String command = in.nextLine();
-            botLogicalCore.commandHandler(command);
-        }
+        botLogicalCore.start();
     }
 }

@@ -1,28 +1,48 @@
 package org.example;
 
 import java.util.Random;
-public class DiceCombination {
-    private String _combination;
 
-    public DiceCombination(String combination)
-    {
-        _combination = combination;
+public class DiceCombination {
+    private String combination;
+
+    public DiceCombination(String combination) {
+        this.combination = combination;
     }
-    public Integer Result(Random random)
-    {
-        String[] dice = _combination.split("\\+");
+
+    public Integer getResult(Random random) {
+        String[] dice = combination.split("\\+");
         int result = 0;
-        for (int i = 0; i < dice.length; i++) {
-            if (dice[i].contains("d")) {
-                int diceCount = Integer.parseInt(dice[i].split("d")[0]);
-                int dieType = Integer.parseInt(dice[i].split("d")[1]);
+        for (String die : dice) {
+            if (die.contains("d")) {
+                int diceCount = Integer.parseInt(die.split("d")[0]);
+                int diceType = Integer.parseInt(die.split("d")[1]);
                 for (int j = 0; j < diceCount; j++) {
-                    result += random.nextInt(dieType) + 1;
+                    result += random.nextInt(diceType) + 1;
                 }
             } else {
-                result += Integer.parseInt(dice[i]);
+                result += Integer.parseInt(die);
             }
         }
         return result;
     }
+
+    public boolean isGood() {
+        String[] dice = combination.split("\\+");
+        for (String die : dice) {
+            if (!die.matches(".*\\d.*|d")) {
+                return false;
+            }
+            if (die.isEmpty()) {
+                return false;
+            }
+            if (die.startsWith("d") || die.endsWith("d")) {
+                return false;
+            }
+        }
+        if (combination.contains("++") || combination.startsWith("+") || combination.endsWith("+")) {
+            return false;
+        }
+        return true;
+    }
+
 }

@@ -9,11 +9,13 @@ public class TestCityNameGenerator {
     private CityNameGenerator cityNameGenerator;
 
     public TestCityNameGenerator() {
-        cityNameGenerator = new CityNameGenerator();
+        cityNameGenerator = new CityNameGenerator(1);
     }
 
-    public void check() {
-        String res = cityNameGenerator.generateCityName(new Random(1));
-        assertEquals("Shadowkeepgate", res);
+    @Test
+    public void checkCityNameGenerator() {
+        String res = cityNameGenerator.generateName();
+        String expect = "Shadowkeepgate";
+        assertEquals(expect, res);
     }
 }

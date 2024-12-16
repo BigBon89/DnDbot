@@ -1,0 +1,186 @@
+FM-028	Angulotl Blade	0.25	Angulotls
+FM-029	Angulotl Needler	4	Angulotls
+FM-030	Angulotl Seer	6	Angulotls
+FM-031	Angulotl Slink	2	Angulotls
+FM-032	Clawfish	0.125	Angulotls
+FM-035	Bear	2	Animals
+FM-036	Little Bear	1	Animals
+FM-037	Bird of Prey	0.5	Animals
+FM-037	Dire Bird of Prey	3	Animals
+FM-039	Camel	0.5	Animals
+FM-039	Deathhawk	4	Animals
+FM-040	Ancient Lightning Eel	12	Animals
+FM-040	Lightning Eel	2	Animals
+FM-041	Snowfox	0.25	Animals
+FM-041	Swarm of Insects	0.5	Animals
+FM-042	Swarm of Spiders	0.5	Animals
+FM-043	Little Wildcat	0.5	Animals
+FM-043	Wildcat	1	Animals
+FM-048	Basilisk	3	Basilisks
+FM-051	Bugbear Channeler	7	Bugbears
+FM-051	Bugbear Commander	5	Bugbears
+FM-052	Bugbear Predator	3	Bugbears
+FM-053	Bugbear Roughneck	1	Bugbears
+FM-054	Chimera	6	Chimeras
+FM-058	Chimeron	12	Demons
+FM-059	Ruinant	6	Demons
+FM-060	Tormenauk	8	Demons
+FM-061	Wobalas	10	Demons
+FM-062	Aurumvas	14	Demons
+FM-066	Devil Adjudicator	14	Devils
+FM-067	Devil Jurist	10	Devils
+FM-068	Devil Legate	8	Devils
+FM-069	Devil Magistrate	12	Devils
+FM-071	Infernal Chancellor Lazivos	16	Devils
+FM-073	Dragonet	0.25	Dragonets
+FM-089	Crux of Fire	5	Elementals
+FM-090	Crux of Frost	8	Elementals
+FM-091	Essence of Mist	13	Elementals
+FM-092	Essence of Storms	5	Elementals
+FM-093	Essence of Tides	5	Elementals
+FM-094	Force of Blood	19	Elementals
+FM-095	Force of Earth	5	Elementals
+FM-096	Force of Iron	10	Elementals
+FM-097	Oracle of Storms	16	Elementals
+FM-098	Principle of Growth	15	Elementals
+FM-099	Sunlight Nexus	12	Elementals
+FM-101	At?shia	23	Elementals
+FM-106	Fire Giant Red Fist	9	Giants
+FM-107	Zenith Aastrika	12	Giants
+FM-108	Frost Giant Storm Hurler	8	Giants
+FM-109	Fire Giant Lightbearer	10	Giants
+FM-109	Frost Giant Wind Sprinter	8	Giants
+FM-109	Hill Giant Clobberer	5	Giants
+FM-111	Basalt Stone Giant	8	Giants
+FM-111	Granite Stone Giant	7	Giants
+FM-112	Marble Stone Giant	6	Giants
+FM-114	Gibbering Mouther	2	Gibbering Mouthers
+FM-116	Gnoll Abyssal Archer	0.5	Gnolls
+FM-117	Gnoll Abyssal Summoner	6	Gnolls
+FM-118	Gnoll Bonesplitter	4	Gnolls
+FM-119	Gnoll Cackler	2	Gnolls
+FM-120	Gnoll Marauder	0.5	Gnolls
+FM-122	Tusker Demon	7	Gnolls
+FM-126	Goblin Assassin	0.5	Goblins
+FM-126	Goblin Cursespitter	1	Goblins
+FM-127	Goblin Sniper	0.5	Goblins
+FM-128	Goblin Spinecleaver	1	Goblins
+FM-128	Goblin Underboss	2	Goblins
+FM-129	Goblin Warrior	0.25	Goblins
+FM-129	Skitterling	0.125	Goblins
+FM-129	Swarm of Skitterlings	2	Goblins
+FM-130	War Spider	3	Goblins
+FM-131	Queen Bargnot	3	Goblins
+FM-135	Griffon	2	Griffons
+FM-137	Green Hag	3	Hags
+FM-138	Night Hag	5	Hags
+FM-139	Sea Hag	2	Hags
+FM-142	Harpy	1	Harpies
+FM-144	Hellhound	3	Hellhounds
+FM-148	Hobgoblin Death Captain	6	Hobgoblins
+FM-149	Hobgoblin Firerunner	4	Hobgoblins
+FM-150	Hobgoblin Incendiarist	1	Hobgoblins
+FM-151	Hobgoblin Smokebinder	2	Hobgoblins
+FM-152	Hobgoblin Trooper	0.5	Hobgoblins
+FM-153	Hobgoblin War Mage	3	Hobgoblins
+FM-154	Grilp	0.25	Hobgoblins
+FM-155	Slaughter Demon	8	Hobgoblins
+FM-157	Bloodlord Varrox	8	Hobgoblins
+FM-160	Human Brawler	2	Humans
+FM-161	Human Death Cultist	4	Humans
+FM-162	Human Knave	3	Humans
+FM-163	Human Raider	0.5	Humans
+FM-163	Human Scoundrel	3	Humans
+FM-164	Human Storm Wizard	6	Humans
+FM-165	Human Trickshot	2	Humans
+FM-166	Baron Uthrak	7	Humans
+FM-171	Kobold Adeptus	0.125	Kobolds
+FM-172	Kobold Artifex	2	Kobolds
+FM-173	Kobold Centurion	1	Kobolds
+FM-174	Kobold Legionary	0.5	Kobolds
+FM-175	Kobold Signifer	1	Kobolds
+FM-176	Kobold Veles	0.125	Kobolds
+FM-177	Kobold Venator	0.25	Kobolds
+FM-178	Shieldscale Drangolin	2	Kobolds
+FM-180	Lightbender	5	Lightbenders
+FM-182	Lizardfolk Bloodeye	2	Lizardfolk
+FM-183	Lizardfolk Scaletooth	0.5	Lizardfolk
+FM-184	Lizardfolk Terrorsoar	4	Lizardfolk
+FM-186	Manticore	3	Manticores
+FM-189	Medusa	6	Medusas
+FM-193	Mimic	2	Mimics
+FM-196	Minotaur	3	Minotaur
+FM-198	Ogre	2	Ogres
+FM-201	Olothec	10	Olothec
+FM-206	Orc Bloodrunner	0.5	Orcs
+FM-207	Orc Conduit	1	Orcs
+FM-208	Orc Fury	0.5	Orcs
+FM-208	Orc Garroter	1	Orcs
+FM-209	Orc Godcaller	4	Orcs
+FM-210	Orc Rampart	2	Orcs
+FM-211	Mohler	0.25	Orcs
+FM-211	Orc Terranova	2	Orcs
+FM-212	Scyza	4	Orcs
+FM-213	Dohma Raskovar	5	Orcs
+FM-216	Otyugh	5	Otyughs
+FM-219	Overmind	11	Overminds
+FM-222	Owlbear	3	Owlbears
+FM-224	Shambling Mound	5	Shambling Mounds
+FM-226	Stirge	0.125	Stirges
+FM-230	Time Raider Armiger	3	Time Raiders
+FM-231	Time Raider Nemesis	8	Time Raiders
+FM-232	Time Raider Vertex	7	Time Raiders
+FM-240	Treant	9	Treants
+FM-242	Troll	5	Trolls
+FM-247	Shadow	0.5	Undead
+FM-247	Specter	1	Undead
+FM-248	Wraith	5	Undead
+FM-249	Kiona the Dread Lord	9	Undead
+FM-252	Ghoul	1	Undead
+FM-253	Giant Zombie	4	Undead
+FM-254	Skeleton	0.25	Undead
+FM-255	Wight	3	Undead
+FM-255	Zombie	0.25	Undead
+FM-259	Lich	21	Undead
+FM-263	Dirt Mournling	18	Undead
+FM-263	Flesh Mournling	5	Undead
+FM-265	Mummy	3	Undead
+FM-270	Vampire	13	Undead
+FM-271	Vampire Spawn	5	Undead
+FM-276	Multivok Bodyguard	8	Valok
+FM-277	Multivok Chief	14	Valok
+FM-278	Servok Builder	12	Valok
+FM-279	Servok Miner	10	Valok
+FM-280	Servok War Engine	16	Valok
+FM-282	Voiceless Talker	7	Voiceless Talkers
+FM-283	Voiceless Talker Artillerist	10	Voiceless Talkers
+FM-284	Hulking Brain	7	Voiceless Talkers
+FM-285	Mindkiller	2	Voiceless Talkers
+FM-290	Wyvern	6	Wyverns
+FM-294	Fossil Cryptic	7	Cave
+FM-295	Koptourok	5	Cave
+FM-296	Lamasombra	13	Cave
+FM-301	Bonestalker	6	Enchanted Forest
+FM-302	Dancing Lady	9	Enchanted Forest
+FM-303	Empyrean Stag	13	Enchanted Forest
+FM-304	Rotbeast	3	Enchanted Forest
+FM-308	Ashen Hoarder	10	Graveyard and Tombs
+FM-309	Blood-Borne Ooze	0.25	Graveyard and Tombs
+FM-309	Haunt	9	Graveyard and Tombs
+FM-310	Lightthief	2	Graveyard and Tombs
+FM-316	Bredbeddle	8	Road
+FM-317	Weeping Willow	4	Road
+FM-321	Flintmoth Swarm	11	Ruined Keep
+FM-322	Lacuna	15	Ruined Keep
+FM-323	Thornblood	20	Ruined Keep
+FM-328	Arcane Amalgam	6	Sewers
+FM-329	Soneback Isopod	2	Sewers
+FM-329	Valochera	9	Sewers
+FM-334	Bog Body	1	Swamp
+FM-334	Marsh Hydra	7	Swamp
+FM-335	Rot Angel	4	Swamp
+FM-336	Willow Dryad	13	Swamp
+FM-340	Deep Dreamer	13	Underground
+FM-341	Gem Jelly	9	Underground
+FM-341	Leyleech	0.125	Underground
+FM-342	Marvorok	17	Underground

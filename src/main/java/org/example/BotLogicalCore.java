@@ -1,28 +1,89 @@
 package org.example;
 
 public class BotLogicalCore {
-    private CityNameGenerator cityNameGenerator;
-    private CharacterNameGenerator characterNameGenerator;
-    private Dice dice;
+    private final CityNameGenerator cityNameGenerator;
+    private final CharacterNameGenerator characterNameGenerator;
+    private final ClassNameGenerator classNameGenerator;
+    private final Dice dice;
+    private final InputOutput ioHandler;
+    private Encounter encounter;
 
-    public BotLogicalCore() {
-        cityNameGenerator = new CityNameGenerator();
-        characterNameGenerator = new CharacterNameGenerator();
-        dice = new Dice();
+    public BotLogicalCore(CityNameGenerator cityNameGenerator,
+        CharacterNameGenerator characterNameGenerator,
+        ClassNameGenerator classNameGenerator,
+        Dice dice,
+        InputOutput inputOutput,
+        Encounter encounter
+    ) {
+        this.cityNameGenerator = cityNameGenerator;
+        this.characterNameGenerator = characterNameGenerator;
+        this.classNameGenerator = classNameGenerator;
+        this.dice = dice;
+        this.ioHandler = inputOutput;
+        this.encounter = encounter;
     }
 
-    public void commandHandler(String command) {
-        if (command.equals("help"))
-            System.out.println("Commands:\nhelp\ngenerate city\nroll 'formula'\nd20 'modifier' 'normal/advantage/disadvantage'\ngenerate name");
-        else if (command.equals("generate city"))
-            System.out.println("Generated city name: " + cityNameGenerator.generateCityName());
-        else if (command.split(" ")[0].equals("roll"))
-            System.out.println("Rolled " + dice.roll(new DiceCombination(command.split(" ")[1])));
-        else if (command.split(" ")[0].equals("d20"))
-            System.out.println("Rolled " + dice.d20Test(Integer.valueOf(command.split(" ")[1]), Dice.D20State.valueOf(command.split(" ")[2])));
-        else if (command.equals("generate name"))
-            System.out.println("Generated character name: " + characterNameGenerator.generateCharacterName());
-        else
-            System.out.println("Unknown command, type help for help");
+    public void start() {
+        while (true) {
+            Command command = new Command(ioHandler.getText());
+            commandHandler(command);
+        }
+    }
+
+    public void commandHandler(Command command) {
+        if (!command.isValid()) {
+            ioHandler.print("Unknown command, type 'help' for available commands.");
+            return;
+        }
+        try {
+            switch (command.getCommandType()) {
+                case HELP:
+                    ioHandler.print(Commands.helpCommand());
+                    break;
+                case GENERATE_CITY:
+                    ioHandler.print("Generated city name: " + cityNameGenerator.generateName());
+                    break;
+                case GENERATE_CLASS:
+                    ioHandler.print("Generated class name: " + classNameGenerator.generateName());
+                    break;
+                case ROLL:
+                    ioHandler.print(dice.roll(new DiceCombination(command.getArguments()[0])));
+                    break;
+                case D20:
+                    ioHandler.print("Rolled " + dice.d20Test(Integer.parseInt(command.getArguments()[0]),
+                            D20State.valueOf(command.getArguments()[1]))
+                    );
+                    break;
+                case GENERATE_NAME:
+                    ioHandler.print("Generated character name: " + characterNameGenerator.generateName());
+                    break;
+                case GENERATE_ENCOUNTER:
+                    ioHandler.print(encounter.start(EncounterDifficulty.valueOf(command.getArguments()[0]),
+                            Integer.parseInt(command.getArguments()[1]), Integer.parseInt(command.getArguments()[2]),
+                            "")
+                    );
+                    break;
+                case GENERATE_ENCOUNTER_FILTER:
+                    ioHandler.print(encounter.start(EncounterDifficulty.valueOf(command.getArguments()[0]),
+                            Integer.parseInt(command.getArguments()[1]),
+                            Integer.parseInt(command.getArguments()[2]),
+                            command.getArguments()[3])
+                    );
+                    break;
+                case ENCOUNTER_END:
+                    ioHandler.print(encounter.end());
+                    break;
+                case ATTACK:
+                    ioHandler.print(encounter.attack(Integer.parseInt(command.getArguments()[0]),
+                            Integer.parseInt(command.getArguments()[1])
+                    ));
+                    break;
+                default:
+                    ioHandler.print("Unknown command, type help for help");
+                    break;
+            }
+        } catch (IllegalArgumentException e) {
+            ioHandler.print("Unknown command, type help for help");
+        }
     }
 }

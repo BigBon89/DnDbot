@@ -2,40 +2,29 @@ package org.example;
 
 import java.util.Random;
 
-public class CityNameGenerator {
-    private Random random;
-
-    private final String[] prefixes =
-            {
-                    "Dark", "Bright", "Storm", "Wind", "Shadow", "Sun", "Silver", "Iron", "Gold", "Wolf", "Dragon"
-            };
-
-    private final String[] roots =
-            {
-                    "vale", "wood", "fall", "stone", "ford", "ridge", "keep", "haven", "burg", "crest", "cliff"
-            };
-
-    private final String[] suffixes =
-            {
-                    "ton", "burgh", "port", "holm", "stead", "ford", "bridge", "field", "gate", "shire", "hill"
-            };
-
-    public CityNameGenerator()
-    {
-        random = new Random();
+public class CityNameGenerator extends NameGenerator {
+    public CityNameGenerator() {
+        super();
+        initializeNames();
     }
 
-    public String generateCityName() {
-        String prefix = prefixes[random.nextInt(prefixes.length)];
-        String root = roots[random.nextInt(roots.length)];
-        String suffix = suffixes[random.nextInt(suffixes.length)];
-        return prefix + root + suffix;
+    public CityNameGenerator(int seed) {
+        super(seed);
+        initializeNames();
     }
-    public String generateCityName(Random seededRandom) {
-        String prefix = prefixes[seededRandom.nextInt(prefixes.length)];
-        String root = roots[seededRandom.nextInt(roots.length)];
-        String suffix = suffixes[seededRandom.nextInt(suffixes.length)];
 
-        return prefix + root + suffix;
+    public void initializeNames() {
+        prefixes = new String[] {
+            "Dark", "Bright", "Storm", "Wind", "Shadow", "Sun",
+            "Silver", "Iron", "Gold", "Wolf", "Dragon"
+        };
+        roots = new String[] {
+            "vale", "wood", "fall", "stone", "ford", "ridge",
+            "keep", "haven", "burg", "crest", "cliff"
+        };
+        suffixes = new String[] {
+            "ton", "burgh", "port", "holm", "stead", "ford",
+            "bridge", "field", "gate", "shire", "hill"
+        };
     }
 }
