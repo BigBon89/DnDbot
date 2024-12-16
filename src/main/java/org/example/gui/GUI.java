@@ -11,6 +11,12 @@ import imgui.flag.ImGuiFreeTypeBuilderFlags;
 import imgui.app.Application;
 import imgui.app.Configuration;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URISyntaxException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
 public class GUI extends Application {
     private static final float DEFAULT_WINDOW_SIZE_X = 800;
     private static final float DEFAULT_WINDOW_SIZE_Y = 400;
@@ -30,6 +36,17 @@ public class GUI extends Application {
         config.setHeight(Math.round(defaultMainWindowSize.y));
     }
 
+    private static byte[] loadFromResources(String name) {
+        try (InputStream inputStream = GUI.class.getClassLoader().getResourceAsStream(name)) {
+            if (inputStream == null) {
+                throw new RuntimeException("Resource not found: " + name);
+            }
+            return inputStream.readAllBytes();
+        } catch (IOException e) {
+            throw new RuntimeException("Failed to load resource", e);
+        }
+    }
+
     private void initFonts(final ImGuiIO io) {
         io.getFonts().setFreeTypeRenderer(true);
 
@@ -39,7 +56,7 @@ public class GUI extends Application {
                 | ImGuiFreeTypeBuilderFlags.Monochrome
         );
 
-        io.getFonts().addFontFromFileTTF("C:/Windows/Fonts/verdana.ttf", 14, fontConfig);
+        io.getFonts().addFontFromMemoryTTF(loadFromResources("verdana.ttf"), 14, fontConfig);
 
         fontConfig.setMergeMode(true);
 

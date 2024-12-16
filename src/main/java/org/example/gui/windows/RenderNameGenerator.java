@@ -21,7 +21,6 @@ public class RenderNameGenerator {
         generateCityResult = "";
         generateClassResult = "";
         generateNameResult = "";
-
     }
 
     public void render() {
