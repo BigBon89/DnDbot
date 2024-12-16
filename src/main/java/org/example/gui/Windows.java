@@ -15,6 +15,11 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Windows {
+    private static final float BUTTON_SIZE_Y = 20;
+    private static final float BUTTON_ENCOUNTER_START_END_SIZE_X = 110;
+    private static final float BUTTON_GENERATOR_SIZE_X = 120;
+    private static final float SPACING_X = 8;
+
     private final CommandHandler commandHandler;
 
     private ImVec2 mainWindowSize;
@@ -70,19 +75,19 @@ public class Windows {
     }
 
     private void renderNamesGenerators() {
-        if (ImGui.button("Generate City", new ImVec2(120, 20))) {
+        if (ImGui.button("Generate City", new ImVec2(BUTTON_GENERATOR_SIZE_X, BUTTON_SIZE_Y))) {
             generateCityResult = commandHandler.handleCommand(new Command("generate_city"));
         }
         ImGui.sameLine();
         ImGui.text(generateCityResult);
 
-        if (ImGui.button("Generate Class", new ImVec2(120, 20))) {
+        if (ImGui.button("Generate Class", new ImVec2(BUTTON_GENERATOR_SIZE_X, BUTTON_SIZE_Y))) {
             generateClassResult = commandHandler.handleCommand(new Command("generate_class"));
         }
         ImGui.sameLine();
         ImGui.text(generateClassResult);
 
-        if (ImGui.button("Generate Name", new ImVec2(120, 20))) {
+        if (ImGui.button("Generate Name", new ImVec2(BUTTON_GENERATOR_SIZE_X, BUTTON_SIZE_Y))) {
             generateNameResult = commandHandler.handleCommand(new Command("generate_name"));
         }
         ImGui.sameLine();
@@ -131,7 +136,7 @@ public class Windows {
         }
 
         ImGui.combo("Monster Filter", currentMonsterFilter, allowedMonsterTypesForComboBox);
-        if (ImGui.button("Start Encounter", new ImVec2(110, 20))) {
+        if (ImGui.button("Start Encounter", new ImVec2(BUTTON_ENCOUNTER_START_END_SIZE_X, BUTTON_SIZE_Y))) {
             if (currentMonstersBuffer.length == 0) {
                 String result = "";
                 if (currentMonsterFilter.get() == 0) {
@@ -162,7 +167,7 @@ public class Windows {
         ImGui.sameLine();
         ImGui.text(encounterErrorMessage);
 
-        if (ImGui.button("End Encounter", new ImVec2(110, 20))) {
+        if (ImGui.button("End Encounter", new ImVec2(BUTTON_ENCOUNTER_START_END_SIZE_X, BUTTON_SIZE_Y))) {
             if (currentMonstersBuffer.length != 0) {
                 commandHandler.handleCommand(new Command("encounter_end"));
                 currentMonstersBuffer = new String[0];
@@ -211,7 +216,7 @@ public class Windows {
     }
 
     private void renderLeftWindow() {
-        ImGui.beginChild("leftWindow", (mainWindowSize.x - 24) / 2, mainWindowSize.y - 16, true);
+        ImGui.beginChild("leftWindow", (mainWindowSize.x - SPACING_X * 3) / 2, mainWindowSize.y - SPACING_X * 2, true);
 
         renderNamesGenerators();
 
@@ -223,7 +228,7 @@ public class Windows {
     }
 
     private void renderRightWindow() {
-        ImGui.beginChild("rightWindow", (mainWindowSize.x - 24) / 2, mainWindowSize.y - 16, true);
+        ImGui.beginChild("rightWindow", (mainWindowSize.x - SPACING_X * 3) / 2, mainWindowSize.y - SPACING_X * 2, true);
 
         renderEncounterSettings();
 
