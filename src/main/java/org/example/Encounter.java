@@ -18,18 +18,6 @@ public class Encounter {
         "Graveyard and Tombs", "Road", "Ruined Keep", "Sewers", "Swamp", "Underground"
     };
 
-    private static final String[] allowedMonsterTypes = {
-            "Angulotls", "Animals", "Basilisks", "Bugbears", "Chimeras",
-            "Demons", "Devils", "Dragonets", "Elementals", "Giants", "Gibbering Mouthers",
-            "Gnolls", "Goblins", "Griffons", "Hags", "Harpies", "Hellhounds", "Hobgoblins",
-            "Humans", "Kobolds", "Lightbenders", "Lizardfolk", "Manticores", "Medusas",
-            "Mimics", "Minotaur", "Ogres", "Olothec", "Orcs", "Otyughs", "Overminds",
-            "Owlbears", "Shambling Mounds", "Stirges", "Time Raiders", "Treants",
-            "Trolls", "Undead", "Valok", "Voiceless Talkers", "Wyverns", "Cave",
-            "Enchanted Forest", "Graveyard and Tombs", "Road", "Ruined Keep",
-            "Sewers", "Swamp", "Underground"
-    };
-
     public Encounter() {
         inEncount = false;
         monsters = new Monsters();
