@@ -168,11 +168,6 @@ public class Windows {
             return;
         }
 
-        if (currentMonstersBuffer[0].equals("Invalid monster filter")) {
-            currentMonstersBuffer = new String[0];
-            return;
-        }
-
         if (ImGui.inputInt("Damage", currentDamage)) {
             if (currentDamage.get() <= 0) {
                 currentDamage.set(1);
