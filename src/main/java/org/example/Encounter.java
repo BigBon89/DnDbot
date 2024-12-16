@@ -52,7 +52,7 @@ public class Encounter {
         }
         monsters.generate(difficulty, playersCount, playersLevel, monsterFilter);
 
-        if(monsters.getMonstersCount() == 0){
+        if (monsters.getMonstersCount() == 0) {
             return "Monsters are too powerful";
         }
         inEncount = true;

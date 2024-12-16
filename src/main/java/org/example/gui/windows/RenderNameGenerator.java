@@ -23,6 +23,7 @@ public class RenderNameGenerator {
         generateNameResult = "";
 
     }
+
     public void render() {
         if (ImGui.button("Generate City", new ImVec2(BUTTON_GENERATOR_SIZE_X, BUTTON_SIZE_Y))) {
             generateCityResult = commandHandler.handleCommand(new Command("generate_city"));

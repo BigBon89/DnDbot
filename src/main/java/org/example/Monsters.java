@@ -126,7 +126,7 @@ public class Monsters {
         }
         challengeRatingBudget -= challengeRatingBudget % randomStep;
 
-        if (!monsterFilter.isEmpty() && Collections.min(filterChallengeRatings) > challengeRatingBudget){
+        if (!monsterFilter.isEmpty() && Collections.min(filterChallengeRatings) > challengeRatingBudget) {
             return;
         }
 
