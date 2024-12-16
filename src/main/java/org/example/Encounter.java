@@ -42,9 +42,11 @@ public class Encounter {
         if (playersCount <= 0) {
             return "Invalid players count";
         }
+
         if (!Arrays.asList(allowedMonsterTypes).contains(monsterFilter) && !monsterFilter.isEmpty()) {
             return "Invalid monster filter";
         }
+
         monsters.generate(difficulty, playersCount, playersLevel, monsterFilter);
         inEncount = true;
         return printMonsters();

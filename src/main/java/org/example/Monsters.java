@@ -178,6 +178,7 @@ public class Monsters {
         for (int i = 0; i < uniqueMonstersChallengeRatings.length; i++) {
             int crIndex = Arrays.binarySearch(allowedChallengeRatings, uniqueMonstersChallengeRatings[i]);
             int randomCRMonsterIndex = 0;
+
             if (monsterFilter.isEmpty()) {
                 randomCRMonsterIndex = random.nextInt(monsterByChallengeRating[crIndex].size());
             }  else {
@@ -192,6 +193,7 @@ public class Monsters {
 
                 int randomIndex = random.nextInt(randomIndexesFilter.size());
                 count = 0;
+
                 for (Integer iterIndex : randomIndexesFilter) {
                     if (randomIndex == count) {
                         randomCRMonsterIndex = iterIndex;
