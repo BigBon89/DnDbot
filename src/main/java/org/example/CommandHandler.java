@@ -15,10 +15,10 @@ public class CommandHandler {
     private final Encounter encounter;
 
     public CommandHandler(CityNameGenerator cityNameGenerator,
-                          CharacterNameGenerator characterNameGenerator,
-                          ClassNameGenerator classNameGenerator,
-                          Dice dice,
-                          Encounter encounter
+        CharacterNameGenerator characterNameGenerator,
+        ClassNameGenerator classNameGenerator,
+        Dice dice,
+        Encounter encounter
     ) {
         this.cityNameGenerator = cityNameGenerator;
         this.characterNameGenerator = characterNameGenerator;
