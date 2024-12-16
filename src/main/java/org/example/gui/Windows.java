@@ -37,6 +37,7 @@ public class Windows {
     private String[] currentMonstersBuffer;
 
     private final String[] allowedMonsterTypesForComboBox;
+    private String encounterErrorMessage;
 
     public Windows(CommandHandler commandHandler, ImVec2 mainWindowSize) {
         this.commandHandler = commandHandler;
@@ -59,6 +60,8 @@ public class Windows {
         currentPlayersLevel = new ImInt(4);
         currentMonsterFilter = new ImInt(0);
         currentMonstersBuffer = new String[0];
+
+        encounterErrorMessage = "";
 
         String[] originalTypes = Encounter.getAllowedMonsterTypes();
         allowedMonsterTypesForComboBox = new String[originalTypes.length + 1];
@@ -153,7 +156,11 @@ public class Windows {
 
                 currentMonstersBuffer = result.split("\n");
             }
+            encounterErrorMessage = "";
         }
+
+        ImGui.sameLine();
+        ImGui.text(encounterErrorMessage);
 
         if (ImGui.button("End Encounter", new ImVec2(110, 20))) {
             if (currentMonstersBuffer.length != 0) {
@@ -165,6 +172,12 @@ public class Windows {
 
     private void renderEncounter() {
         if (currentMonstersBuffer.length == 0) {
+            return;
+        }
+
+        if (currentMonstersBuffer[0].equals("Monsters are too powerful")) {
+            encounterErrorMessage = "Monsters are too powerful";
+            currentMonstersBuffer = new String[0];
             return;
         }
 
