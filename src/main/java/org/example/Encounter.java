@@ -50,8 +50,11 @@ public class Encounter {
         if (!Arrays.asList(allowedMonsterTypes).contains(monsterFilter) && !monsterFilter.isEmpty()) {
             return "Invalid monster filter";
         }
-
         monsters.generate(difficulty, playersCount, playersLevel, monsterFilter);
+
+        if(monsters.getMonstersCount() == 0){
+            return "Monsters are too powerful";
+        }
         inEncount = true;
         return printMonsters();
     }
