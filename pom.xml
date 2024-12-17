@@ -32,31 +32,19 @@
         <dependency>
             <groupId>org.lwjgl</groupId>
             <artifactId>lwjgl</artifactId>
-            <version>3.3.2</version>
+            <version>3.3.5</version>
         </dependency>
 
         <dependency>
             <groupId>org.lwjgl</groupId>
             <artifactId>lwjgl-glfw</artifactId>
-            <version>3.3.2</version>
+            <version>3.3.5</version>
         </dependency>
 
         <dependency>
             <groupId>org.lwjgl</groupId>
             <artifactId>lwjgl-opengl</artifactId>
-            <version>3.3.2</version>
-        </dependency>
-
-        <dependency>
-            <groupId>io.github.spair</groupId>
-            <artifactId>imgui-java-binding</artifactId>
-            <version>1.87.7</version>
-        </dependency>
-
-        <dependency>
-            <groupId>io.github.spair</groupId>
-            <artifactId>imgui-java-lwjgl3</artifactId>
-            <version>1.87.7</version>
+            <version>3.3.5</version>
         </dependency>
 
         <dependency>
@@ -69,21 +57,21 @@
             <groupId>org.lwjgl</groupId>
             <artifactId>lwjgl</artifactId>
             <classifier>natives-windows</classifier>
-            <version>3.3.2</version>
+            <version>3.3.5</version>
         </dependency>
 
         <dependency>
             <groupId>org.lwjgl</groupId>
             <artifactId>lwjgl-glfw</artifactId>
             <classifier>natives-windows</classifier>
-            <version>3.3.2</version>
+            <version>3.3.5</version>
         </dependency>
 
         <dependency>
             <groupId>org.lwjgl</groupId>
             <artifactId>lwjgl-opengl</artifactId>
             <classifier>natives-windows</classifier>
-            <version>3.3.2</version>
+            <version>3.3.5</version>
         </dependency>
     </dependencies>
 </project>
