@@ -10,6 +10,9 @@ import org.example.gui.windows.RenderNameGenerator;
 
 public class Windows {
     private static final float SPACING_X = 8;
+    private static final float SPACING_Y = 8;
+    private static final float WINDOW_PADDING = 2 * SPACING_X;
+    private static final float HALF_WIDTH_RATIO = 0.5f;
 
     private ImVec2 mainWindowSize;
 
@@ -27,7 +30,10 @@ public class Windows {
     }
 
     private void renderLeftWindow() {
-        ImGui.beginChild("leftWindow", (mainWindowSize.x - SPACING_X * 3) / 2, mainWindowSize.y - SPACING_X * 2, true);
+        float windowWidth = (mainWindowSize.x - WINDOW_PADDING - SPACING_X) * HALF_WIDTH_RATIO;
+        float windowHeight = mainWindowSize.y - WINDOW_PADDING;
+
+        ImGui.beginChild("leftWindow", windowWidth, windowHeight, true);
 
         renderNameGenerator.render();
 
@@ -39,7 +45,10 @@ public class Windows {
     }
 
     private void renderRightWindow() {
-        ImGui.beginChild("rightWindow", (mainWindowSize.x - SPACING_X * 3) / 2, mainWindowSize.y - SPACING_X * 2, true);
+        float windowWidth = (mainWindowSize.x - WINDOW_PADDING - SPACING_X) * HALF_WIDTH_RATIO;
+        float windowHeight = mainWindowSize.y - WINDOW_PADDING;
+
+        ImGui.beginChild("rightWindow", windowWidth, windowHeight, true);
 
         renderEncounter.render();
 
