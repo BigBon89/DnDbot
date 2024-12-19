@@ -1,4 +1,4 @@
-package org.example.gui.windows;
+package org.example.gui.window;
 
 import imgui.ImGui;
 import imgui.ImVec2;

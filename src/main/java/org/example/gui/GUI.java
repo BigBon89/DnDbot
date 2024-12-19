@@ -18,12 +18,12 @@ public class GUI extends Application {
     private static final float DEFAULT_WINDOW_SIZE_X = 800;
     private static final float DEFAULT_WINDOW_SIZE_Y = 400;
 
-    private final Windows windows;
+    private final Window window;
     private final ImVec2 defaultMainWindowSize;
 
     public GUI(CommandHandler commandHandler) {
         defaultMainWindowSize = new ImVec2(DEFAULT_WINDOW_SIZE_X, DEFAULT_WINDOW_SIZE_Y);
-        this.windows = new Windows(commandHandler, defaultMainWindowSize);
+        this.window = new Window(commandHandler, defaultMainWindowSize);
     }
 
     @Override
@@ -92,7 +92,7 @@ public class GUI extends Application {
 
     @Override
     public void process() {
-        windows.renderMainWindow();
+        window.renderMainWindow();
     }
 
     public static void start(CommandHandler commandHandler) {

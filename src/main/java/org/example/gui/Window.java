@@ -4,11 +4,11 @@ import imgui.ImGui;
 import imgui.ImVec2;
 import imgui.flag.ImGuiWindowFlags;
 import org.example.CommandHandler;
-import org.example.gui.windows.RenderDice;
-import org.example.gui.windows.RenderEncounter;
-import org.example.gui.windows.RenderNameGenerator;
+import org.example.gui.window.RenderDice;
+import org.example.gui.window.RenderEncounter;
+import org.example.gui.window.RenderNameGenerator;
 
-public class Windows {
+public class Window {
     private static final float SPACING_X = 8;
     private static final float SPACING_Y = 8;
     private static final float WINDOW_PADDING = 2 * SPACING_X;
@@ -20,7 +20,7 @@ public class Windows {
     private final RenderDice renderDice;
     private final RenderEncounter renderEncounter;
 
-    public Windows(CommandHandler commandHandler, ImVec2 mainWindowSize) {
+    public Window(CommandHandler commandHandler, ImVec2 mainWindowSize) {
 
         this.mainWindowSize = mainWindowSize;
 

@@ -1,4 +1,4 @@
-package org.example.gui.windows;
+package org.example.gui.window;
 
 import imgui.ImGui;
 import imgui.ImVec2;
@@ -49,7 +49,9 @@ public class RenderEncounter extends Render {
         String[] difficulties = EncounterDifficulty.getStringValues();
         ImGui.combo("Difficulty", currentDifficulty, difficulties);
         if (ImGui.inputInt("Players Count", currentPlayersCount)) {
-            if (currentPlayersCount.get() <= 0) {
+            if (currentPlayersCount.get() > 9999) {
+                currentPlayersCount.set(9999);
+            } else if (currentPlayersCount.get() <= 0) {
                 currentPlayersCount.set(1);
             }
         }

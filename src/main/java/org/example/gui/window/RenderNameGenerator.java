@@ -1,8 +1,7 @@
-package org.example.gui.windows;
+package org.example.gui.window;
 
 import imgui.ImGui;
 import imgui.ImVec2;
-import imgui.flag.ImGuiStyleVar;
 import org.example.Command;
 import org.example.CommandHandler;
 
