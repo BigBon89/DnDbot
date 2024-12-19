@@ -13,9 +13,6 @@ import imgui.app.Configuration;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.net.URISyntaxException;
-import java.nio.file.Files;
-import java.nio.file.Paths;
 
 public class GUI extends Application {
     private static final float DEFAULT_WINDOW_SIZE_X = 800;
