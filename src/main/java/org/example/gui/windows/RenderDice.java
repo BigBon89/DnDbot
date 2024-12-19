@@ -1,13 +1,14 @@
 package org.example.gui.windows;
 
 import imgui.ImGui;
+import imgui.ImVec2;
 import imgui.type.ImInt;
 import imgui.type.ImString;
 import org.example.Command;
 import org.example.CommandHandler;
 import org.example.enums.D20State;
 
-public class RenderDice {
+public class RenderDice extends Render {
     private final CommandHandler commandHandler;
 
     private final ImInt currentD20TestModifier;
@@ -16,8 +17,10 @@ public class RenderDice {
     private final ImString currentDiceFormula;
     private String currentRollResult;
 
-    public RenderDice(CommandHandler commandHandler) {
+    public RenderDice(CommandHandler commandHandler, ImVec2 defaultWindowSize) {
         this.commandHandler = commandHandler;
+
+        this.defaultWindowSize = defaultWindowSize;
 
         currentD20TestModifier = new ImInt(0);
         currentD20State = new ImInt(0);
@@ -27,6 +30,7 @@ public class RenderDice {
     }
 
     public void render() {
+        pushStyle();
         ImGui.inputInt("Modifier", currentD20TestModifier);
         String[] d20States = D20State.getStringValues();
         ImGui.combo("D20 State", currentD20State, d20States);
@@ -49,5 +53,6 @@ public class RenderDice {
         }
         ImGui.sameLine();
         ImGui.text(currentRollResult);
+        popStyle();
     }
 }

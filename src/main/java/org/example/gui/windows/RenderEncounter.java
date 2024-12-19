@@ -11,10 +11,7 @@ import org.example.enums.EncounterDifficulty;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class RenderEncounter {
-    private static final float BUTTON_SIZE_Y = 20;
-    private static final float BUTTON_ENCOUNTER_START_END_SIZE_X = 110;
-
+public class RenderEncounter extends Render {
     private final CommandHandler commandHandler;
 
     private final ImInt currentDamage;
@@ -27,8 +24,10 @@ public class RenderEncounter {
     private final String[] allowedMonsterTypesForComboBox;
     private String encounterErrorMessage;
 
-    public RenderEncounter(CommandHandler commandHandler) {
+    public RenderEncounter(CommandHandler commandHandler, ImVec2 defaultWindowSize) {
         this.commandHandler = commandHandler;
+
+        this.defaultWindowSize = defaultWindowSize;
 
         currentDamage = new ImInt(1);
         currentDifficulty = new ImInt(0);
@@ -46,6 +45,7 @@ public class RenderEncounter {
     }
 
     public void render() {
+        pushStyle();
         String[] difficulties = EncounterDifficulty.getStringValues();
         ImGui.combo("Difficulty", currentDifficulty, difficulties);
         if (ImGui.inputInt("Players Count", currentPlayersCount)) {
@@ -62,7 +62,7 @@ public class RenderEncounter {
         }
 
         ImGui.combo("Monster Filter", currentMonsterFilter, allowedMonsterTypesForComboBox);
-        if (ImGui.button("Start Encounter", new ImVec2(BUTTON_ENCOUNTER_START_END_SIZE_X, BUTTON_SIZE_Y))) {
+        if (ImGui.button("Start Encounter")) {
             if (currentMonstersBuffer.length == 0) {
                 String result = commandHandler.handleCommand(new Command(
                     String.format(
@@ -85,7 +85,7 @@ public class RenderEncounter {
         ImGui.sameLine();
         ImGui.text(encounterErrorMessage);
 
-        if (ImGui.button("End Encounter", new ImVec2(BUTTON_ENCOUNTER_START_END_SIZE_X, BUTTON_SIZE_Y))) {
+        if (ImGui.button("End Encounter")) {
             if (currentMonstersBuffer.length != 0) {
                 commandHandler.handleCommand(new Command("encounter_end"));
                 currentMonstersBuffer = new String[0];
@@ -95,12 +95,14 @@ public class RenderEncounter {
         ImGui.separator();
 
         if (currentMonstersBuffer.length == 0) {
+            popStyle();
             return;
         }
 
         if (currentMonstersBuffer[0].equals("Monsters are too powerful")) {
             encounterErrorMessage = "Monsters are too powerful";
             currentMonstersBuffer = new String[0];
+            popStyle();
             return;
         }
 
@@ -131,5 +133,6 @@ public class RenderEncounter {
                 ImGui.text(currentMonstersBuffer[i]);
             }
         }
+        popStyle();
     }
 }

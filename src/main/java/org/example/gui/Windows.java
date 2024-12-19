@@ -24,9 +24,9 @@ public class Windows {
 
         this.mainWindowSize = mainWindowSize;
 
-        renderNameGenerator = new RenderNameGenerator(commandHandler);
-        renderDice = new RenderDice(commandHandler);
-        renderEncounter = new RenderEncounter(commandHandler);
+        renderNameGenerator = new RenderNameGenerator(commandHandler, mainWindowSize);
+        renderDice = new RenderDice(commandHandler, mainWindowSize);
+        renderEncounter = new RenderEncounter(commandHandler, mainWindowSize);
     }
 
     private void renderLeftWindow() {
