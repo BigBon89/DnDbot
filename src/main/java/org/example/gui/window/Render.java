@@ -8,14 +8,14 @@ public abstract class Render {
     ImVec2 defaultWindowSize;
 
     protected void pushStyle() {
-        float COEF_MULTIPLICATE = 3.f;
+        float coefMultiplicate = 3.f;
         ImVec2 mainWindowSize = ImGui.getIO().getDisplaySize();
-        float COEF_X = mainWindowSize.x / 800.f * COEF_MULTIPLICATE;
-        float COEF_Y = mainWindowSize.y / 600.f * COEF_MULTIPLICATE;
+        float coefX = mainWindowSize.x / defaultWindowSize.x * coefMultiplicate;
+        float coefY = mainWindowSize.y / defaultWindowSize.y * coefMultiplicate;
 
         ImGui.pushStyleVar(ImGuiStyleVar.FramePadding,
-            ImGui.getStyle().getFramePaddingX() * COEF_X,
-            ImGui.getStyle().getFramePaddingY() * COEF_Y
+            ImGui.getStyle().getFramePaddingX() * coefX,
+            ImGui.getStyle().getFramePaddingY() * coefY
         );
     }
 
