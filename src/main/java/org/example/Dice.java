@@ -1,10 +1,12 @@
 package org.example;
 
+import org.example.enums.D20State;
+
 import java.util.Random;
 
 public class Dice {
 
-    private Random random;
+    private final Random random;
 
     public Dice() {
         random = new Random();

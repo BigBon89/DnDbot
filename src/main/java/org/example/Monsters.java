@@ -1,5 +1,8 @@
 package org.example;
 
+import org.example.enums.EncounterDifficulty;
+import org.example.utils.MathUtils;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Random;
@@ -80,10 +83,11 @@ public class Monsters {
     };
 
     public void generate(EncounterDifficulty difficulty,
-        Integer playersCount,
-        Integer playersLevel,
-        String monsterFilter
+                         Integer playersCount,
+                         Integer playersLevel,
+                         String monsterFilter
     ) {
+        monsters = new HashMap<>();
         filterChallengeRatings.clear();
         if (!monsterFilter.isEmpty()) {
             for (Set<String> strings : monsterByChallengeRating) {
@@ -121,6 +125,10 @@ public class Monsters {
             randomStep = Math.max(randomStep, Collections.min(filterChallengeRatings));
         }
         challengeRatingBudget -= challengeRatingBudget % randomStep;
+
+        if (!monsterFilter.isEmpty() && Collections.min(filterChallengeRatings) > challengeRatingBudget) {
+            return;
+        }
 
         int upperBound = Math.min(4, challengeRatingBudget / randomStep);
         int numberOfUniqueMonsters = Math.min(random.nextInt(upperBound) + 1, challengeRatingBudget);
@@ -167,7 +175,6 @@ public class Monsters {
         for (int i = 0; i < numberOfUniqueMonsters; i++) {
             monstersCount += uniqueMonstersTotalChallengeRatings[i] / uniqueMonstersChallengeRatings[i];
         }
-        monsters = new HashMap<>();
 
         int[] monsterChallengeRatings = new int[monstersCount];
         int[] randomMonsterIndexes = new int[monstersCount];
@@ -175,15 +182,14 @@ public class Monsters {
         for (int i = 0; i < uniqueMonstersChallengeRatings.length; i++) {
             int crIndex = Arrays.binarySearch(allowedChallengeRatings, uniqueMonstersChallengeRatings[i]);
             int randomCRMonsterIndex = 0;
-            if (monsterFilter.isEmpty()){
+
+            if (monsterFilter.isEmpty()) {
                 randomCRMonsterIndex = random.nextInt(monsterByChallengeRating[crIndex].size());
-            }
-            else {
+            }  else {
                 HashSet<Integer> randomIndexesFilter = new HashSet<Integer>();
                 int count = 0;
-                for(String monsterLine : monsterByChallengeRating[crIndex]){
-                    if (Objects.equals(monsterLine.split("\t")[3], monsterFilter))
-                    {
+                for (String monsterLine : monsterByChallengeRating[crIndex]) {
+                    if (Objects.equals(monsterLine.split("\t")[3], monsterFilter)) {
                         randomIndexesFilter.add(count);
                     }
                     count++;
@@ -191,8 +197,9 @@ public class Monsters {
 
                 int randomIndex = random.nextInt(randomIndexesFilter.size());
                 count = 0;
-                for (Integer iterIndex : randomIndexesFilter){
-                    if(randomIndex == count){
+
+                for (Integer iterIndex : randomIndexesFilter) {
+                    if (randomIndex == count) {
                         randomCRMonsterIndex = iterIndex;
                     }
                     count++;
@@ -218,11 +225,11 @@ public class Monsters {
             }
             String[] monsterArguments = monsterLine.split("\t");
             Monster monster = new Monster(monsterArguments[0],
-                monsterArguments[1],
+                    monsterArguments[1],
                     (int) Double.parseDouble(monsterArguments[2]) * 8,
-                monsterArguments[3],
-                monsterChallengeRatings[i],
-                monsterChallengeRatings[i]
+                    monsterArguments[3],
+                    monsterChallengeRatings[i],
+                    monsterChallengeRatings[i]
             );
 
             monsters.put(i, monster);

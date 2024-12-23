@@ -1,4 +1,4 @@
-package org.example;
+package org.example.namegenerators;
 
 public class ClassNameGenerator extends NameGenerator {
     public ClassNameGenerator() {

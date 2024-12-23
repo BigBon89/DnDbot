@@ -1,5 +1,9 @@
 package org.example;
 
+import org.example.namegenerators.CharacterNameGenerator;
+import org.example.namegenerators.CityNameGenerator;
+import org.example.namegenerators.ClassNameGenerator;
+
 public class Main {
     public static void main(String[] args) {
         BotLogicalCore botLogicalCore = new BotLogicalCore(
@@ -11,6 +15,10 @@ public class Main {
             new Encounter()
         );
 
-        botLogicalCore.start();
+        if (args.length > 0 && args[0].equalsIgnoreCase("console")) {
+            botLogicalCore.startConsole();
+        } else {
+            botLogicalCore.startGui();
+        }
     }
 }

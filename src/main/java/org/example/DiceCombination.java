@@ -3,7 +3,7 @@ package org.example;
 import java.util.Random;
 
 public class DiceCombination {
-    private String combination;
+    private final String combination;
 
     public DiceCombination(String combination) {
         this.combination = combination;
